@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap - iEMS Cosmic UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        h1 { color: #1f2937; margin-bottom: 2rem; }
+        .sitemap-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .sitemap-section h2 {
+            color: #374151;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #2563eb;
+            padding-bottom: 0.5rem;
+        }
+        .sitemap-section ul {
+            list-style: none;
+        }
+        .sitemap-section li {
+            margin-bottom: 0.75rem;
+        }
+        .sitemap-section a {
+            color: #6b7280;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sitemap-section a:hover {
+            color: #2563eb;
+        }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: #2563eb; text-decoration: none; }
+        @media (max-width: 768px) {
+            .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .sitemap-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <h1>🗺️ Sitemap</h1>
+        
+        <div class="sitemap-grid">
+            <div class="sitemap-section">
+                <h2>Main Pages</h2>
+                <ul>
+                    <li><a href="../index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="../pages/login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                    <li><a href="../pages/register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+                    <li><a href="../pages/forgot-password.html"><i class="fas fa-key"></i> Forgot Password</a></li>
+                </ul>
+            </div>
+            
+            <div class="sitemap-section">
+                <h2>Student Pages</h2>
+                <ul>
+                    <li><a href="../pages/student-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="../pages/student-attendance.html"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                    <li><a href="../pages/student-marks.html"><i class="fas fa-chart-line"></i> Marks</a></li>
+                    <li><a href="../pages/student-placement.html"><i class="fas fa-briefcase"></i> Placement</a></li>
+                    <li><a href="../pages/student-profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                </ul>
+            </div>
+            
+            <div class="sitemap-section">
+                <h2>Teacher Pages</h2>
+                <ul>
+                    <li><a href="../pages/teacher-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="../pages/teacher-attendance.html"><i class="fas fa-qrcode"></i> Attendance</a></li>
+                    <li><a href="../pages/teacher-marks.html"><i class="fas fa-pen"></i> Marks</a></li>
+                    <li><a href="../pages/teacher-class.html"><i class="fas fa-users"></i> Class</a></li>
+                </ul>
+            </div>
+            
+            <div class="sitemap-section">
+                <h2>Admin Pages</h2>
+                <ul>
+                    <li><a href="../pages/admin-cockpit.html"><i class="fas fa-tachometer-alt"></i> Cockpit</a></li>
+                    <li><a href="../pages/admin-agents.html"><i class="fas fa-robot"></i> AI Agents</a></li>
+                    <li><a href="../pages/admin-n8n.html"><i class="fas fa-bolt"></i> n8n</a></li>
+                    <li><a href="../pages/admin-risk.html"><i class="fas fa-exclamation-triangle"></i> Risk</a></li>
+                </ul>
+            </div>
+            
+            <div class="sitemap-section">
+                <h2>AI Agents</h2>
+                <ul>
+                    <li><a href="../pages/agents/attendance-guardian.html"><i class="fas fa-shield-alt"></i> Attendance Guardian</a></li>
+                    <li><a href="../pages/agents/dropout-prophet.html"><i class="fas fa-exclamation-triangle"></i> Dropout Prophet</a></li>
+                    <li><a href="../pages/agents/placement-navigator.html"><i class="fas fa-briefcase"></i> Placement Navigator</a></li>
+                    <li><a href="../pages/agents/exam-optimizer.html"><i class="fas fa-bullseye"></i> Exam Optimizer</a></li>
+                    <li><a href="../pages/agents/skill-analyzer.html"><i class="fas fa-tools"></i> Skill Analyzer</a></li>
+                    <li><a href="../pages/agents/career-pathfinder.html"><i class="fas fa-compass"></i> Career Pathfinder</a></li>
+                </ul>
+            </div>
+            
+            <div class="sitemap-section">
+                <h2>Legal</h2>
+                <ul>
+                    <li><a href="privacy.html"><i class="fas fa-lock"></i> Privacy Policy</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    <li><a href="disclaimer.html"><i class="fas fa-exclamation-circle"></i> Disclaimer</a></li>
+                    <li><a href="cookies.html"><i class="fas fa-cookie-bite"></i> Cookies</a></li>
+                    <li><a href="accessibility.html"><i class="fas fa-universal-access"></i> Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - iEMS Cosmic UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f9fafb;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        .navbar {
+            background: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+        .page-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .about-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .about-card i {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1rem;
+        }
+        .about-card h3 {
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+        .team-section {
+            margin-top: 4rem;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .team-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            background: #eff6ff;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #2563eb;
+        }
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .about-grid, .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .about-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-brand">iEMS Cosmic UI</a>
+        <div>
+            <a href="../pages/login.html" style="color: #6b7280; text-decoration: none; margin-right: 1rem;">Login</a>
+            <a href="../pages/register.html" style="background: #2563eb; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; text-decoration: none;">Get Started</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div class="page-header">
+            <h1>About iEMS Cosmic UI</h1>
+            <p>Revolutionizing education through Artificial Intelligence</p>
+        </div>
+        
+        <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+            <h2 style="color: #1f2937; margin-bottom: 1rem;">Our Mission</h2>
+            <p style="color: #6b7280; margin-bottom: 1.5rem;">To empower educational institutions with cutting-edge AI technology that streamlines administration, enhances learning outcomes, and bridges the gap between students and opportunities.</p>
+            
+            <h2 style="color: #1f2937; margin-bottom: 1rem;">Our Vision</h2>
+            <p style="color: #6b7280;">Create a world where every educational institution has access to intelligent, autonomous systems that make education more efficient, accessible, and personalized for every student.</p>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <i class="fas fa-users"></i>
+                <h3>500+ Institutions</h3>
+                <p style="color: #6b7280;">Trusted by colleges and universities across India</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-robot"></i>
+                <h3>6 AI Agents</h3>
+                <p style="color: #6b7280;">Autonomous systems working 24/7 for your institution</p>
+            </div>
+            <div class="about-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>98.7% Accuracy</h3>
+                <p style="color: #6b7280;">Industry-leading AI performance metrics</p>
+            </div>
+        </div>
+        
+        <div class="team-section">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Meet Team CODE REAPERS</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💻</div>
+                    <h4>Aaryan Ramani</h4>
+                    <p style="color: #6b7280;">Lead Developer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👩‍💻</div>
+                    <h4>Priya Sharma</h4>
+                    <p style="color: #6b7280;">AI/ML Engineer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">👨‍🎨</div>
+                    <h4>Rahul Verma</h4>
+                    <p style="color: #6b7280;">UI/UX Designer</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar">🧑‍🔧</div>
+                    <h4>Neha Patel</h4>
+                    <p style="color: #6b7280;">Backend Developer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p style="margin-bottom: 1rem;">© 2026 iEMS Cosmic UI. All rights reserved.</p>
+        <p style="color: #9ca3af;">Built with ❤️ by Team CODE REAPERS for CVM Hackathon 2026</p>
+    </footer>
+</body>
+</html>

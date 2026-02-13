@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBot - Student Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .chat-container {
+            display: flex;
+            gap: 2rem;
+            height: calc(100vh - 200px);
+        }
+        .chat-sidebar {
+            width: 300px;
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+        }
+        .chat-main {
+            flex: 1;
+            background: white;
+            border-radius: 1rem;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        .message {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .message-content {
+            flex: 1;
+        }
+        .message-bubble {
+            background: #f3f4f6;
+            padding: 1rem;
+            border-radius: 1rem 1rem 1rem 0;
+            max-width: 80%;
+        }
+        .user-message .message-bubble {
+            background: #2563eb;
+            color: white;
+            border-radius: 1rem 1rem 0 1rem;
+            margin-left: auto;
+        }
+        .chat-input-container {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 1rem;
+        }
+        .quick-reply {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border-radius: 2rem;
+            margin: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .quick-reply:hover {
+            background: #2563eb;
+            color: white;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Student Navbar -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span>iEMS Student</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="student-attendance.html" class="nav-link"><i class="fas fa-calendar-check"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="student-marks.html" class="nav-link"><i class="fas fa-chart-line"></i>Marks</a></li>
+                        <li class="nav-item"><a href="student-placement.html" class="nav-link"><i class="fas fa-briefcase"></i>Placement</a></li>
+                        <li class="nav-item"><a href="student-profile.html" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👤</div>
+                        <span class="user-name">Rohan Patel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="chat-container">
+            <!-- Sidebar -->
+            <div class="chat-sidebar">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-robot" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 0.25rem;">EduBot</h3>
+                        <span style="color: #10b981;"><i class="fas fa-circle"></i> Online</span>
+                    </div>
+                </div>
+                
+                <h4 style="margin-bottom: 1rem;">Quick Actions</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                    <span class="quick-reply" onclick="document.getElementById('chatInput').value = 'What is my attendance?';">
+                        📊 Attendance
+                    </span>
+                    <span class="quick-reply" onclick="document.getElementById('chatInput').value = 'What CGPA do I need for 8.5?';">
+                        🎯 CGPA Target
+                    </span>
+                    <span class="quick-reply" onclick="document.getElementById('chatInput').value = 'Show my placement recommendations';">
+                        💼 Placements
+                    </span>
+                    <span class="quick-reply" onclick="document.getElementById('chatInput').value = 'When is my next exam?';">
+                        📝 Exams
+                    </span>
+                    <span class="quick-reply" onclick="document.getElementById('chatInput').value = 'What skills should I learn?';">
+                        🛠️ Skills
+                    </span>
+                </div>
+                
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e5e7eb;">
+                
+                <h4 style="margin-bottom: 1rem;">Recent Conversations</h4>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 32px; height: 32px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-check" style="color: #2563eb;"></i>
+                        </div>
+                        <div>
+                            <span style="font-weight: 500;">Attendance query</span>
+                            <span style="display: block; color: #6b7280; font-size: 0.8rem;">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 32px; height: 32px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-graduation-cap" style="color: #2563eb;"></i>
+                        </div>
+                        <div>
+                            <span style="font-weight: 500;">CGPA calculation</span>
+                            <span style="display: block; color: #6b7280; font-size: 0.8rem;">Yesterday</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Main -->
+            <div class="chat-main">
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Bot Message -->
+                    <div class="message">
+                        <div class="message-avatar" style="background: #2563eb;">
+                            <i class="fas fa-robot" style="color: white;"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                👋 Hi Rohan! I'm EduBot, your AI assistant. How can I help you today?
+                            </div>
+                            <span style="color: #6b7280; font-size: 0.8rem; margin-top: 0.25rem; display: block;">10:30 AM</span>
+                        </div>
+                    </div>
+                    
+                    <!-- User Message -->
+                    <div class="message user-message" style="justify-content: flex-end;">
+                        <div class="message-content" style="display: flex; flex-direction: column; align-items: flex-end;">
+                            <div class="message-bubble" style="background: #2563eb; color: white;">
+                                What is my attendance?
+                            </div>
+                            <span style="color: #6b7280; font-size: 0.8rem; margin-top: 0.25rem;">10:31 AM</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Bot Response -->
+                    <div class="message">
+                        <div class="message-avatar" style="background: #2563eb;">
+                            <i class="fas fa-robot" style="color: white;"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                📊 Your current attendance is <strong>85%</strong>. You need 75% to be eligible for exams. You can miss <strong>2 more classes</strong> this semester!
+                                <br><br>
+                                • Web Development: 93% ✅
+                                • Database Systems: 87% ✅
+                                • Data Structures: 67% ⚠️
+                                • Operating Systems: 92% ✅
+                            </div>
+                            <span style="color: #6b7280; font-size: 0.8rem; margin-top: 0.25rem; display: block;">10:31 AM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Input Area -->
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Ask me anything..." style="flex: 1; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 2rem; outline: none;">
+                    <button style="width: 45px; height: 45px; background: #2563eb; border: none; border-radius: 50%; color: white; cursor: pointer;">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (message) {
+                const chatMessages = document.getElementById('chatMessages');
+                
+                // Add user message
+                const userDiv = document.createElement('div');
+                userDiv.className = 'message user-message';
+                userDiv.style.justifyContent = 'flex-end';
+                userDiv.innerHTML = `
+                    <div class="message-content" style="display: flex; flex-direction: column; align-items: flex-end;">
+                        <div class="message-bubble" style="background: #2563eb; color: white;">
+                            ${message}
+                        </div>
+                        <span style="color: #6b7280; font-size: 0.8rem; margin-top: 0.25rem;">Just now</span>
+                    </div>
+                `;
+                chatMessages.appendChild(userDiv);
+                
+                // Clear input
+                input.value = '';
+                
+                // Simulate bot response
+                setTimeout(() => {
+                    const botDiv = document.createElement('div');
+                    botDiv.className = 'message';
+                    botDiv.innerHTML = `
+                        <div class="message-avatar" style="background: #2563eb;">
+                            <i class="fas fa-robot" style="color: white;"></i>
+                        </div>
+                        <div class="message-content">
+                            <div class="message-bubble">
+                                Thanks for your message! I'm processing your request. In the full version, I'll provide personalized responses based on your academic data.
+                            </div>
+                            <span style="color: #6b7280; font-size: 0.8rem; margin-top: 0.25rem; display: block;">Just now</span>
+                        </div>
+                    `;
+                    chatMessages.appendChild(botDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Event listeners
+        document.querySelector('.chat-input-container button').addEventListener('click', addMessage);
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addMessage();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    <!-- Teacher Navbar -->
+    <nav class="dashboard-navbar teacher-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="teacher-dashboard.html">
+                        <span class="brand-icon">👨‍🏫</span>
+                        <span class="brand-text">iEMS Teacher</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="teacher-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="teacher-attendance.html" class="nav-link"><i class="fas fa-qrcode"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="teacher-marks.html" class="nav-link"><i class="fas fa-pen"></i>Marks</a></li>
+                        <li class="nav-item"><a href="teacher-class.html" class="nav-link"><i class="fas fa-users"></i>Class</a></li>
+                        <li class="nav-item"><a href="teacher-schedule.html" class="nav-link"><i class="fas fa-calendar"></i>Schedule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👨‍🏫</div>
+                        <span class="user-name">Prof. Sharma</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">👤 Teacher Profile</h1>
+                <p class="welcome-subtitle">Computer Engineering Department</p>
+            </div>
+            <button class="btn btn-primary">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+        </div>
+
+        <!-- Profile Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem;">
+            <!-- Left Column - Avatar & Basic Info -->
+            <div>
+                <div style="background: white; border-radius: 1rem; padding: 2rem; text-align: center; border: 1px solid #e2e8f0; margin-bottom: 1.5rem;">
+                    <div style="width: 120px; height: 120px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 3rem; color: white;">👨‍🏫</span>
+                    </div>
+                    <h2 style="margin-bottom: 0.25rem;">Prof. Rajesh Sharma</h2>
+                    <p style="color: #64748b; margin-bottom: 0.5rem;">Professor • Computer Engineering</p>
+                    <span class="badge badge-success">Active</span>
+                </div>
+                
+                <div style="background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e2e8f0;">
+                    <h3 style="margin-bottom: 1rem;">Quick Stats</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="color: #64748b;">Total Students</span>
+                            <span style="font-weight: 600;">143</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="color: #64748b;">Courses</span>
+                            <span style="font-weight: 600;">4</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="color: #64748b;">Experience</span>
+                            <span style="font-weight: 600;">12 years</span>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between;">
+                            <span style="color: #64748b;">Publications</span>
+                            <span style="font-weight: 600;">18</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Detailed Info -->
+            <div style="background: white; border-radius: 1rem; padding: 2rem; border: 1px solid #e2e8f0;">
+                <h3 style="margin-bottom: 1.5rem;">Personal Information</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Full Name</span>
+                        <span style="font-weight: 600;">Dr. Rajesh Sharma</span>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Employee ID</span>
+                        <span style="font-weight: 600;">T2024-101</span>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Email Address</span>
+                        <span style="font-weight: 600;">rajesh.sharma@cvm.edu</span>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Phone Number</span>
+                        <span style="font-weight: 600;">+91 98765 43210</span>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Date of Birth</span>
+                        <span style="font-weight: 600;">15 March 1985</span>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; display: block; margin-bottom: 0.25rem;">Qualification</span>
+                        <span style="font-weight: 600;">Ph.D. Computer Science</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1.5rem;">Professional Information</h3>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div style="display: flex; margin-bottom: 1rem;">
+                        <div style="width: 120px; color: #64748b;">Department</div>
+                        <div style="font-weight: 600;">Computer Engineering</div>
+                    </div>
+                    <div style="display: flex; margin-bottom: 1rem;">
+                        <div style="width: 120px; color: #64748b;">Designation</div>
+                        <div style="font-weight: 600;">Professor</div>
+                    </div>
+                    <div style="display: flex; margin-bottom: 1rem;">
+                        <div style="width: 120px; color: #64748b;">Specialization</div>
+                        <div style="font-weight: 600;">Web Technologies, Database Systems</div>
+                    </div>
+                    <div style="display: flex; margin-bottom: 1rem;">
+                        <div style="width: 120px; color: #64748b;">Courses</div>
+                        <div style="font-weight: 600;">Web Development, Data Structures</div>
+                    </div>
+                    <div style="display: flex;">
+                        <div style="width: 120px; color: #64748b;">Join Date</div>
+                        <div style="font-weight: 600;">July 2014</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1rem;">Office Hours</h3>
+                <div style="background: #f8fafc; padding: 1rem; border-radius: 0.75rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem;">
+                        <i class="fas fa-clock" style="color: #3b82f6;"></i>
+                        <span>Friday • 13:30 - 15:00</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <i class="fas fa-map-marker-alt" style="color: #3b82f6;"></i>
+                        <span>Room 202, Academic Block</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 1rem;">Research & Publications</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <span style="font-weight: 600;">"Machine Learning in Education"</span>
+                        <span style="color: #64748b; display: block; font-size: 0.9rem;">IEEE Transactions on Education, 2025</span>
+                    </li>
+                    <li style="padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+                        <span style="font-weight: 600;">"QR-based Attendance Systems"</span>
+                        <span style="color: #64748b; display: block; font-size: 0.9rem;">International Journal of Computer Applications, 2024</span>
+                    </li>
+                    <li style="padding: 0.75rem 0;">
+                        <span style="font-weight: 600;">"Predictive Analytics for Student Success"</span>
+                        <span style="color: #64748b; display: block; font-size: 0.9rem;">Springer - Smart Education, 2023</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

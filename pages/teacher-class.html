@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Management - Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .class-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .class-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Teacher Navbar -->
+    <nav class="dashboard-navbar teacher-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="teacher-dashboard.html">
+                        <span class="brand-icon">👨‍🏫</span>
+                        <span class="brand-text">iEMS Teacher</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="teacher-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="teacher-attendance.html" class="nav-link"><i class="fas fa-qrcode"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="teacher-marks.html" class="nav-link"><i class="fas fa-pen"></i>Marks</a></li>
+                        <li class="nav-item"><a href="teacher-class.html" class="nav-link active"><i class="fas fa-users"></i>Class</a></li>
+                        <li class="nav-item"><a href="teacher-schedule.html" class="nav-link"><i class="fas fa-calendar"></i>Schedule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👨‍🏫</div>
+                        <span class="user-name">Prof. Sharma</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">👥 Class Management</h1>
+                <p class="welcome-subtitle">BE Computer Engineering • Semester 4</p>
+            </div>
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> Add Student
+            </button>
+        </div>
+
+        <!-- Class Overview Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="class-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 48px; height: 48px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-users" style="color: #3b82f6; font-size: 1.25rem;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; font-size: 0.85rem;">Total Students</span>
+                        <h3 style="margin-top: 0.25rem;">42</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="class-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 48px; height: 48px; background: #fef3c7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-venus-mars" style="color: #f59e0b; font-size: 1.25rem;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; font-size: 0.85rem;">Boys/Girls</span>
+                        <h3 style="margin-top: 0.25rem;">28/14</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="class-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 48px; height: 48px; background: #dcfce7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-calendar-check" style="color: #10b981; font-size: 1.25rem;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; font-size: 0.85rem;">Avg Attendance</span>
+                        <h3 style="margin-top: 0.25rem;">85%</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="class-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 48px; height: 48px; background: #fee2e2; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="color: #ef4444; font-size: 1.25rem;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #64748b; font-size: 0.85rem;">At Risk</span>
+                        <h3 style="margin-top: 0.25rem;">5</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Class Tabs -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+            <button class="btn btn-sm btn-primary">Student List</button>
+            <button class="btn btn-sm btn-outline">Performance Overview</button>
+            <button class="btn btn-sm btn-outline">Attendance Report</button>
+            <button class="btn btn-sm btn-outline">Marks Analysis</button>
+        </div>
+
+        <!-- Student List Table -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-list text-primary"></i>
+                    <h3>Student List - BE Computer Engineering</h3>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <div style="position: relative;">
+                        <i class="fas fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                        <input type="text" placeholder="Search students..." style="padding: 0.5rem 1rem 0.5rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 0.5rem; width: 250px;">
+                    </div>
+                    <button class="btn btn-sm btn-outline">
+                        <i class="fas fa-filter"></i> Filter
+                    </button>
+                    <button class="btn btn-sm btn-outline">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="max-height: 500px; overflow-y: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Student Name</th>
+                                <th>Attendance</th>
+                                <th>CGPA</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE101</span></td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: #3b82f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                            RP
+                                        </div>
+                                        Rohan Patel
+                                    </div>
+                                </td>
+                                <td><span style="color: #10b981; font-weight: 600;">85%</span></td>
+                                <td>8.2</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE102</span></td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: #8b5cf6; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                            PS
+                                        </div>
+                                        Priya Shah
+                                    </div>
+                                </td>
+                                <td><span style="color: #10b981; font-weight: 600;">92%</span></td>
+                                <td>8.8</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE103</span></td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: #10b981; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                            AK
+                                        </div>
+                                        Amit Kumar
+                                    </div>
+                                </td>
+                                <td><span style="color: #ef4444; font-weight: 600;">67%</span></td>
+                                <td>7.5</td>
+                                <td><span class="badge badge-warning">At Risk</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE104</span></td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: #f59e0b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                            ND
+                                        </div>
+                                        Neha Desai
+                                    </div>
+                                </td>
+                                <td><span style="color: #10b981; font-weight: 600;">78%</span></td>
+                                <td>7.8</td>
+                                <td><span class="badge badge-success">Active</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE105</span></td>
+                                <td>
+                                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                                        <div style="width: 32px; height: 32px; background: #ef4444; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                            KM
+                                        </div>
+                                        Karan Mehta
+                                    </div>
+                                </td>
+                                <td><span style="color: #ef4444; font-weight: 600;">55%</span></td>
+                                <td>6.9</td>
+                                <td><span class="badge badge-warning">At Risk</span></td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-eye"></i></button>
+                                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

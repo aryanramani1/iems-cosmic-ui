@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Register - Create your account">
+    <title>Register - iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-card register-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <img src="../assets/images/logo/logo.png" alt="iEMS">
+                <h1>Create Account</h1>
+                <p>Join iEMS Cosmic UI today!</p>
+            </div>
+
+            <!-- Role Selector - Student/Teacher Only -->
+            <div class="role-selector">
+                <div class="role-option active" data-role="student">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Student</span>
+                </div>
+                <div class="role-option" data-role="teacher">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Teacher</span>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <form id="registerForm" class="auth-form">
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="fullName">
+                        <i class="fas fa-user"></i>
+                        Full Name
+                    </label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Enter your full name"
+                        required
+                    >
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your.name@cvm.edu"
+                        required
+                    >
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fas fa-phone"></i>
+                        Phone Number
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="+91 98765 43210"
+                        required
+                    >
+                </div>
+
+                <!-- Enrollment/Employee ID (Dynamic) -->
+                <div class="form-group" id="idField">
+                    <label for="enrollmentId">
+                        <i class="fas fa-id-card"></i>
+                        <span id="idLabel">Enrollment ID</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="enrollmentId" 
+                        name="enrollmentId" 
+                        placeholder="CE101"
+                        required
+                    >
+                </div>
+
+                <!-- Department -->
+                <div class="form-group">
+                    <label for="department">
+                        <i class="fas fa-building"></i>
+                        Department
+                    </label>
+                    <select id="department" name="department" required>
+                        <option value="">Select Department</option>
+                        <option value="CE">Computer Engineering</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="EC">Electronics & Communication</option>
+                        <option value="ME">Mechanical Engineering</option>
+                        <option value="CV">Civil Engineering</option>
+                    </select>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <div class="password-field">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Minimum 6 characters"
+                            required
+                        >
+                        <button type="button" class="toggle-password">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="confirmPassword">
+                        <i class="fas fa-lock"></i>
+                        Confirm Password
+                    </label>
+                    <div class="password-field">
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="Re-enter password"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="../footer-pages/terms.html">Terms</a> and 
+                        <a href="../footer-pages/privacy.html">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Create Account
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="auth-footer">
+                <p>Already have an account?</p>
+                <a href="login.html" class="register-link">
+                    Sign In <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Role Selection
+        const roleOptions = document.querySelectorAll('.role-option');
+        const idLabel = document.getElementById('idLabel');
+        const idField = document.getElementById('enrollmentId');
+
+        roleOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                roleOptions.forEach(o => o.classList.remove('active'));
+                option.classList.add('active');
+                
+                const role = option.dataset.role;
+                if (role === 'student') {
+                    idLabel.textContent = 'Enrollment ID';
+                    idField.placeholder = 'CE101';
+                } else {
+                    idLabel.textContent = 'Employee ID';
+                    idField.placeholder = 'T2024';
+                }
+            });
+        });
+
+        // Toggle Password Visibility
+        const togglePassword = document.querySelector('.toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // Form Submission
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple validation
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters!');
+                return;
+            }
+            
+            // Show success message and redirect
+            alert('Account created successfully! Redirecting to login...');
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

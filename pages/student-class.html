@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Student Class - Timetable, Classmates and Course Materials">
+    <title>Class & Timetable - Student Dashboard | iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <style>
+        /* Timetable Styles */
+        .timetable-container {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+        
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        .timetable th {
+            background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+            padding: 1.25rem 1rem;
+            text-align: center;
+            font-weight: 600;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        
+        .timetable td {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+            background: white;
+            transition: all 0.2s ease;
+        }
+        
+        .timetable td:hover {
+            background: #f8fafc;
+        }
+        
+        .time-slot {
+            font-weight: 600;
+            color: #0f172a;
+            background: #f8fafc !important;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        .class-item {
+            background: linear-gradient(145deg, #eff6ff, #dbeafe);
+            padding: 0.85rem;
+            border-radius: 0.75rem;
+            border-left: 4px solid #3b82f6;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .class-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .class-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(59,130,246,0.15);
+        }
+        
+        .class-item.current {
+            background: linear-gradient(145deg, #3b82f6, #2563eb);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .class-item.current h4,
+        .class-item.current p,
+        .class-item.current i {
+            color: white !important;
+        }
+        
+        .class-item h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+        
+        .class-item p {
+            font-size: 0.8rem;
+            color: #475569;
+            margin-bottom: 0.25rem;
+        }
+        
+        .class-item i {
+            color: #3b82f6;
+            margin-right: 0.4rem;
+        }
+        
+        .break-slot {
+            background: #fef9c3;
+            color: #854d0e;
+            text-align: center;
+            font-weight: 500;
+            padding: 1rem;
+        }
+        
+        /* Class Info Cards */
+        .info-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        .info-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Classmate Cards */
+        .classmate-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .classmate-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .classmate-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px -4px rgba(0,0,0,0.1);
+            border-color: #3b82f6;
+        }
+        
+        .classmate-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: white;
+        }
+        
+        .classmate-info {
+            flex: 1;
+        }
+        
+        .classmate-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+        
+        .classmate-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.2rem;
+        }
+        
+        .classmate-status {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 1rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        
+        /* Material Cards */
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .material-card:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+        }
+        
+        .material-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        
+        .material-info {
+            flex: 1;
+        }
+        
+        .material-info h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+        
+        .material-info p {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        
+        .download-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            border: none;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .download-btn:hover {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        /* Week Selector */
+        .week-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .week-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .week-btn:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+        
+        .current-week {
+            font-weight: 600;
+            color: #0f172a;
+            min-width: 140px;
+            text-align: center;
+        }
+        
+        /* Subject Tags */
+        .subject-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+        
+        .tag-web { background: #dbeafe; color: #1e40af; }
+        .tag-db { background: #dcfce7; color: #166534; }
+        .tag-ds { background: #fef3c7; color: #92400e; }
+        .tag-os { background: #f1f5f9; color: #334155; }
+        .tag-cn { background: #f3e8ff; color: #6b21a8; }
+        
+        @media (max-width: 1024px) {
+            .classmate-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .material-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .classmate-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            .week-selector {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- ===== STUDENT NAVBAR ===== -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span class="brand-icon">🎓</span>
+                        <span class="brand-text">iEMS Student</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="student-dashboard.html" class="nav-link">
+                                <i class="fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-attendance.html" class="nav-link">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-marks.html" class="nav-link">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Marks</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-placement.html" class="nav-link">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Placement</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-profile.html" class="nav-link">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-class.html" class="nav-link active">
+                                <i class="fas fa-users"></i>
+                                <span>Class</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <!-- Notification Bell -->
+                <div class="notification-wrapper">
+                    <button class="notification-bell" id="notificationToggle">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </button>
+                </div>
+                
+                <!-- EduBot Icon -->
+                <div class="edubot-wrapper">
+                    <button class="edubot-icon" id="edubotToggle">
+                        <i class="fas fa-robot"></i>
+                        <span class="status-dot online"></span>
+                    </button>
+                </div>
+                
+                <!-- User Profile Dropdown -->
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn" id="userDropdownToggle">
+                        <div class="user-avatar">
+                            <span class="avatar-placeholder">RP</span>
+                        </div>
+                        <span class="user-name">Rohan</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="dropdown-user-info">
+                            <strong>Rohan Patel</strong>
+                            <span>CE101 • Sem 4</span>
+                        </div>
+                        <ul class="dropdown-links">
+                            <li><a href="student-profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="student-edubot.html"><i class="fas fa-robot"></i> EduBot</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../login.html" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CLASS PAGE CONTENT ===== -->
+    <div class="dashboard-container">
+        <!-- Header with Week Selector -->
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">
+                    👥 Class & Timetable
+                    <span class="status-dot online" style="margin-left: 0.5rem;"></span>
+                </h1>
+                <p class="welcome-subtitle">
+                    BE Computer Engineering • Semester 4 • Section A
+                </p>
+            </div>
+            <div class="week-selector">
+                <button class="week-btn" id="prevWeek">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <span class="current-week" id="currentWeek">Week 6 • 10-14 Feb 2026</span>
+                <button class="week-btn" id="nextWeek">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== CLASS INFORMATION CARDS ===== -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="info-card">
+                <div class="info-icon" style="background: #eff6ff;">
+                    <i class="fas fa-chalkboard-teacher" style="color: #3b82f6;"></i>
+                </div>
+                <div>
+                    <span style="color: #64748b; font-size: 0.85rem;">Class Teacher</span>
+                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">Prof. Sharma</h4>
+                    <span style="color: #475569; font-size: 0.8rem;">Web Development</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon" style="background: #dcfce7;">
+                    <i class="fas fa-door-open" style="color: #16a34a;"></i>
+                </div>
+                <div>
+                    <span style="color: #64748b; font-size: 0.85rem;">Classroom</span>
+                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">Room 301</h4>
+                    <span style="color: #475569; font-size: 0.8rem;">Academic Block</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon" style="background: #fef3c7;">
+                    <i class="fas fa-users" style="color: #d97706;"></i>
+                </div>
+                <div>
+                    <span style="color: #64748b; font-size: 0.85rem;">Class Strength</span>
+                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">42 Students</h4>
+                    <span style="color: #475569; font-size: 0.8rem;">28 Boys • 14 Girls</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon" style="background: #f3e8ff;">
+                    <i class="fas fa-calendar-alt" style="color: #9333ea;"></i>
+                </div>
+                <div>
+                    <span style="color: #64748b; font-size: 0.85rem;">Academic Year</span>
+                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">2025-26</h4>
+                    <span style="color: #475569; font-size: 0.8rem;">Even Semester</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== TIMETABLE CARD ===== -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-table text-primary"></i>
+                    <h3>Weekly Timetable</h3>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <span class="badge badge-info">Even Semester</span>
+                    <span class="badge badge-success">Online Access Available</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="timetable-container">
+                    <table class="timetable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 09:00 - 10:00 -->
+                            <tr>
+                                <td class="time-slot">09:00 - 10:00</td>
+                                <td>
+                                    <div class="class-item current">
+                                        <h4>Web Development</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Sharma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 301</p>
+                                        <span class="subject-tag tag-web">Theory</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Database Systems</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Patel</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 205</p>
+                                        <span class="subject-tag tag-db">Theory</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Web Development</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Sharma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 301</p>
+                                        <span class="subject-tag tag-web">Theory</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Database Systems</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Patel</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 205</p>
+                                        <span class="subject-tag tag-db">Theory</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Web Development</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Sharma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 301</p>
+                                        <span class="subject-tag tag-web">Theory</span>
+                                    </div>
+                                </td>
+                                <td class="break-slot">No Class</td>
+                            </tr>
+                            
+                            <!-- 10:15 - 11:15 -->
+                            <tr>
+                                <td class="time-slot">10:15 - 11:15</td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Data Structures</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Gupta</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Lab 304</p>
+                                        <span class="subject-tag tag-ds">Lab</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Operating Systems</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Verma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 101</p>
+                                        <span class="subject-tag tag-os">Theory</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Data Structures</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Gupta</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Lab 304</p>
+                                        <span class="subject-tag tag-ds">Lab</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Operating Systems</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Verma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Room 101</p>
+                                        <span class="subject-tag tag-os">Theory</span>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td class="break-slot">No Class</td>
+                            </tr>
+                            
+                            <!-- 11:30 - 12:30 -->
+                            <tr>
+                                <td class="time-slot">11:30 - 12:30</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="break-slot">No Class</td>
+                            </tr>
+                            
+                            <!-- 12:30 - 13:30 - LUNCH BREAK -->
+                            <tr>
+                                <td class="time-slot">12:30 - 13:30</td>
+                                <td colspan="6" style="background: #fef3c7; text-align: center; font-weight: 600; color: #92400e;">
+                                    <i class="fas fa-utensils" style="margin-right: 0.5rem;"></i> Lunch Break
+                                </td>
+                            </tr>
+                            
+                            <!-- 13:30 - 15:00 -->
+                            <tr>
+                                <td class="time-slot">13:30 - 15:00</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>
+                                    <div class="class-item">
+                                        <h4>Project Lab</h4>
+                                        <p><i class="fas fa-chalkboard-teacher"></i> Prof. Sharma</p>
+                                        <p><i class="fas fa-map-marker-alt"></i> Lab 302</p>
+                                        <span class="subject-tag tag-web">Lab</span>
+                                    </div>
+                                </td>
+                                <td class="break-slot">No Class</td>
+                            </tr>
+                            
+                            <!-- 15:15 - 16:15 -->
+                            <tr>
+                                <td class="time-slot">15:15 - 16:15</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="break-slot">No Class</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+                    <div style="display: flex; gap: 1rem;">
+                        <span style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; background: #3b82f6; border-radius: 2px;"></span>
+                            <span style="color: #475569; font-size: 0.85rem;">Theory</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; background: #8b5cf6; border-radius: 2px;"></span>
+                            <span style="color: #475569; font-size: 0.85rem;">Lab</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span>
+                            <span style="color: #475569; font-size: 0.85rem;">Current Class</span>
+                        </span>
+                    </div>
+                    <button class="btn btn-outline btn-sm">
+                        <i class="fas fa-download"></i> Download Timetable
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== CLASSMATES SECTION ===== -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-user-friends text-primary"></i>
+                    <h3>Classmates (42 Students)</h3>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <div style="position: relative;">
+                        <i class="fas fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                        <input type="text" placeholder="Search classmates..." 
+                               style="padding: 0.5rem 1rem 0.5rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 2rem; width: 250px; outline: none;">
+                    </div>
+                    <button class="btn btn-sm btn-outline">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="classmate-grid">
+                    <!-- Classmate 1 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #3b82f6;">
+                            PP
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Priya Patel</h4>
+                            <p>CE102 • CGPA 8.8</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 2 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #10b981;">
+                            AS
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Amit Shah</h4>
+                            <p>CE103 • CGPA 7.5</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 3 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #8b5cf6;">
+                            ND
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Neha Desai</h4>
+                            <p>CE104 • CGPA 7.8</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 4 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #f59e0b;">
+                            KM
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Karan Mehta</h4>
+                            <p>CE105 • CGPA 6.9</p>
+                            <span class="classmate-status" style="background: #fee2e2; color: #dc2626;">Absent</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 5 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #ef4444;">
+                            SR
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Sneha Reddy</h4>
+                            <p>CE106 • CGPA 8.2</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 6 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #14b8a6;">
+                            RJ
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Raj Joshi</h4>
+                            <p>CE107 • CGPA 7.9</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 7 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #a855f7;">
+                            DT
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Deepa Trivedi</h4>
+                            <p>CE108 • CGPA 8.4</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 8 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #ec4899;">
+                            VK
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Vikas Kumar</h4>
+                            <p>CE109 • CGPA 7.2</p>
+                            <span class="classmate-status" style="background: #fee2e2; color: #dc2626;">Absent</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Classmate 9 -->
+                    <div class="classmate-card">
+                        <div class="classmate-avatar" style="background: #6366f1;">
+                            PS
+                        </div>
+                        <div class="classmate-info">
+                            <h4>Pooja Sharma</h4>
+                            <p>CE110 • CGPA 8.6</p>
+                            <span class="classmate-status">Present</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; justify-content: center; margin-top: 1.5rem;">
+                    <button class="btn btn-link">
+                        View All 42 Classmates <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== COURSE MATERIALS & RESOURCES ===== -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Subject Materials -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-book text-primary"></i>
+                        <h3>Course Materials</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="material-grid">
+                        <div class="material-card">
+                            <div class="material-icon" style="background: #eff6ff;">
+                                <i class="fas fa-file-pdf" style="color: #ef4444;"></i>
+                            </div>
+                            <div class="material-info">
+                                <h4>Web Dev - Module 1</h4>
+                                <p>Prof. Sharma • 2.4 MB</p>
+                            </div>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="material-card">
+                            <div class="material-icon" style="background: #eff6ff;">
+                                <i class="fas fa-file-powerpoint" style="color: #f97316;"></i>
+                            </div>
+                            <div class="material-info">
+                                <h4>DBMS - ER Diagrams</h4>
+                                <p>Prof. Patel • 1.8 MB</p>
+                            </div>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="material-card">
+                            <div class="material-icon" style="background: #eff6ff;">
+                                <i class="fas fa-file-code" style="color: #2563eb;"></i>
+                            </div>
+                            <div class="material-info">
+                                <h4>DSA - Lab Manual</h4>
+                                <p>Prof. Gupta • 3.1 MB</p>
+                            </div>
+                            <button class="download-btn">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="material-card">
+                            <div class="material-icon" style="background: #eff6ff;">
+                                <i class="fas fa-file-video" style="color: #9333ea;"></i>
+                            </div>
+                            <div class="material-info">
+                                <h4>OS - Recorded Lectures</h4>
+                                <p>Prof. Verma • 45 min</p>
+                            </div>
+                            <button class="download-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-link btn-block" style="margin-top: 1rem;">
+                        View All Materials <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Upcoming Assignments & Deadlines -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-tasks text-primary"></i>
+                        <h3>Assignments & Deadlines</h3>
+                    </div>
+                    <span class="badge badge-danger">4 Pending</span>
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+                            <div style="background: #fee2e2; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-code" style="color: #dc2626;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">Web Development Project</h4>
+                                <p style="color: #64748b; font-size: 0.8rem;">Due: 20 Feb 2026 • 30% weightage</p>
+                            </div>
+                            <span class="badge badge-danger">5 days left</span>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+                            <div style="background: #fef3c7; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-database" style="color: #d97706;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">SQL Assignment</h4>
+                                <p style="color: #64748b; font-size: 0.8rem;">Due: 22 Feb 2026 • 15% weightage</p>
+                            </div>
+                            <span class="badge badge-warning">7 days left</span>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #f1f5f9;">
+                            <div style="background: #dcfce7; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-sitemap" style="color: #16a34a;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">DSA Lab Report</h4>
+                                <p style="color: #64748b; font-size: 0.8rem;">Due: 25 Feb 2026 • 20% weightage</p>
+                            </div>
+                            <span class="badge badge-info">10 days left</span>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="background: #f3e8ff; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-network-wired" style="color: #9333ea;"></i>
+                            </div>
+                            <div style="flex: 1;">
+                                <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;">CN Practical File</h4>
+                                <p style="color: #64748b; font-size: 0.8rem;">Due: 28 Feb 2026 • 25% weightage</p>
+                            </div>
+                            <span class="badge badge-info">13 days left</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== FACULTY CONTACTS ===== -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-chalkboard-teacher text-primary"></i>
+                    <h3>Faculty Contacts</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 48px; height: 48px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            RS
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.2rem;">Prof. Sharma</h4>
+                            <p style="color: #64748b; font-size: 0.75rem;">Web Development</p>
+                            <p style="color: #3b82f6; font-size: 0.75rem;"><i class="fas fa-envelope"></i> sharma@cvm.edu</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 48px; height: 48px; background: #10b981; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            AP
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.2rem;">Prof. Patel</h4>
+                            <p style="color: #64748b; font-size: 0.75rem;">Database Systems</p>
+                            <p style="color: #10b981; font-size: 0.75rem;"><i class="fas fa-envelope"></i> patel@cvm.edu</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 48px; height: 48px; background: #8b5cf6; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            RG
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.2rem;">Prof. Gupta</h4>
+                            <p style="color: #64748b; font-size: 0.75rem;">Data Structures</p>
+                            <p style="color: #8b5cf6; font-size: 0.75rem;"><i class="fas fa-envelope"></i> gupta@cvm.edu</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <div style="width: 48px; height: 48px; background: #f59e0b; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            AV
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.9rem; margin-bottom: 0.2rem;">Prof. Verma</h4>
+                            <p style="color: #64748b; font-size: 0.75rem;">Operating Systems</p>
+                            <p style="color: #f59e0b; font-size: 0.75rem;"><i class="fas fa-envelope"></i> verma@cvm.edu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== EDUBOT CHAT WIDGET ===== -->
+    <div class="edubot-chat-widget hidden" id="edubotChat">
+        <div class="chat-header">
+            <div class="bot-avatar">🤖</div>
+            <div class="bot-info">
+                <h4>EduBot</h4>
+                <span class="online-status">● Online</span>
+            </div>
+            <button class="close-chat" id="closeEdubot">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="bubble">
+                    <span class="bot-avatar-small">🤖</span> 👋 Hi Rohan! Need help with your timetable or class schedule?
+                </div>
+                <span class="time">Just now</span>
+            </div>
+        </div>
+        <div class="quick-actions">
+            <button class="quick-btn" data-query="timetable">📅 Timetable</button>
+            <button class="quick-btn" data-query="classmates">👥 Classmates</button>
+            <button class="quick-btn" data-query="assignments">📝 Assignments</button>
+            <button class="quick-btn" data-query="faculty">👨‍🏫 Faculty</button>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Ask about your class schedule..." id="chatInput">
+            <button class="send-btn" id="sendMessage">➤</button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                &copy; 2026 iEMS Cosmic UI. All rights reserved. 
+                <span style="color: #3b82f6; font-weight: 600;">Team CODE REAPERS</span>
+            </div>
+            <div class="footer-links">
+                <a href="../footer-pages/about.html">About</a>
+                <a href="../footer-pages/privacy.html">Privacy</a>
+                <a href="../footer-pages/terms.html">Terms</a>
+                <a href="../footer-pages/contact.html">Contact</a>
+                <a href="../footer-pages/instagram.html"><i class="fab fa-instagram"></i></a>
+                <a href="../footer-pages/twitter.html"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/edubot.js"></script>
+    <script>
+        // Set current date
+        document.getElementById('currentDate')?.textContent = new Date().toLocaleDateString('en-IN', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Week navigation
+        const prevWeekBtn = document.getElementById('prevWeek');
+        const nextWeekBtn = document.getElementById('nextWeek');
+        const currentWeekEl = document.getElementById('currentWeek');
+        
+        if (prevWeekBtn) {
+            prevWeekBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentWeekEl.textContent = 'Week 5 • 3-7 Feb 2026';
+            });
+        }
+        
+        if (nextWeekBtn) {
+            nextWeekBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentWeekEl.textContent = 'Week 7 • 17-21 Feb 2026';
+            });
+        }
+
+        // Toggle Notification Dropdown
+        const notificationToggle = document.getElementById('notificationToggle');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        
+        if (notificationToggle && notificationDropdown) {
+            notificationToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', () => {
+                if (notificationDropdown) notificationDropdown.classList.remove('show');
+            });
+        }
+
+        // Toggle User Dropdown
+        const userDropdownToggle = document.getElementById('userDropdownToggle');
+        const userDropdownMenu = document.getElementById('userDropdownMenu');
+        
+        if (userDropdownToggle && userDropdownMenu) {
+            userDropdownToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                userDropdownMenu.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', () => {
+                if (userDropdownMenu) userDropdownMenu.classList.remove('show');
+            });
+        }
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Quick Reply Buttons for EduBot
+        const quickBtns = document.querySelectorAll('.quick-btn');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendMessage');
+        const chatMessagesContainer = document.getElementById('chatMessages');
+
+        function addMessage(message, isUser = true) {
+            if (!chatMessagesContainer) return;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            if (!isUser) {
+                bubble.innerHTML = `<span class="bot-avatar-small">🤖</span> ${message}`;
+            } else {
+                bubble.textContent = message;
+            }
+            
+            const time = document.createElement('span');
+            time.className = 'time';
+            time.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.appendChild(bubble);
+            messageDiv.appendChild(time);
+            chatMessagesContainer.appendChild(messageDiv);
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        }
+
+        function sendUserMessage() {
+            if (!chatInput || !chatMessagesContainer) return;
+            
+            const message = chatInput.value.trim();
+            if (message === '') return;
+            
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            setTimeout(() => {
+                let response = '';
+                const lowerMsg = message.toLowerCase();
+                
+                if (lowerMsg.includes('timetable') || lowerMsg.includes('schedule')) {
+                    response = '📅 Your current class is **Web Development** in Room 301. Today\'s schedule: 9:00 AM Web Dev, 10:15 AM Data Structures.';
+                } else if (lowerMsg.includes('classmate') || lowerMsg.includes('batch')) {
+                    response = '👥 You have **42 classmates**. Priya Patel has the highest CGPA (8.8). Most students are present today (38/42).';
+                } else if (lowerMsg.includes('assignment') || lowerMsg.includes('homework') || lowerMsg.includes('deadline')) {
+                    response = '📝 You have **4 pending assignments**. Next deadline: Web Development Project on **20 Feb 2026** (5 days left).';
+                } else if (lowerMsg.includes('faculty') || lowerMsg.includes('teacher') || lowerMsg.includes('professor')) {
+                    response = '👨‍🏫 Your class teacher is **Prof. Sharma** (Web Development). Office hours: Friday 1:30-3:00 PM, Room 202.';
+                } else if (lowerMsg.includes('room') || lowerMsg.includes('location') || lowerMsg.includes('where')) {
+                    response = '📍 Your next class is **Web Development** in **Room 301**, Academic Block.';
+                } else {
+                    response = '👋 I can help you with timetable, classmates, assignments, faculty contacts, and classroom locations. What would you like to know?';
+                }
+                
+                addMessage(response, false);
+            }, 1000);
+        }
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', sendUserMessage);
+        }
+        
+        if (chatInput) {
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendUserMessage();
+            });
+        }
+        
+        if (quickBtns) {
+            quickBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const query = this.getAttribute('data-query');
+                    if (query === 'timetable') chatInput.value = 'What is my timetable today?';
+                    if (query === 'classmates') chatInput.value = 'Who are my classmates?';
+                    if (query === 'assignments') chatInput.value = 'What assignments are due?';
+                    if (query === 'faculty') chatInput.value = 'Who are my faculty?';
+                    sendUserMessage();
+                });
+            });
+        }
+    </script>
+</body>
+</html>

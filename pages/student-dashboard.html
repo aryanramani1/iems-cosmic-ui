@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Student Dashboard - Complete academic management portal">
+    <title>Student Dashboard - iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Additional Dashboard Styles */
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(37, 211, 102, 0.2);
+        }
+        .progress-ring {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: conic-gradient(#10b981 0deg 306deg, #e5e7eb 306deg 360deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .progress-ring-inner {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #10b981;
+        }
+        .quick-stat-card {
+            background: linear-gradient(145deg, #ffffff, #f9fafb);
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .quick-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+        .agent-insight {
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+        }
+        .agent-insight:hover {
+            background: #f9fafb;
+            transform: translateX(5px);
+        }
+        .notice-item {
+            transition: all 0.3s ease;
+        }
+        .notice-item:hover {
+            background: #f9fafb;
+            transform: translateX(5px);
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- ===== STUDENT NAVBAR ===== -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span class="brand-icon">🎓</span>
+                        <span class="brand-text">iEMS Student</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="student-dashboard.html" class="nav-link active">
+                                <i class="fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-attendance.html" class="nav-link">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-marks.html" class="nav-link">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Marks</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-placement.html" class="nav-link">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Placement</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-profile.html" class="nav-link">
+                                <i class="fas fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="student-class.html" class="nav-link">
+                                <i class="fas fa-users"></i>
+                                <span>Class</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <!-- Notification Bell -->
+                <div class="notification-wrapper">
+                    <button class="notification-bell" id="notificationToggle">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="dropdown-header">
+                            <h4>Notifications</h4>
+                            <a href="student-notifications.html">View All</a>
+                        </div>
+                        <div class="notification-list">
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-warning-light">
+                                    <i class="fas fa-clock text-warning"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">Project Deadline</p>
+                                    <p class="notif-desc">Web Development project due tomorrow</p>
+                                    <span class="notif-time">2 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item unread">
+                                <div class="notif-icon bg-danger-light">
+                                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">Attendance Alert</p>
+                                    <p class="notif-desc">Data Structures attendance is 67%</p>
+                                    <span class="notif-time">5 hours ago</span>
+                                </div>
+                            </div>
+                            <div class="notification-item">
+                                <div class="notif-icon bg-success-light">
+                                    <i class="fas fa-briefcase text-success"></i>
+                                </div>
+                                <div class="notif-content">
+                                    <p class="notif-title">TCS Placement</p>
+                                    <p class="notif-desc">94% match - Apply before 20 Feb</p>
+                                    <span class="notif-time">Yesterday</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                            <!-- EduBot Icon - FIXED -->
+                <div class="edubot-wrapper">
+                    <button class="edubot-icon" id="edubotToggle" onclick="event.preventDefault(); toggleEduBot();">
+                        <i class="fas fa-robot"></i>
+                        <span class="status-dot online"></span>
+                    </button>
+                </div>
+                
+                <!-- User Profile Dropdown -->
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn" id="userDropdownToggle">
+                        <div class="user-avatar">
+                            <span class="avatar-placeholder">RP</span>
+                        </div>
+                        <span class="user-name">Rohan</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="dropdown-user-info">
+                            <strong>Rohan Patel</strong>
+                            <span>CE101 • Sem 4</span>
+                        </div>
+                        <ul class="dropdown-links">
+                            <li><a href="student-profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                            <li><a href="student-edubot.html"><i class="fas fa-robot"></i> EduBot</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../login.html" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN DASHBOARD CONTENT ===== -->
+    <div class="dashboard-container">
+        <!-- Welcome Header -->
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">
+                    Welcome back, Rohan! 👋
+                    <span class="status-dot online" style="margin-left: 0.5rem;"></span>
+                </h1>
+                <p class="welcome-subtitle">
+                    Here's your academic summary for Semester 4
+                </p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <!-- ===== PROFILE SUMMARY CARD ===== -->
+        <div class="profile-summary-card">
+            <div class="profile-avatar-large">
+                <div class="avatar-circle">
+                    <span class="avatar-text">RP</span>
+                </div>
+                <span class="status-badge online"></span>
+            </div>
+            <div class="profile-info">
+                <h2>Rohan Patel</h2>
+                <div class="profile-meta">
+                    <span><i class="fas fa-id-card"></i> CE101</span>
+                    <span><i class="fas fa-graduation-cap"></i> Computer Engineering</span>
+                    <span><i class="fas fa-layer-group"></i> Semester 4</span>
+                    <span><i class="fas fa-calendar"></i> 2024-2028</span>
+                </div>
+            </div>
+            <div class="profile-qr">
+                <div class="qr-placeholder">
+                    <i class="fas fa-qrcode"></i>
+                </div>
+                <span>Scan for Attendance</span>
+            </div>
+        </div>
+
+        <!-- ===== QUICK STATS CARDS ===== -->
+        <div class="stats-grid">
+            <!-- CGPA Card -->
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-star text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Current CGPA</span>
+                    <h3 class="stat-value">8.2<span class="stat-unit">/10</span></h3>
+                    <span class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> +0.3 from last sem
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Attendance Card -->
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-calendar-check text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Attendance</span>
+                    <h3 class="stat-value">85<span class="stat-unit">%</span></h3>
+                    <span class="stat-change">
+                        <i class="fas fa-circle"></i> 2 classes can miss
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Internal Marks Card -->
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-file-alt text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Internal Avg</span>
+                    <h3 class="stat-value">78<span class="stat-unit">/100</span></h3>
+                    <span class="stat-change">
+                        <i class="fas fa-chart-line"></i> Top 15% of class
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Eligible Companies Card -->
+            <div class="stat-card">
+                <div class="stat-icon bg-purple-light">
+                    <i class="fas fa-briefcase text-purple"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Eligible Companies</span>
+                    <h3 class="stat-value">12</h3>
+                    <span class="stat-change">
+                        <i class="fas fa-building"></i> TCS, Infosys, Wipro...
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== MARKS & EXAM OPTIMIZER SECTION ===== -->
+        <div class="dashboard-row">
+            <!-- Recent Marks Table -->
+            <div class="dashboard-col lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-file-alt text-primary"></i>
+                            <h3>Recent Internal Marks</h3>
+                        </div>
+                        <a href="student-marks.html" class="view-all-link">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Internal</th>
+                                        <th>Target</th>
+                                        <th>Grade</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Web Development</td>
+                                        <td><span class="badge bg-primary-light text-primary">42/50</span></td>
+                                        <td>32/50</td>
+                                        <td><span class="badge bg-success-light text-success">A</span></td>
+                                        <td><span class="status-badge success">On Track</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Systems</td>
+                                        <td><span class="badge bg-primary-light text-primary">38/50</span></td>
+                                        <td>35/50</td>
+                                        <td><span class="badge bg-warning-light text-warning">B+</span></td>
+                                        <td><span class="status-badge warning">Need Improvement</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data Structures</td>
+                                        <td><span class="badge bg-primary-light text-primary">45/50</span></td>
+                                        <td>28/50</td>
+                                        <td><span class="badge bg-success-light text-success">A+</span></td>
+                                        <td><span class="status-badge success">On Track</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Operating Systems</td>
+                                        <td><span class="badge bg-primary-light text-primary">35/50</span></td>
+                                        <td>38/50</td>
+                                        <td><span class="badge bg-warning-light text-warning">B</span></td>
+                                        <td><span class="status-badge warning">Need Improvement</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exam Optimizer AI Card -->
+            <div class="dashboard-col lg-4">
+                <div class="card ai-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-bullseye text-primary"></i>
+                            <h3>Exam Optimizer AI</h3>
+                        </div>
+                        <span class="badge badge-ai">82.5% Accuracy</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="target-container">
+                            <div class="target-label">
+                                <span>Target CGPA</span>
+                                <span class="target-value">8.5</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%;"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Current: 8.2</span>
+                                <span>Target: 8.5</span>
+                            </div>
+                        </div>
+                        
+                        <div class="exam-target-card">
+                            <div class="exam-subject">
+                                <h4>Web Development</h4>
+                                <span class="badge bg-warning-light text-warning">External Exam</span>
+                            </div>
+                            <div class="target-score">
+                                <span class="score-label">Marks Needed</span>
+                                <div class="score-display">
+                                    <span class="score-number">32</span>
+                                    <span class="score-max">/50</span>
+                                </div>
+                                <div class="score-progress">
+                                    <div class="progress-bar small">
+                                        <div class="progress-fill" style="width: 64%;"></div>
+                                    </div>
+                                    <span class="score-status">64% of target</span>
+                                </div>
+                            </div>
+                            <div class="ai-insight">
+                                <i class="fas fa-robot text-primary"></i>
+                                <p>With current internals (42/50), you need <strong>32/50</strong> in externals to reach 8.5 CGPA. This is easily achievable! Focus on Unit 4 & 5.</p>
+                            </div>
+                            <button class="btn btn-outline btn-block whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                Send Target to Parent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== PLACEMENT NAVIGATOR & AI INSIGHTS ===== -->
+        <div class="dashboard-row">
+            <!-- Placement Navigator -->
+            <div class="dashboard-col lg-7">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-briefcase text-primary"></i>
+                            <h3>Placement Navigator AI</h3>
+                        </div>
+                        <span class="badge badge-ai">94.2% Match Accuracy</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="job-list">
+                            <!-- TCS Card -->
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-company">
+                                        <div class="company-logo">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <h4>TCS</h4>
+                                            <span class="job-role">System Engineer</span>
+                                        </div>
+                                    </div>
+                                    <div class="job-match high">
+                                        <span class="match-percent">94%</span>
+                                        <span class="match-label">Match</span>
+                                    </div>
+                                </div>
+                                <div class="job-details">
+                                    <span><i class="fas fa-rupee-sign"></i> 7.2 LPA</span>
+                                    <span><i class="fas fa-calendar"></i> Deadline: 20 Feb</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> Pune</span>
+                                </div>
+                                <div class="job-footer">
+                                    <div class="skills">
+                                        <span class="skill">Python</span>
+                                        <span class="skill">SQL</span>
+                                        <span class="skill">React</span>
+                                    </div>
+                                    <button class="btn btn-primary btn-small">Apply Now</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Infosys Card -->
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-company">
+                                        <div class="company-logo">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Infosys</h4>
+                                            <span class="job-role">Digital Specialist</span>
+                                        </div>
+                                    </div>
+                                    <div class="job-match high">
+                                        <span class="match-percent">89%</span>
+                                        <span class="match-label">Match</span>
+                                    </div>
+                                </div>
+                                <div class="job-details">
+                                    <span><i class="fas fa-rupee-sign"></i> 6.5 LPA</span>
+                                    <span><i class="fas fa-calendar"></i> Deadline: 25 Feb</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                                </div>
+                                <div class="job-footer">
+                                    <div class="skills">
+                                        <span class="skill">Java</span>
+                                        <span class="skill">Spring</span>
+                                        <span class="skill">AWS</span>
+                                    </div>
+                                    <button class="btn btn-primary btn-small">Apply Now</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Microsoft Card -->
+                            <div class="job-card">
+                                <div class="job-header">
+                                    <div class="job-company">
+                                        <div class="company-logo">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <h4>Microsoft</h4>
+                                            <span class="job-role">Software Engineer</span>
+                                        </div>
+                                    </div>
+                                    <div class="job-match medium">
+                                        <span class="match-percent">68%</span>
+                                        <span class="match-label">Match</span>
+                                    </div>
+                                </div>
+                                <div class="job-details">
+                                    <span><i class="fas fa-rupee-sign"></i> 18 LPA</span>
+                                    <span><i class="fas fa-calendar"></i> Deadline: 28 Feb</span>
+                                    <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                                </div>
+                                <div class="job-footer">
+                                    <div class="skills">
+                                        <span class="skill">DSA</span>
+                                        <span class="skill">C++</span>
+                                        <span class="skill">System Design</span>
+                                    </div>
+                                    <span class="badge bg-secondary-light text-secondary">CGPA: 8.5 required</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-gap-analysis">
+                            <h4><i class="fas fa-chart-pie"></i> Skill Gap Analysis</h4>
+                            <div class="skill-gap-list">
+                                <div class="skill-gap-item">
+                                    <div class="skill-info">
+                                        <span>AWS Certification</span>
+                                        <span class="salary-impact">+₹3.5 LPA</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 40%;"></div>
+                                        </div>
+                                        <span class="skill-level">Beginner</span>
+                                    </div>
+                                </div>
+                                <div class="skill-gap-item">
+                                    <div class="skill-info">
+                                        <span>Docker/Kubernetes</span>
+                                        <span class="salary-impact">+₹2.8 LPA</span>
+                                    </div>
+                                    <div class="skill-progress">
+                                        <div class="progress-bar">
+                                            <div class="progress-fill" style="width: 20%;"></div>
+                                        </div>
+                                        <span class="skill-level">Not Started</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" class="btn btn-link">View Recommended Courses <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Agent Insights & Notices -->
+            <div class="dashboard-col lg-5">
+                <!-- AI Agent Insights -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-robot text-primary"></i>
+                            <h3>AI Agent Insights</h3>
+                        </div>
+                        <span class="badge badge-light">Weekly Update</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="insight-list">
+                            <!-- Attendance Guardian -->
+                            <div class="insight-item priority-high">
+                                <div class="insight-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <div class="insight-header">
+                                        <span class="insight-agent">Attendance Guardian</span>
+                                        <span class="insight-time">Today 9:00 AM</span>
+                                    </div>
+                                    <p class="insight-message">Your attendance in Data Structures is 67%. Need 75% to be eligible for exams.</p>
+                                    <span class="insight-action">Action: Attend next 2 classes</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Exam Optimizer -->
+                            <div class="insight-item priority-critical">
+                                <div class="insight-icon">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <div class="insight-header">
+                                        <span class="insight-agent">Exam Optimizer</span>
+                                        <span class="insight-time">Yesterday 2:00 PM</span>
+                                    </div>
+                                    <p class="insight-message">To reach 8.5 CGPA, you need 32/50 in Web Development externals.</p>
+                                    <span class="insight-action">Action: Focus on Unit 4 & 5</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Placement Navigator -->
+                            <div class="insight-item priority-medium">
+                                <div class="insight-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <div class="insight-header">
+                                        <span class="insight-agent">Placement Navigator</span>
+                                        <span class="insight-time">Yesterday 6:00 AM</span>
+                                    </div>
+                                    <p class="insight-message">TCS is hiring! Your match score is 94% - Highest in your class!</p>
+                                    <span class="insight-action">Action: Apply before 20 Feb</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Dropout Radar -->
+                            <div class="insight-item priority-low">
+                                <div class="insight-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="insight-content">
+                                    <div class="insight-header">
+                                        <span class="insight-agent">Dropout Radar</span>
+                                        <span class="insight-time">Monday 8:00 AM</span>
+                                    </div>
+                                    <p class="insight-message">Low risk (12%). Keep maintaining your attendance and marks!</p>
+                                    <span class="insight-action">Action: No action needed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Notices & Announcements -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-bullhorn text-primary"></i>
+                            <h3>Notices & Announcements</h3>
+                        </div>
+                        <a href="student-notifications.html" class="view-all-link">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="notice-list">
+                            <!-- High Priority Notice -->
+                            <div class="notice-item priority-high">
+                                <div class="notice-date">
+                                    <span class="date-day">20</span>
+                                    <span class="date-month">Feb</span>
+                                </div>
+                                <div class="notice-content">
+                                    <h4>Project Submission Deadline</h4>
+                                    <p>Web Development - Semester 4</p>
+                                    <span class="notice-badge deadline">⏰ Deadline</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Medium Priority Notice -->
+                            <div class="notice-item priority-medium">
+                                <div class="notice-date">
+                                    <span class="date-day">25</span>
+                                    <span class="date-month">Feb</span>
+                                </div>
+                                <div class="notice-content">
+                                    <h4>Industrial Visit</h4>
+                                    <p>Microsoft Office, Pune</p>
+                                    <span class="notice-badge event">🎉 Event</span>
+                                </div>
+                            </div>
+                            
+                            <!-- High Priority Notice -->
+                            <div class="notice-item priority-high">
+                                <div class="notice-date">
+                                    <span class="date-day">05</span>
+                                    <span class="date-month">Mar</span>
+                                </div>
+                                <div class="notice-content">
+                                    <h4>Semester Exam Schedule</h4>
+                                    <p>Released - Check timetable</p>
+                                    <span class="notice-badge exam">📝 Exam</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Low Priority Notice -->
+                            <div class="notice-item priority-low">
+                                <div class="notice-date">
+                                    <span class="date-day">28</span>
+                                    <span class="date-month">Feb</span>
+                                </div>
+                                <div class="notice-content">
+                                    <h4>Hackathon Registrations</h4>
+                                    <p>CVM University - Open now</p>
+                                    <span class="notice-badge event">🎉 Event</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== QUICK STATS ROW ===== -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+            <div class="quick-stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="color: #2563eb; font-size: 1.5rem;"><i class="fas fa-book-open"></i></span>
+                    <span style="background: #eff6ff; color: #2563eb; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">4 Courses</span>
+                </div>
+                <h3 style="margin-bottom: 0.25rem;">Current Semester</h3>
+                <p style="color: #6b7280; font-size: 0.9rem;">Semester 4 • 16 Credits</p>
+            </div>
+            <div class="quick-stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="color: #10b981; font-size: 1.5rem;"><i class="fas fa-trophy"></i></span>
+                    <span style="background: #d1fae5; color: #10b981; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">Top 15%</span>
+                </div>
+                <h3 style="margin-bottom: 0.25rem;">Class Rank</h3>
+                <p style="color: #6b7280; font-size: 0.9rem;">6th out of 42 students</p>
+            </div>
+            <div class="quick-stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="color: #8b5cf6; font-size: 1.5rem;"><i class="fas fa-certificate"></i></span>
+                    <span style="background: #ede9fe; color: #8b5cf6; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">2 Certs</span>
+                </div>
+                <h3 style="margin-bottom: 0.25rem;">Certifications</h3>
+                <p style="color: #6b7280; font-size: 0.9rem;">Google Analytics • Java</p>
+            </div>
+            <div class="quick-stat-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <span style="color: #f59e0b; font-size: 1.5rem;"><i class="fas fa-clock"></i></span>
+                    <span style="background: #fef3c7; color: #f59e0b; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">2 Pending</span>
+                </div>
+                <h3 style="margin-bottom: 0.25rem;">Assignments</h3>
+                <p style="color: #6b7280; font-size: 0.9rem;">Due this week</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== EDUBOT CHAT WIDGET ===== -->
+    <div class="edubot-chat-widget hidden" id="edubotChat">
+        <div class="chat-header">
+            <div class="bot-avatar">🤖</div>
+            <div class="bot-info">
+                <h4>EduBot</h4>
+                <span class="online-status">● Online</span>
+            </div>
+            <button class="close-chat" id="closeEdubot">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="bubble">
+                    <span class="bot-avatar-small">🤖</span> 👋 Hi Rohan! I'm EduBot, your AI assistant. How can I help you today?
+                </div>
+                <span class="time">Just now</span>
+            </div>
+        </div>
+        <div class="quick-actions">
+            <button class="quick-btn" data-query="attendance">📊 Attendance</button>
+            <button class="quick-btn" data-query="cgpa">🎯 CGPA</button>
+            <button class="quick-btn" data-query="placement">💼 Placements</button>
+            <button class="quick-btn" data-query="exam">📝 Exams</button>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Ask me anything..." id="chatInput">
+            <button class="send-btn" id="sendMessage">➤</button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                &copy; 2026 iEMS Cosmic UI. All rights reserved. 
+                <span style="color: #2563eb; font-weight: 600;">Team CODE REAPERS</span>
+            </div>
+            <div class="footer-links">
+                <a href="../footer-pages/about.html">About</a>
+                <a href="../footer-pages/privacy.html">Privacy</a>
+                <a href="../footer-pages/terms.html">Terms</a>
+                <a href="../footer-pages/contact.html">Contact</a>
+                <a href="../footer-pages/instagram.html"><i class="fab fa-instagram"></i></a>
+                <a href="../footer-pages/twitter.html"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/edubot.js"></script>
+    <script>
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Toggle Notification Dropdown
+        const notificationToggle = document.getElementById('notificationToggle');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        
+        if (notificationToggle && notificationDropdown) {
+            notificationToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationDropdown.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', () => {
+                notificationDropdown.classList.remove('show');
+            });
+        }
+
+        // Toggle User Dropdown
+        const userDropdownToggle = document.getElementById('userDropdownToggle');
+        const userDropdownMenu = document.getElementById('userDropdownMenu');
+        
+        if (userDropdownToggle && userDropdownMenu) {
+            userDropdownToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                userDropdownMenu.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', () => {
+                userDropdownMenu.classList.remove('show');
+            });
+        }
+
+        // EduBot Toggle
+        const edubotToggle = document.getElementById('edubotToggle');
+        const edubotChat = document.getElementById('edubotChat');
+        const closeEdubot = document.getElementById('closeEdubot');
+        
+        if (edubotToggle && edubotChat) {
+            edubotToggle.addEventListener('click', () => {
+                edubotChat.classList.toggle('hidden');
+            });
+        }
+        
+        if (closeEdubot && edubotChat) {
+            closeEdubot.addEventListener('click', () => {
+                edubotChat.classList.add('hidden');
+            });
+        }
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Quick Reply Buttons for EduBot
+        const quickBtns = document.querySelectorAll('.quick-btn');
+        const chatInput = document.getElementById('chatInput');
+        const sendBtn = document.getElementById('sendMessage');
+        const chatMessagesContainer = document.getElementById('chatMessages');
+
+        function addMessage(message, isUser = true) {
+            if (!chatMessagesContainer) return;
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            
+            if (!isUser) {
+                bubble.innerHTML = `<span class="bot-avatar-small">🤖</span> ${message}`;
+            } else {
+                bubble.textContent = message;
+            }
+            
+            const time = document.createElement('span');
+            time.className = 'time';
+            time.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.appendChild(bubble);
+            messageDiv.appendChild(time);
+            chatMessagesContainer.appendChild(messageDiv);
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+        }
+
+        function sendUserMessage() {
+            if (!chatInput || !chatMessagesContainer) return;
+            
+            const message = chatInput.value.trim();
+            if (message === '') return;
+            
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Bot response
+            setTimeout(() => {
+                let response = '';
+                const lowerMsg = message.toLowerCase();
+                
+                if (lowerMsg.includes('attendance')) {
+                    response = '📊 Your current attendance is **85%**. You need 75% to be eligible for exams. You can miss 2 more classes this semester!';
+                } else if (lowerMsg.includes('cgpa') || lowerMsg.includes('gpa')) {
+                    response = '🎯 Your current CGPA is **8.2**. To reach 8.5 CGPA, you need **32/50** in Web Development externals!';
+                } else if (lowerMsg.includes('placement') || lowerMsg.includes('job')) {
+                    response = '💼 You\'re eligible for **TCS, Infosys, Wipro**. Your best match is **TCS - 94% match**! Deadline: 20 Feb 2026.';
+                } else if (lowerMsg.includes('exam') || lowerMsg.includes('marks')) {
+                    response = '📝 Next exam: **Web Development** on Feb 20. To get A grade, you need **38/50** in externals. Current internal: 42/50.';
+                } else if (lowerMsg.includes('skill') || lowerMsg.includes('course')) {
+                    response = '🛠️ Based on placement trends, we recommend: **AWS Certification** (+₹3.5 LPA) and **Docker** (+₹2.8 LPA).';
+                } else {
+                    response = '👋 I\'m here to help! You can ask me about attendance, CGPA, placements, exams, or skill recommendations!';
+                }
+                
+                addMessage(response, false);
+            }, 1000);
+        }
+
+        if (sendBtn) {
+            sendBtn.addEventListener('click', sendUserMessage);
+        }
+        
+        if (chatInput) {
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendUserMessage();
+            });
+        }
+        
+        if (quickBtns) {
+            quickBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const query = this.getAttribute('data-query');
+                    if (query === 'attendance') chatInput.value = 'What is my attendance?';
+                    if (query === 'cgpa') chatInput.value = 'What CGPA do I need for 8.5?';
+                    if (query === 'placement') chatInput.value = 'Show my placement recommendations';
+                    if (query === 'exam') chatInput.value = 'When is my next exam?';
+                    sendUserMessage();
+                });
+            });
+        }
+    </script>
+</body>
+</html>

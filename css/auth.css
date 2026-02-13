@@ -1,0 +1,563 @@
+/* ============================================
+   iEMS AUTHENTICATION STYLES
+   Login | Register | Forgot Password
+   Team CODE REAPERS - CVM Hackathon 2026
+   100% Chrome Supported
+   ============================================ */
+
+/* ----- AUTH BODY ----- */
+.auth-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* ----- AUTH CONTAINER ----- */
+.auth-container {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ----- AUTH CARD ----- */
+.auth-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    animation: slideUp 0.5s ease;
+}
+
+.register-card {
+    max-width: 520px;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ----- AUTH LOGO ----- */
+.auth-logo {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-logo img {
+    width: 60px;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.auth-logo h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.auth-logo p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* ----- ROLE TABS (Login) ----- */
+.role-tabs {
+    display: flex;
+    gap: 8px;
+    background: #f3f4f6;
+    padding: 4px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.role-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-tab i {
+    font-size: 16px;
+}
+
+.role-tab.active {
+    background: white;
+    color: #2563eb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* ----- ROLE SELECTOR (Register) ----- */
+.role-selector {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.role-option {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px;
+    background: #f9fafb;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.role-option i {
+    font-size: 32px;
+    color: #6b7280;
+}
+
+.role-option span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.role-option.active {
+    background: #eff6ff;
+    border-color: #2563eb;
+}
+
+.role-option.active i,
+.role-option.active span {
+    color: #2563eb;
+}
+
+/* ----- RESET TABS (Forgot Password) ----- */
+.reset-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.reset-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-tab i {
+    font-size: 18px;
+}
+
+.reset-tab.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+}
+
+/* ----- AUTH FORM ----- */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ----- FORM GROUP ----- */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group label i {
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #1f2937;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #9ca3af;
+}
+
+/* ----- PASSWORD FIELD ----- */
+.password-field {
+    position: relative;
+}
+
+.password-field input {
+    padding-right: 48px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0;
+}
+
+.toggle-password:hover {
+    color: #2563eb;
+}
+
+/* ----- FORM OPTIONS ----- */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+}
+
+/* ----- CHECKBOX ----- */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #4b5563;
+    cursor: pointer;
+    position: relative;
+    padding-left: 28px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    border-color: #2563eb;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* ----- FORGOT LINK ----- */
+.forgot-link {
+    font-size: 14px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-link:hover {
+    text-decoration: underline;
+}
+
+/* ----- AUTH BUTTON ----- */
+.auth-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.auth-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+}
+
+.auth-btn i {
+    font-size: 18px;
+}
+
+/* ----- DEMO CREDENTIALS ----- */
+.demo-credentials {
+    margin-top: 24px;
+    padding: 20px;
+    background: #f9fafb;
+    border-radius: 16px;
+    border: 1px dashed #d1d5db;
+}
+
+.demo-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b5563;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.demo-header i {
+    color: #2563eb;
+}
+
+.demo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.demo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.role-badge.admin {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.role-badge.teacher {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.role-badge.student {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.demo-item code {
+    font-size: 11px;
+    color: #4b5563;
+    word-break: break-all;
+}
+
+/* ----- AUTH FOOTER ----- */
+.auth-footer {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.auth-footer p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.register-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* ----- FORGOT PASSWORD SUCCESS ----- */
+.success-icon {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.success-icon i {
+    font-size: 64px;
+    color: #10b981;
+}
+
+#successState h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#successState p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.resend-link {
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.resend-btn {
+    background: none;
+    border: none;
+    color: #2563eb;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+.resend-btn:hover {
+    text-decoration: underline;
+}
+
+/* ----- BACK LINK ----- */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.back-link:hover {
+    color: #2563eb;
+}
+
+/* ----- RESPONSIVE ----- */
+@media (max-width: 640px) {
+    .auth-card {
+        padding: 32px 24px;
+    }
+    
+    .demo-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .role-tabs,
+    .reset-tabs {
+        flex-direction: column;
+    }
+    
+    .role-selector {
+        flex-direction: column;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 24px 20px;
+    }
+    
+    .auth-logo h1 {
+        font-size: 20px;
+    }
+}

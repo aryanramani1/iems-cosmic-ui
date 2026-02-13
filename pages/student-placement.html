@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Navigator - Student</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    <!-- Student Navbar -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span>iEMS Student</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="student-attendance.html" class="nav-link"><i class="fas fa-calendar-check"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="student-marks.html" class="nav-link"><i class="fas fa-chart-line"></i>Marks</a></li>
+                        <li class="nav-item"><a href="student-placement.html" class="nav-link active"><i class="fas fa-briefcase"></i>Placement</a></li>
+                        <li class="nav-item"><a href="student-profile.html" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
+                        <li class="nav-item"><a href="student-class.html" class="nav-link"><i class="fas fa-user"></i>class</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👤</div>
+                        <span class="user-name">Rohan Patel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">🎯 Placement Navigator</h1>
+                <p class="welcome-subtitle">AI-powered job recommendations based on your profile</p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-calendar"></i>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <!-- Profile Summary -->
+        <div class="profile-summary-card">
+            <div class="profile-avatar-large">👨‍🎓</div>
+            <div class="profile-info">
+                <h2>Rohan Patel</h2>
+                <div class="profile-meta">
+                    <span><i class="fas fa-id-card"></i> CE101</span>
+                    <span><i class="fas fa-graduation-cap"></i> Computer Engineering</span>
+                    <span><i class="fas fa-layer-group"></i> Semester 4</span>
+                    <span><i class="fas fa-star"></i> CGPA: 8.2/10</span>
+                </div>
+            </div>
+            <div class="profile-qr">
+                <div style="font-size: 2rem;">📊</div>
+                <span>Match Score: 94%</span>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-briefcase text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Eligible Companies</span>
+                    <h3 class="stat-value">12</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-check-circle text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Applied</span>
+                    <h3 class="stat-value">5</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-clock text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Shortlisted</span>
+                    <h3 class="stat-value">2</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-trophy text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Placed</span>
+                    <h3 class="stat-value">0</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Recommendations -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-briefcase text-primary"></i>
+                    <h3>Recommended Jobs For You</h3>
+                </div>
+                <span class="badge badge-info">94% Match Accuracy</span>
+            </div>
+            <div class="card-body">
+                <div class="job-list">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <h4>TCS</h4>
+                                <span class="job-role">System Engineer</span>
+                            </div>
+                            <div class="job-match high">
+                                <span class="match-percent">94%</span>
+                            </div>
+                        </div>
+                        <div class="job-details">
+                            <span>💰 7.2 LPA</span>
+                            <span>📅 Deadline: 20 Feb</span>
+                            <span>📍 Pune</span>
+                        </div>
+                        <div class="job-footer">
+                            <div class="skills">
+                                <span class="skill">Python</span>
+                                <span class="skill">SQL</span>
+                                <span class="skill">React</span>
+                            </div>
+                            <button class="btn btn-primary">Apply Now</button>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <h4>Infosys</h4>
+                                <span class="job-role">Digital Specialist</span>
+                            </div>
+                            <div class="job-match high">
+                                <span class="match-percent">89%</span>
+                            </div>
+                        </div>
+                        <div class="job-details">
+                            <span>💰 6.5 LPA</span>
+                            <span>📅 Deadline: 25 Feb</span>
+                            <span>📍 Bangalore</span>
+                        </div>
+                        <div class="job-footer">
+                            <div class="skills">
+                                <span class="skill">Java</span>
+                                <span class="skill">Spring</span>
+                                <span class="skill">AWS</span>
+                            </div>
+                            <button class="btn btn-primary">Apply Now</button>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div>
+                                <h4>Microsoft</h4>
+                                <span class="job-role">Software Engineer</span>
+                            </div>
+                            <div class="job-match medium">
+                                <span class="match-percent">68%</span>
+                            </div>
+                        </div>
+                        <div class="job-details">
+                            <span>💰 18 LPA</span>
+                            <span>📅 Deadline: 28 Feb</span>
+                            <span>📍 Hyderabad</span>
+                        </div>
+                        <div class="job-footer">
+                            <div class="skills">
+                                <span class="skill">DSA</span>
+                                <span class="skill">C++</span>
+                                <span class="skill">System Design</span>
+                            </div>
+                            <span class="badge badge-warning">CGPA: 8.5 required</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Gap Analysis -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-chart-pie text-primary"></i>
+                    <h3>Skill Gap Analysis</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="skill-gap-analysis">
+                    <div class="skill-gap-item">
+                        <div class="skill-info">
+                            <span>AWS Certification</span>
+                            <span class="salary-impact">+₹3.5 LPA</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 40%;"></div></div>
+                            <span>Beginner</span>
+                        </div>
+                    </div>
+                    <div class="skill-gap-item">
+                        <div class="skill-info">
+                            <span>Docker/Kubernetes</span>
+                            <span class="salary-impact">+₹2.8 LPA</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 20%;"></div></div>
+                            <span>Not Started</span>
+                        </div>
+                    </div>
+                    <div class="skill-gap-item">
+                        <div class="skill-info">
+                            <span>System Design</span>
+                            <span class="salary-impact">+₹4.2 LPA</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar"><div class="progress-fill" style="width: 15%;"></div></div>
+                            <span>Not Started</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-outline btn-block mt-3">View Recommended Courses</button>
+            </div>
+        </div>
+    </div>
+    <script>document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN');</script>
+</body>
+</html>

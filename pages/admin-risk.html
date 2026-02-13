@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Admin Risk - High Risk Students Management">
+    <title>Risk Management - Admin Dashboard | iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <style>
+        .risk-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .risk-card.high {
+            border-left: 6px solid #ef4444;
+        }
+        .risk-card.medium {
+            border-left: 6px solid #f59e0b;
+        }
+        .risk-card.low {
+            border-left: 6px solid #10b981;
+        }
+        .risk-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.15);
+        }
+        .risk-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .risk-badge.high {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .risk-badge.medium {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        .risk-badge.low {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            background: #f8fafc;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .filter-tab {
+            padding: 0.5rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-tab.active {
+            background: #2563eb;
+            color: white;
+        }
+        .filter-tab:hover:not(.active) {
+            background: #e2e8f0;
+        }
+        .intervention-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .progress-indicator {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- ===== ADMIN NAVBAR ===== -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="admin-cockpit.html">
+                        <span class="brand-icon">👑</span>
+                        <span class="brand-text">iEMS Admin</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Cockpit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-agents.html" class="nav-link">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Agents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-n8n.html" class="nav-link">
+                                <i class="fas fa-bolt"></i>
+                                <span>n8n</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-risk.html" class="nav-link active">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Risk</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-reports.html" class="nav-link">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <div class="notification-wrapper">
+                    <button class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">8</span>
+                    </button>
+                </div>
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">
+                            <span class="avatar-placeholder">AD</span>
+                        </div>
+                        <span class="user-name">Admin</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN RISK MANAGEMENT CONTENT ===== -->
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">
+                    ⚠️ Risk Management
+                    <span class="status-dot online" style="margin-left: 0.5rem;"></span>
+                </h1>
+                <p class="welcome-subtitle">
+                    AI-powered dropout prediction and intervention management
+                </p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    Run Analysis
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-download"></i>
+                    Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Risk Overview Stats -->
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="stat-card">
+                <div class="stat-icon bg-danger-light">
+                    <i class="fas fa-exclamation-triangle text-danger"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">High Risk</span>
+                    <h3 class="stat-value text-danger">12</h3>
+                    <span class="stat-change">↑ 2 this week</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-chart-line text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Medium Risk</span>
+                    <h3 class="stat-value text-warning">28</h3>
+                    <span class="stat-change">↓ 5 from last week</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-check-circle text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Low Risk</span>
+                    <h3 class="stat-value text-success">1,210</h3>
+                    <span class="stat-change">↑ 12</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-calendar-check text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Interventions</span>
+                    <h3 class="stat-value">8</h3>
+                    <span class="stat-change">Scheduled</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <div class="filter-tabs">
+                <span class="filter-tab active">All Risk Levels</span>
+                <span class="filter-tab">High Risk</span>
+                <span class="filter-tab">Medium Risk</span>
+                <span class="filter-tab">Low Risk</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <select style="padding: 0.5rem 1rem; border: 1px solid #e2e8f0; border-radius: 2rem; outline: none;">
+                    <option>All Departments</option>
+                    <option>Computer Engineering</option>
+                    <option>Information Technology</option>
+                    <option>Electronics & Comm</option>
+                </select>
+                <div style="position: relative;">
+                    <i class="fas fa-search" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #94a3b8;"></i>
+                    <input type="text" placeholder="Search students..." style="padding: 0.5rem 1rem 0.5rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 2rem; width: 250px; outline: none;">
+                </div>
+            </div>
+        </div>
+
+        <!-- High Risk Students Cards -->
+        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
+            High Risk Students (12)
+            <span style="background: #fee2e2; color: #dc2626; padding: 0.25rem 1rem; border-radius: 2rem; font-size: 0.875rem; margin-left: 1rem;">
+                Immediate Intervention Required
+            </span>
+        </h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Student 1 - High Risk -->
+            <div class="risk-card high">
+                <span class="risk-badge high">85% Risk</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="progress-indicator" style="background: #fee2e2; color: #dc2626; border: 3px solid #ef4444;">
+                        85%
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Rahul Sharma</h3>
+                        <p style="color: #64748b;">CE101 • 4th Sem • Computer Engineering</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Attendance</span>
+                        <div style="font-weight: 700; color: #ef4444;">40%</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Marks</span>
+                        <div style="font-weight: 700; color: #ef4444;">35%</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Fee Default</span>
+                        <div style="font-weight: 700; color: #ef4444;">3 months</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-calendar"></i> Schedule Meeting
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Student 2 - High Risk -->
+            <div class="risk-card high">
+                <span class="risk-badge high">82% Risk</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="progress-indicator" style="background: #fee2e2; color: #dc2626; border: 3px solid #ef4444;">
+                        82%
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.25rem;">Priya Patel</h3>
+                        <p style="color: #64748b;">IT202 • 4th Sem • Information Technology</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Attendance</span>
+                        <div style="font-weight: 700; color: #ef4444;">55%</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Marks</span>
+                        <div style="font-weight: 700; color: #f59e0b;">42%</div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span style="color: #64748b; font-size: 0.8rem;">Fee Default</span>
+                        <div style="font-weight: 700; color: #ef4444;">2 months</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-primary" style="flex: 1;">
+                        <i class="fas fa-calendar"></i> Schedule Meeting
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medium Risk Students -->
+        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-exclamation-triangle" style="color: #f59e0b;"></i>
+            Medium Risk Students (28)
+            <span style="background: #fef3c7; color: #d97706; padding: 0.25rem 1rem; border-radius: 2rem; font-size: 0.875rem; margin-left: 1rem;">
+                Monitor Closely
+            </span>
+        </h3>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <!-- Student 3 - Medium Risk -->
+            <div class="risk-card medium">
+                <span class="risk-badge medium">78% Risk</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #d97706;">
+                        78%
+                    </div>
+                    <div>
+                        <h4>Amit Kumar</h4>
+                        <p style="color: #64748b; font-size: 0.875rem;">EC303 • 6th Sem</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-outline" style="flex: 1;">Schedule</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-phone"></i></button>
+                </div>
+            </div>
+
+            <!-- Student 4 - Medium Risk -->
+            <div class="risk-card medium">
+                <span class="risk-badge medium">75% Risk</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #d97706;">
+                        75%
+                    </div>
+                    <div>
+                        <h4>Sneha Reddy</h4>
+                        <p style="color: #64748b; font-size: 0.875rem;">CE104 • 4th Sem</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-outline" style="flex: 1;">Schedule</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-phone"></i></button>
+                </div>
+            </div>
+
+            <!-- Student 5 - Medium Risk -->
+            <div class="risk-card medium">
+                <span class="risk-badge medium">71% Risk</span>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #fef3c7; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #d97706;">
+                        71%
+                    </div>
+                    <div>
+                        <h4>Rajesh Singh</h4>
+                        <p style="color: #64748b; font-size: 0.875rem;">ME205 • 6th Sem</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-outline" style="flex: 1;">Schedule</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-phone"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Agent Insights -->
+        <div class="card ai-card" style="background: linear-gradient(145deg, #2563eb, #1e40af); color: white;">
+            <div class="card-body">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <i class="fas fa-robot" style="font-size: 3rem;"></i>
+                    <div>
+                        <h3 style="color: white;">Dropout Radar AI Insights</h3>
+                        <p style="color: rgba(255,255,255,0.9); margin-bottom: 0.5rem;">87.3% accuracy • Last updated: Today 8:00 AM</p>
+                        <p style="color: white;">⚠️ 5 students have crossed 80% risk threshold in the last week. Immediate intervention recommended.</p>
+                    </div>
+                    <button class="btn btn-white" style="margin-left: auto; background: white; color: #2563eb;">
+                        View Details
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Actions -->
+        <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem;">
+            <button class="btn btn-outline">
+                <i class="fas fa-file-export"></i>
+                Export Risk Report
+            </button>
+            <button class="btn btn-primary">
+                <i class="fas fa-calendar"></i>
+                Schedule All Interventions
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                &copy; 2026 iEMS Cosmic UI. All rights reserved. 
+                <span style="color: #2563eb; font-weight: 600;">Team CODE REAPERS</span>
+            </div>
+            <div class="footer-links">
+                <a href="../footer-pages/about.html">About</a>
+                <a href="../footer-pages/privacy.html">Privacy</a>
+                <a href="../footer-pages/terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+</html>

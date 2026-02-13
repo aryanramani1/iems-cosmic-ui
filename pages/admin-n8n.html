@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n Automation - Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .workflow-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .workflow-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .workflow-icon {
+            width: 50px;
+            height: 50px;
+            background: #eff6ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .workflow-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Admin Navbar -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="admin-cockpit.html"><span>iEMS Admin</span></a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="admin-cockpit.html" class="nav-link"><i class="fas fa-tachometer-alt"></i>Cockpit</a></li>
+                        <li class="nav-item"><a href="admin-agents.html" class="nav-link"><i class="fas fa-robot"></i>AI Agents</a></li>
+                        <li class="nav-item"><a href="admin-n8n.html" class="nav-link active"><i class="fas fa-bolt"></i>n8n</a></li>
+                        <li class="nav-item"><a href="admin-risk.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i>Risk</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">⚡ n8n Automation</h1>
+                <p class="welcome-subtitle">No-code workflow automation for institutional processes</p>
+            </div>
+            <span class="badge badge-success">4 Active Workflows</span>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light"><i class="fas fa-check-circle text-success"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Success Rate</span>
+                    <h3 class="stat-value">96.5%</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light"><i class="fas fa-clock text-info"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Today's Runs</span>
+                    <h3 class="stat-value">1,247</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light"><i class="fas fa-users text-warning"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Notifications</span>
+                    <h3 class="stat-value">8,432</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light"><i class="fas fa-bolt text-primary"></i></div>
+                <div class="stat-content">
+                    <span class="stat-label">Active</span>
+                    <h3 class="stat-value">4/5</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflows Grid -->
+        <div class="workflow-grid">
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <h3>WhatsApp Attendance Alert</h3>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; margin-bottom: 1rem;">Send real-time attendance alerts to parents</p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: #6b7280;">Schedule:</span>
+                    <span style="font-weight: 600;">Daily 9:00 AM + Instant</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="color: #6b7280;">Last Run:</span>
+                    <span style="font-weight: 600;">2 minutes ago</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-primary"><i class="fas fa-play"></i> Run</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-icon"><i class="fas fa-chart-line"></i></div>
+                    <div>
+                        <h3>Weekly Dropout Report</h3>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; margin-bottom: 1rem;">Generate risk reports every Monday</p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: #6b7280;">Schedule:</span>
+                    <span style="font-weight: 600;">Every Monday 8:00 AM</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="color: #6b7280;">Last Run:</span>
+                    <span style="font-weight: 600;">1 day ago</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-primary"><i class="fas fa-play"></i> Run</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-icon"><i class="fas fa-briefcase"></i></div>
+                    <div>
+                        <h3>Daily Placement Scraper</h3>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; margin-bottom: 1rem;">Scrape job listings from company portals</p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: #6b7280;">Schedule:</span>
+                    <span style="font-weight: 600;">Daily 6:00 AM</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="color: #6b7280;">Last Run:</span>
+                    <span style="font-weight: 600;">3 hours ago</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-primary"><i class="fas fa-play"></i> Run</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </div>
+            <div class="workflow-card">
+                <div class="workflow-header">
+                    <div class="workflow-icon"><i class="fas fa-calendar"></i></div>
+                    <div>
+                        <h3>Meeting Scheduler</h3>
+                        <span class="badge badge-success">Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; margin-bottom: 1rem;">Auto-schedule parent-teacher meetings</p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span style="color: #6b7280;">Schedule:</span>
+                    <span style="font-weight: 600;">On-demand</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <span style="color: #6b7280;">Last Run:</span>
+                    <span style="font-weight: 600;">1 hour ago</span>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-primary"><i class="fas fa-play"></i> Run</button>
+                    <button class="btn btn-sm btn-outline"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="card-body">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn btn-outline"><i class="fas fa-whatsapp"></i> Trigger WhatsApp Alert</button>
+                    <button class="btn btn-outline"><i class="fas fa-chart-line"></i> Run Dropout Analysis</button>
+                    <button class="btn btn-outline"><i class="fas fa-briefcase"></i> Scrape New Jobs</button>
+                    <button class="btn btn-outline"><i class="fas fa-file-alt"></i> Generate Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

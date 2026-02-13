@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iEMS on Instagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 2rem;
+        }
+        .instagram-header {
+            max-width: 1000px;
+            margin: 0 auto 2rem;
+            text-align: center;
+        }
+        .instagram-header i {
+            font-size: 3rem;
+            color: #e4405f;
+            margin-bottom: 1rem;
+        }
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .instagram-post {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .instagram-post img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .instagram-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .instagram-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="instagram-header">
+        <i class="fab fa-instagram"></i>
+        <h1>@iems.cosmic</h1>
+        <p>Follow us for updates and announcements</p>
+    </div>
+    
+    <div class="instagram-grid">
+        <div class="instagram-post">
+            <img src="../assets/images/social/insta-1.jpg" alt="Campus Life">
+            <div style="padding: 1rem;">
+                <strong>Campus Life</strong>
+                <p style="color: #666;">2 days ago</p>
+            </div>
+        </div>
+        <div class="instagram-post">
+            <img src="../assets/images/social/insta-2.jpg" alt="Hackathon">
+            <div style="padding: 1rem;">
+                <strong>Hackathon Winners</strong>
+                <p style="color: #666;">5 days ago</p>
+            </div>
+        </div>
+        <div class="instagram-post">
+            <img src="../assets/images/social/insta-3.jpg" alt="Placement">
+            <div style="padding: 1rem;">
+                <strong>Placement Drive</strong>
+                <p style="color: #666;">1 week ago</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

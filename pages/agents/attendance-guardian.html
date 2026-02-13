@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Attendance Guardian AI - Real-time attendance tracking with WhatsApp alerts">
+    <title>Attendance Guardian AI - iEMS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/agents.css">
+</head>
+<body class="dashboard-body">
+    <!-- Admin Navbar -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="../admin-cockpit.html">
+                        <img src="../../assets/images/logo/logo-small.png" alt="iEMS" class="nav-logo">
+                        <span>iEMS Admin</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="../admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Cockpit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../admin-agents.html" class="nav-link active">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Agents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">
+                            <img src="../../assets/images/avatars/admin-avatar.jpg" alt="Admin">
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Agent Page Content -->
+    <div class="dashboard-container">
+        <!-- Agent Header -->
+        <div class="agent-header-section">
+            <div class="agent-title-section">
+                <div class="agent-icon-large">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div>
+                    <h1 class="agent-name">Attendance Guardian AI</h1>
+                    <div class="agent-meta-badges">
+                        <span class="badge badge-success">Active</span>
+                        <span class="badge badge-info">98.7% Accuracy</span>
+                        <span class="badge badge-light">v2.1.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-actions">
+                <button class="btn btn-outline">
+                    <i class="fas fa-edit"></i> Configure
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-play"></i> Run Now
+                </button>
+            </div>
+        </div>
+
+        <!-- Agent Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-bell text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Alerts</span>
+                    <h3 class="stat-value">1,247</h3>
+                    <span class="stat-change">↑ 142 today</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-check-circle text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Success Rate</span>
+                    <h3 class="stat-value">98.7%</h3>
+                    <span class="stat-change positive">↑ 0.5%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-clock text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Avg Response</span>
+                    <h3 class="stat-value">1.2s</h3>
+                    <span class="stat-change">Instant</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-users text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Students</span>
+                    <h3 class="stat-value">1,250</h3>
+                    <span class="stat-change">Monitored</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Agent Features -->
+        <div class="dashboard-row">
+            <div class="dashboard-col lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-chart-line text-primary"></i>
+                            <h3>Performance Analytics</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="analytics-placeholder">
+                            <i class="fas fa-chart-bar"></i>
+                            <p>Attendance trend chart would appear here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-col lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-clock text-primary"></i>
+                            <h3>Schedule</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="schedule-list">
+                            <div class="schedule-item">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <strong>Daily Report</strong>
+                                    <p>Every day at 9:00 AM</p>
+                                </div>
+                            </div>
+                            <div class="schedule-item">
+                                <i class="fas fa-bolt"></i>
+                                <div>
+                                    <strong>Instant Alerts</strong>
+                                    <p>On absence marking</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

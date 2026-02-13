@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks - Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .grade-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+        .grade-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .target-card {
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Student Navbar -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span>iEMS Student</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="student-attendance.html" class="nav-link"><i class="fas fa-calendar-check"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="student-marks.html" class="nav-link active"><i class="fas fa-chart-line"></i>Marks</a></li>
+                        <li class="nav-item"><a href="student-placement.html" class="nav-link"><i class="fas fa-briefcase"></i>Placement</a></li>
+                        <li class="nav-item"><a href="student-profile.html" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
+                        <li class="nav-item"><a href="student-class.html" class="nav-link"><i class="fas fa-user"></i>class</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👤</div>
+                        <span class="user-name">Rohan Patel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">📝 Academic Performance</h1>
+                <p class="welcome-subtitle">Semester 4 - Internal Marks & CGPA</p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-graduation-cap"></i>
+                <span>CGPA: 8.2/10</span>
+            </div>
+        </div>
+
+        <!-- CGPA & Grade Summary -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+            <div class="grade-card">
+                <div class="grade-circle" style="background: #eff6ff; color: #2563eb; border: 4px solid #2563eb;">
+                    8.2
+                </div>
+                <h3 style="margin-bottom: 0.5rem;">Current CGPA</h3>
+                <p style="color: #6b7280;">↑ 0.3 from last semester</p>
+            </div>
+            <div class="target-card">
+                <h3 style="color: white; margin-bottom: 1rem;">🎯 Target: 8.5 CGPA</h3>
+                <p style="color: rgba(255,255,255,0.9); margin-bottom: 1rem;">You need 32/50 in Web Development externals</p>
+                <div style="background: rgba(255,255,255,0.2); border-radius: 0.5rem; padding: 0.5rem;">
+                    <span style="color: white; font-weight: 600;">Exam Optimizer AI:</span>
+                    <span style="color: white; margin-left: 0.5rem;">With current internals (42/50), this is achievable!</span>
+                </div>
+                <button class="btn btn-white" style="margin-top: 1rem; background: white; color: #2563eb;">
+                    <i class="fab fa-whatsapp"></i> Send Target to Parent
+                </button>
+            </div>
+        </div>
+
+        <!-- Marks Table -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-table text-primary"></i>
+                    <h3>Internal Marks - Semester 4</h3>
+                </div>
+                <span class="badge badge-info">Last Updated: 12 Feb 2026</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Subject</th>
+                                <th>Internal 1</th>
+                                <th>Internal 2</th>
+                                <th>Average</th>
+                                <th>Target</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Web Development</td>
+                                <td>42</td>
+                                <td>-</td>
+                                <td><strong>42</strong>/50</td>
+                                <td>32/50</td>
+                                <td><span class="badge badge-success">A</span></td>
+                                <td><span class="status-badge success">On Track</span></td>
+                            </tr>
+                            <tr>
+                                <td>Database Systems</td>
+                                <td>38</td>
+                                <td>-</td>
+                                <td><strong>38</strong>/50</td>
+                                <td>35/50</td>
+                                <td><span class="badge badge-warning">B+</span></td>
+                                <td><span class="status-badge warning">Need Improvement</span></td>
+                            </tr>
+                            <tr>
+                                <td>Data Structures</td>
+                                <td>45</td>
+                                <td>-</td>
+                                <td><strong>45</strong>/50</td>
+                                <td>28/50</td>
+                                <td><span class="badge badge-success">A+</span></td>
+                                <td><span class="status-badge success">On Track</span></td>
+                            </tr>
+                            <tr>
+                                <td>Operating Systems</td>
+                                <td>35</td>
+                                <td>-</td>
+                                <td><strong>35</strong>/50</td>
+                                <td>38/50</td>
+                                <td><span class="badge badge-warning">B</span></td>
+                                <td><span class="status-badge warning">Need Improvement</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Subject Analysis -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-trophy text-primary"></i>
+                        <h3>Strongest Subjects</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                        <div>
+                            <h4>Data Structures</h4>
+                            <span style="color: #6b7280;">90% • A+ Grade</span>
+                        </div>
+                        <span class="badge badge-success">Top 5%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h4>Web Development</h4>
+                            <span style="color: #6b7280;">84% • A Grade</span>
+                        </div>
+                        <span class="badge badge-success">Top 15%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-exclamation-triangle text-primary"></i>
+                        <h3>Need Improvement</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                        <div>
+                            <h4>Operating Systems</h4>
+                            <span style="color: #6b7280;">70% • B Grade</span>
+                        </div>
+                        <span class="badge badge-warning">Need 38/50</span>
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h4>Database Systems</h4>
+                            <span style="color: #6b7280;">76% • B+ Grade</span>
+                        </div>
+                        <span class="badge badge-warning">Need 35/50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

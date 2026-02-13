@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Admin Reports - Analytics and Reports">
+    <title>Reports & Analytics - Admin Dashboard | iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <style>
+        .report-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        .report-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px -8px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        .date-range {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 2rem;
+            border: 1px solid #e2e8f0;
+        }
+        .date-range input {
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            outline: none;
+        }
+        .export-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .export-btn:hover {
+            background: #2563eb;
+            color: white;
+        }
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        .trend-up { color: #10b981; }
+        .trend-down { color: #ef4444; }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- ===== ADMIN NAVBAR ===== -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="admin-cockpit.html">
+                        <span class="brand-icon">👑</span>
+                        <span class="brand-text">iEMS Admin</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Cockpit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-agents.html" class="nav-link">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Agents</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-n8n.html" class="nav-link">
+                                <i class="fas fa-bolt"></i>
+                                <span>n8n</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-risk.html" class="nav-link">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span>Risk</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-reports.html" class="nav-link active">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <div class="notification-wrapper">
+                    <button class="notification-bell">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </button>
+                </div>
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">
+                            <span class="avatar-placeholder">AD</span>
+                        </div>
+                        <span class="user-name">Admin</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN REPORTS CONTENT ===== -->
+    <div class="dashboard-container">
+        <!-- Header with Date Range -->
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">
+                    📊 Reports & Analytics
+                    <span class="status-dot online" style="margin-left: 0.5rem;"></span>
+                </h1>
+                <p class="welcome-subtitle">
+                    Comprehensive institution performance metrics
+                </p>
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="date-range">
+                    <i class="fas fa-calendar-alt" style="color: #64748b;"></i>
+                    <input type="text" placeholder="Feb 1, 2026 - Feb 13, 2026" value="Feb 1, 2026 - Feb 13, 2026" readonly>
+                    <i class="fas fa-chevron-down" style="color: #64748b;"></i>
+                </div>
+                <button class="export-btn">
+                    <i class="fas fa-download"></i>
+                    Export Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Summary Stats Cards -->
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-user-graduate text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Students</span>
+                    <h3 class="stat-value">1,250</h3>
+                    <span class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> +48 from last month
+                    </span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-chalkboard-teacher text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Teachers</span>
+                    <h3 class="stat-value">48</h3>
+                    <span class="stat-change">4 new this year</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-calendar-check text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Avg Attendance</span>
+                    <h3 class="stat-value">78%</h3>
+                    <span class="stat-change negative">
+                        <i class="fas fa-arrow-down"></i> -2% from last month
+                    </span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-graduation-cap text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Pass Rate</span>
+                    <h3 class="stat-value">92%</h3>
+                    <span class="stat-change positive">
+                        <i class="fas fa-arrow-up"></i> +3% from last sem
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <!-- Attendance Trend Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-chart-line text-primary"></i>
+                        <h3>Attendance Trend (Last 30 Days)</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="attendanceChart"></canvas>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 1rem;">
+                        <div class="stat-trend">
+                            <span style="color: #64748b;">Weekly Average:</span>
+                            <strong>78%</strong>
+                            <span class="trend-down"><i class="fas fa-arrow-down"></i> 2%</span>
+                        </div>
+                        <div class="stat-trend">
+                            <span style="color: #64748b;">Peak:</span>
+                            <strong>85% (Mon)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Department Performance Chart -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-chart-pie text-primary"></i>
+                        <h3>Department Performance</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="deptChart"></canvas>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
+                        <div><span style="color: #64748b;">Computer Engg:</span> <strong>85%</strong></div>
+                        <div><span style="color: #64748b;">IT:</span> <strong>82%</strong></div>
+                        <div><span style="color: #64748b;">Electronics:</span> <strong>78%</strong></div>
+                        <div><span style="color: #64748b;">Mechanical:</span> <strong>76%</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <!-- Placement Statistics -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-briefcase text-primary"></i>
+                        <h3>Placement Statistics</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="placementChart"></canvas>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1rem;">
+                        <div style="text-align: center;">
+                            <span style="color: #64748b;">Total Offers</span>
+                            <h3>245</h3>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="color: #64748b;">Companies</span>
+                            <h3>32</h3>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="color: #64748b;">Avg Package</span>
+                            <h3>₹8.2L</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gender Distribution -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <i class="fas fa-venus-mars text-primary"></i>
+                        <h3>Student Demographics</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="demographicsChart"></canvas>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
+                        <div><span style="color: #64748b;">Boys:</span> <strong>780 (62.4%)</strong></div>
+                        <div><span style="color: #64748b;">Girls:</span> <strong>470 (37.6%)</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Performance Table -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-table text-primary"></i>
+                    <h3>Semester-wise Performance</h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="overflow-x: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Department</th>
+                                <th>Sem 1</th>
+                                <th>Sem 2</th>
+                                <th>Sem 3</th>
+                                <th>Sem 4</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Computer Engineering</td>
+                                <td>7.8</td>
+                                <td>8.0</td>
+                                <td>8.2</td>
+                                <td><span style="color: #10b981; font-weight: 600;">8.4</span></td>
+                                <td><span class="trend-up"><i class="fas fa-arrow-up"></i> +0.2</span></td>
+                            </tr>
+                            <tr>
+                                <td>Information Technology</td>
+                                <td>7.6</td>
+                                <td>7.8</td>
+                                <td>7.9</td>
+                                <td><span style="color: #10b981; font-weight: 600;">8.1</span></td>
+                                <td><span class="trend-up"><i class="fas fa-arrow-up"></i> +0.2</span></td>
+                            </tr>
+                            <tr>
+                                <td>Electronics & Comm</td>
+                                <td>7.5</td>
+                                <td>7.6</td>
+                                <td>7.7</td>
+                                <td><span style="color: #f59e0b; font-weight: 600;">7.6</span></td>
+                                <td><span class="trend-down"><i class="fas fa-arrow-down"></i> -0.1</span></td>
+                            </tr>
+                            <tr>
+                                <td>Mechanical Engineering</td>
+                                <td>7.4</td>
+                                <td>7.5</td>
+                                <td>7.5</td>
+                                <td><span style="color: #f59e0b; font-weight: 600;">7.4</span></td>
+                                <td><span class="trend-down"><i class="fas fa-arrow-down"></i> -0.1</span></td>
+                            </tr>
+                            <tr>
+                                <td>Civil Engineering</td>
+                                <td>7.2</td>
+                                <td>7.3</td>
+                                <td>7.4</td>
+                                <td><span style="color: #10b981; font-weight: 600;">7.5</span></td>
+                                <td><span class="trend-up"><i class="fas fa-arrow-up"></i> +0.1</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Generation Section -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem;">
+            <div class="report-card">
+                <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem;">Attendance Report</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">Monthly attendance analysis with charts</p>
+                <button class="btn btn-outline btn-block">Generate PDF</button>
+            </div>
+            <div class="report-card">
+                <i class="fas fa-file-excel" style="color: #10b981; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem;">Marksheet Export</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">Student-wise marks in Excel format</p>
+                <button class="btn btn-outline btn-block">Generate Excel</button>
+            </div>
+            <div class="report-card">
+                <i class="fas fa-chart-bar" style="color: #8b5cf6; font-size: 2rem; margin-bottom: 1rem;"></i>
+                <h3 style="margin-bottom: 0.5rem;">Placement Analytics</h3>
+                <p style="color: #64748b; margin-bottom: 1rem;">Company-wise placement statistics</p>
+                <button class="btn btn-outline btn-block">Generate Report</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                &copy; 2026 iEMS Cosmic UI. All rights reserved. 
+                <span style="color: #2563eb; font-weight: 600;">Team CODE REAPERS</span>
+            </div>
+            <div class="footer-links">
+                <a href="../footer-pages/about.html">About</a>
+                <a href="../footer-pages/privacy.html">Privacy</a>
+                <a href="../footer-pages/terms.html">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chart.js Scripts -->
+    <script>
+        // Attendance Trend Chart
+        const ctx1 = document.getElementById('attendanceChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Attendance %',
+                    data: [82, 78, 75, 80],
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Department Performance Chart
+        const ctx2 = document.getElementById('deptChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['CE', 'IT', 'EC', 'ME', 'CV'],
+                datasets: [{
+                    label: 'Performance %',
+                    data: [85, 82, 78, 76, 75],
+                    backgroundColor: [
+                        '#2563eb',
+                        '#10b981',
+                        '#f59e0b',
+                        '#ef4444',
+                        '#8b5cf6'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+
+        // Placement Chart
+        const ctx3 = document.getElementById('placementChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+                labels: ['Placed', 'Eligible', 'Not Eligible'],
+                datasets: [{
+                    data: [245, 560, 445],
+                    backgroundColor: ['#10b981', '#f59e0b', '#ef4444']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Demographics Chart
+        const ctx4 = document.getElementById('demographicsChart').getContext('2d');
+        new Chart(ctx4, {
+            type: 'pie',
+            data: {
+                labels: ['Boys', 'Girls'],
+                datasets: [{
+                    data: [780, 470],
+                    backgroundColor: ['#2563eb', '#ec4899']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

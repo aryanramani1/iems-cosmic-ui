@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS - Integrated Education Management System. Complete solution for schools, colleges, and universities.">
+    <meta name="keywords" content="Education, Management System, School Software, College ERP, CVM University">
+    <meta name="author" content="Team CODE REAPERS">
+    
+    <title>iEMS - Integrated Education Management System</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+<body>
+    <!-- ===== PRELOADER ===== -->
+   
+
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                
+                <div class="nav-brand">
+                    <a href="index.html">
+                        <img src="assets/images/logo-small.png" alt="iEMS Logo" class="logo">
+                        <span class="brand-text">iEMS</span>
+                    </a>
+                </div>
+                
+                
+                <div class="nav-menu" id="navMenu">
+                    
+                    <ul class="nav-list">
+                          
+                        <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                        <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+                        <li class="nav-item"><a href="#solutions" class="nav-link">Solutions</a></li>
+                        <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
+                        <li class="nav-item"><a href="/footer-pages/about.html" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="/footer-pages/contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-buttons">
+                    <a href="pages/login.html" class="btn btn-outline">Login</a>
+                    <a href="pages/register.html" class="btn btn-primary">Get Started</a>
+                    <button type="button" class="mobile-toggle" id="mobileToggle" title="Toggle mobile navigation menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="hero-badge">Trusted by 500+ Institutions</span>
+                    <h1 class="hero-title">
+                        Integrated Education <br>Management <span class="highlight">System</span>
+                    </h1>
+                    <p class="hero-description">
+                        Streamline your institution with our all-in-one platform. Manage students, teachers, attendance, marks, placements, and communication - all in one place.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#demo" class="btn btn-primary btn-large">Request Demo</a>
+                        <a href="#features" class="btn btn-outline btn-large">Explore Features</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Institutions</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50K+</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">98%</span>
+                            <span class="stat-label">Satisfaction</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/assets/images/company-logos/Pi7_Pi7_Pi7_Screenshot 2026-02-12 234305.jpeg" alt="iEMS Dashboard" class="hero-img">
+                    <div class="hero-shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Features</span>
+                <h2 class="section-title">Everything you need to manage your institution</h2>
+                <p class="section-description">
+                    Comprehensive tools designed for educational institutions of all sizes
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3 class="feature-title">Student Management</h3>
+                    <p class="feature-description">
+                        Complete student lifecycle management from enrollment to alumni tracking.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3 class="feature-title">Teacher Portal</h3>
+                    <p class="feature-description">
+                        Dedicated dashboard for teachers to manage attendance, marks, and classes.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3 class="feature-title">QR Attendance</h3>
+                    <p class="feature-description">
+                        Scan QR codes for instant attendance marking with real-time updates.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Performance Analytics</h3>
+                    <p class="feature-description">
+                        Visual insights into student performance, attendance trends, and more.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3 class="feature-title">Placement Cell</h3>
+                    <p class="feature-description">
+                        Smart placement recommendations, company tracking, and application management.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-whatsapp"></i>
+                    </div>
+                    <h3 class="feature-title">WhatsApp Integration</h3>
+                    <p class="feature-description">
+                        Automated parent notifications for attendance, exams, and important updates.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI Agents</h3>
+                    <p class="feature-description">
+                        6 autonomous AI agents for dropout prediction, exam optimization, and career guidance.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Reports & Analytics</h3>
+                    <p class="feature-description">
+                        Generate custom reports, export data, and track institutional KPIs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOLUTIONS SECTION ===== -->
+    <section id="solutions" class="solutions">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Solutions</span>
+                <h2 class="section-title">Tailored for every role</h2>
+                <p class="section-description">
+                    Personalized dashboards and tools for each stakeholder
+                </p>
+            </div>
+            
+            <div class="solutions-tabs">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="student">🎓 For Students</button>
+                    <button class="tab-btn" data-tab="teacher">👨‍🏫 For Teachers</button>
+                    <button class="tab-btn" data-tab="admin">👑 For Administrators</button>
+                    <button class="tab-btn" data-tab="parent">👪 For Parents</button>
+                </div>
+                
+                <div class="tabs-content">
+                    <!-- Student Tab -->
+                    <div class="tab-pane active" id="tab-student">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <h3>Student Dashboard</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Profile with QR Code</li>
+                                    <li><i class="fas fa-check-circle"></i> Attendance & Marks</li>
+                                    <li><i class="fas fa-check-circle"></i> CGPA Calculator</li>
+                                    <li><i class="fas fa-check-circle"></i> Placement Recommendations</li>
+                                    <li><i class="fas fa-check-circle"></i> AI Chatbot Assistant</li>
+                                    <li><i class="fas fa-check-circle"></i> Notifications & Alerts</li>
+                                </ul>
+                                <a href="pages/student-dashboard.html" class="btn btn-primary">View Demo</a>
+                            </div>
+                            <div class="tab-image">
+                                <img src="assets/images/company-logos/Screenshot 2026-02-13 223510.png" alt="Student Dashboard">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Teacher Tab (Hidden by default) -->
+                    <div class="tab-pane" id="tab-teacher">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <h3>Teacher Dashboard</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> QR Attendance Scanner</li>
+                                    <li><i class="fas fa-check-circle"></i> Marks Entry</li>
+                                    <li><i class="fas fa-check-circle"></i> Class Management</li>
+                                    <li><i class="fas fa-check-circle"></i> At-Risk Student Alerts</li>
+                                    <li><i class="fas fa-check-circle"></i> Schedule & Timetable</li>
+                                    <li><i class="fas fa-check-circle"></i> Parent Communication</li>
+                                </ul>
+                                <a href="pages/teacher-dashboard.html" class="btn btn-primary">View Demo</a>
+                            </div>
+                            <div class="tab-image">
+                                <img src="assets/images/mockups/teacher-dashboard.png" alt="Teacher Dashboard">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Admin Tab -->
+                    <div class="tab-pane" id="tab-admin">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <h3>Admin Cockpit</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Institution Overview</li>
+                                    <li><i class="fas fa-check-circle"></i> 6 AI Agents Hub</li>
+                                    <li><i class="fas fa-check-circle"></i> n8n Automation</li>
+                                    <li><i class="fas fa-check-circle"></i> Risk Management</li>
+                                    <li><i class="fas fa-check-circle"></i> Analytics & Reports</li>
+                                    <li><i class="fas fa-check-circle"></i> User Management</li>
+                                </ul>
+                                <a href="pages/admin-cockpit.html" class="btn btn-primary">View Demo</a>
+                            </div>
+                            <div class="tab-image">
+                                <img src="assets/images/mockups/admin-cockpit.png" alt="Admin Cockpit">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Parent Tab -->
+                    <div class="tab-pane" id="tab-parent">
+                        <div class="tab-grid">
+                            <div class="tab-info">
+                                <h3>Parent Portal</h3>
+                                <ul class="feature-list">
+                                    <li><i class="fas fa-check-circle"></i> Child's Attendance</li>
+                                    <li><i class="fas fa-check-circle"></i> Academic Performance</li>
+                                    <li><i class="fas fa-check-circle"></i> Fee Status</li>
+                                    <li><i class="fas fa-check-circle"></i> WhatsApp Alerts</li>
+                                    <li><i class="fas fa-check-circle"></i> Meeting Scheduling</li>
+                                    <li><i class="fas fa-check-circle"></i> Announcements</li>
+                                </ul>
+                                <a href="pages/parent-dashboard.html" class="btn btn-primary">View Demo</a>
+                            </div>
+                            <div class="tab-image">
+                                <img src="assets/images/mockups/parent-dashboard.png" alt="Parent Dashboard">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AI AGENTS SECTION ===== -->
+    <section class="ai-agents">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Artificial Intelligence</span>
+                <h2 class="section-title">6 Autonomous AI Agents working 24/7</h2>
+                <p class="section-description">
+                    Powered by machine learning and n8n automation
+                </p>
+            </div>
+            
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Attendance Guardian</h3>
+                    <p class="agent-description">
+                        Real-time attendance tracking with WhatsApp parent alerts
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 98.7% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-bolt"></i> Daily 9 AM</span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Dropout Radar</h3>
+                    <p class="agent-description">
+                        ML-based risk prediction with 87.3% accuracy
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 87.3% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-calendar"></i> Weekly</span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Placement Navigator</h3>
+                    <p class="agent-description">
+                        Smart job matching with 94.2% match accuracy
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 94.2% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-bolt"></i> Real-time</span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge learning">Learning</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Exam Optimizer</h3>
+                    <p class="agent-description">
+                        CGPA target calculator and exam score prediction
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 82.5% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-calendar"></i> After exams</span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge idle">Idle</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Skill Analyzer</h3>
+                    <p class="agent-description">
+                        Skill gap analysis with course recommendations
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 79.8% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-calendar"></i> Weekly</span>
+                    </div>
+                </div>
+                
+                <div class="agent-card">
+                    <div class="agent-header">
+                        <div class="agent-icon">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <div class="agent-status">
+                            <span class="status-badge active">Active</span>
+                        </div>
+                    </div>
+                    <h3 class="agent-title">Career Pathfinder</h3>
+                    <p class="agent-description">
+                        Personalized career recommendations
+                    </p>
+                    <div class="agent-meta">
+                        <span class="meta-item"><i class="fas fa-chart-line"></i> 88.1% Accuracy</span>
+                        <span class="meta-item"><i class="fas fa-bolt"></i> On-demand</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Pricing</span>
+                <h2 class="section-title">Simple, transparent pricing</h2>
+                <p class="section-description">
+                    Choose the perfect plan for your institution
+                </p>
+            </div>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Basic</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">499</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Perfect for small institutions</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Up to 500 students</li>
+                            <li><i class="fas fa-check"></i> Basic attendance</li>
+                            <li><i class="fas fa-check"></i> Marks management</li>
+                            <li><i class="fas fa-check"></i> Email support</li>
+                            <li class="disabled"><i class="fas fa-times"></i> AI Agents</li>
+                            <li class="disabled"><i class="fas fa-times"></i> WhatsApp integration</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn btn-outline btn-block">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Professional</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">999</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">Ideal for growing colleges</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Up to 2000 students</li>
+                            <li><i class="fas fa-check"></i> QR Attendance</li>
+                            <li><i class="fas fa-check"></i> Advanced analytics</li>
+                            <li><i class="fas fa-check"></i> 3 AI Agents</li>
+                            <li><i class="fas fa-check"></i> WhatsApp alerts</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn btn-primary btn-block">Get Started</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="plan-name">Enterprise</h3>
+                        <div class="plan-price">
+                            <span class="currency">₹</span>
+                            <span class="amount">1999</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p class="plan-description">For large universities</p>
+                    </div>
+                    <div class="pricing-body">
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Unlimited students</li>
+                            <li><i class="fas fa-check"></i> All 6 AI Agents</li>
+                            <li><i class="fas fa-check"></i> n8n automation</li>
+                            <li><i class="fas fa-check"></i> Custom integrations</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                            <li><i class="fas fa-check"></i> 24/7 phone support</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#" class="btn btn-outline btn-block">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS SECTION ===== -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Testimonials</span>
+                <h2 class="section-title">Trusted by educational leaders</h2>
+                <p class="section-description">
+                    See what our clients say about iEMS
+                </p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "iEMS has transformed how we manage student data. The QR attendance alone saved us 20 hours per week."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="assets/images/avatars/testimonial-1.jpg" alt="Dr. Sharma">
+                        <div class="author-info">
+                            <h4>Dr. Rajesh Sharma</h4>
+                            <p>Principal, CVM University</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The placement navigator AI helped our students get 40% more job offers. Highly recommended!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="assets/images/avatars/testimonial-2.jpg" alt="Prof. Patel">
+                        <div class="author-info">
+                            <h4>Prof. Anita Patel</h4>
+                            <p>Placement Officer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Parents love the WhatsApp notifications. Our parent satisfaction score increased by 35%."
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="assets/images/avatars/testimonial-3.jpg" alt="Mr. Desai">
+                        <div class="author-info">
+                            <h4>Mr. Vinay Desai</h4>
+                            <p>Administrator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Ready to transform your institution?</h2>
+                <p class="cta-description">
+                    Join 500+ institutions already using iEMS to streamline their operations
+                </p>
+                <div class="cta-buttons">
+                    <a href="#demo" class="btn btn-primary btn-large">Request Free Demo</a>
+                    <a href="#contact" class="btn btn-outline-light btn-large">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <img src="assets/images/logo/logo-white.png" alt="iEMS" class="footer-logo">
+                        <p class="footer-description">
+                            Integrated Education Management System. Complete solution for modern educational institutions.
+                        </p>
+                        <div class="social-links">
+                            <a href="footer-pages/facebook.html" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="footer-pages/twitter.html" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="footer-pages/instagram.html" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="footer-pages/linkedin.html" class="social-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="footer-pages/youtube.html" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="footer-pages/about.html">About Us</a></li>
+                        <li><a href="footer-pages/team.html">Our Team</a></li>
+                        <li><a href="footer-pages/careers.html">Careers</a></li>
+                        <li><a href="footer-pages/press.html">Press</a></li>
+                        <li><a href="footer-pages/blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Solutions</h4>
+                    <ul class="footer-links">
+                        <li><a href="#student">For Students</a></li>
+                        <li><a href="#teacher">For Teachers</a></li>
+                        <li><a href="#admin">For Administrators</a></li>
+                        <li><a href="#parent">For Parents</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="footer-pages/student-guide.html">Student Guide</a></li>
+                        <li><a href="footer-pages/teacher-resources.html">Teacher Resources</a></li>
+                        <li><a href="footer-pages/research.html">Research</a></li>
+                        <li><a href="footer-pages/faq.html">FAQ</a></li>
+                        <li><a href="footer-pages/support.html">Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 class="footer-title">Legal</h4>
+                    <ul class="footer-links">
+                        <li><a href="footer-pages/privacy.html">Privacy Policy</a></li>
+                        <li><a href="footer-pages/terms.html">Terms of Service</a></li>
+                        <li><a href="footer-pages/disclaimer.html">Disclaimer</a></li>
+                        <li><a href="footer-pages/cookies.html">Cookie Policy</a></li>
+                        <li><a href="footer-pages/accessibility.html">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2026 iEMS Cosmic UI. All rights reserved. Built by Team CODE REAPERS for CVM Hackathon.
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="footer-pages/sitemap.html">Sitemap</a>
+                    <a href="footer-pages/privacy.html">Privacy</a>
+                    <a href="footer-pages/terms.html">Terms</a>
+                    <a href="footer-pages/cookies.html">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" type="button" title="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/edubot.js"></script>
+</body>
+</html>

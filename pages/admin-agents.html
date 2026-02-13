@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents Hub - iEMS Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .agents-hub-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .agent-hub-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .agent-hub-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border-color: #2563eb;
+        }
+        @media (max-width: 768px) {
+            .agents-hub-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .agents-hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Admin Navbar -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="admin-cockpit.html">
+                        <span>iEMS Admin</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i> Cockpit
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin-agents.html" class="nav-link active">
+                                <i class="fas fa-robot"></i> AI Agents
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1 class="welcome-title">🤖 AI Agents Hub</h1>
+            <p class="welcome-subtitle">6 Autonomous AI Agents working 24/7</p>
+        </div>
+
+        <!-- 6 AI Agents Grid -->
+        <div class="agents-hub-grid">
+            <!-- Agent 1 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-shield-alt" style="color: #2563eb; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Attendance Guardian</h3>
+                        <span style="color: #10b981; font-size: 0.8rem;">● Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">98.7% accuracy • Real-time WhatsApp alerts</p>
+                <a href="agents/attendance-guardian.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+            <!-- Agent 2 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #fee2e2; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-exclamation-triangle" style="color: #ef4444; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Dropout Prophet</h3>
+                        <span style="color: #10b981; font-size: 0.8rem;">● Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">87.3% accuracy • ML-based risk prediction</p>
+                <a href="agents/dropout-prophet.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+            <!-- Agent 3 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #ede9fe; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-briefcase" style="color: #8b5cf6; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Placement Navigator</h3>
+                        <span style="color: #10b981; font-size: 0.8rem;">● Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">94.2% accuracy • Smart job matching</p>
+                <a href="agents/placement-navigator.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+            <!-- Agent 4 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #fef3c7; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-bullseye" style="color: #f59e0b; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Exam Optimizer</h3>
+                        <span style="color: #f59e0b; font-size: 0.8rem;">⏳ Learning</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">82.5% accuracy • CGPA target calculator</p>
+                <a href="agents/exam-optimizer.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+            <!-- Agent 5 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #f3f4f6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-tools" style="color: #6b7280; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Skill Analyzer</h3>
+                        <span style="color: #6b7280; font-size: 0.8rem;">⚪ Idle</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">79.8% accuracy • Skill gap analysis</p>
+                <a href="agents/skill-analyzer.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+            <!-- Agent 6 -->
+            <div class="agent-hub-card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #d1fae5; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-compass" style="color: #10b981; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h3 style="margin: 0; font-size: 1.1rem;">Career Pathfinder</h3>
+                        <span style="color: #10b981; font-size: 0.8rem;">● Active</span>
+                    </div>
+                </div>
+                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">88.1% accuracy • Career recommendations</p>
+                <a href="agents/career-pathfinder.html" class="btn btn-sm btn-outline" style="width: 100%;">View Details</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

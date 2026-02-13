@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Cosmic UI on LinkedIn - Follow us for professional updates and career opportunities">
+    <title>iEMS on LinkedIn | Team CODE REAPERS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0077b5 0%, #00a0dc 100%);
+            color: #1f2937;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        .linkedin-wrapper {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            backdrop-filter: blur(10px);
+        }
+        
+        .back-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(-5px);
+        }
+        
+        .linkedin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .linkedin-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .linkedin-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .linkedin-container {
+            background: white;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Company Cover Image */
+        .company-cover {
+            height: 200px;
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .company-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.2;
+        }
+        
+        /* Company Info Section */
+        .company-info {
+            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            position: relative;
+            background: white;
+        }
+        
+        .company-logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            border-radius: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 25px -5px rgba(0,119,181,0.3);
+            margin-top: -60px;
+            border: 4px solid white;
+        }
+        
+        .company-details {
+            flex: 1;
+            padding-top: 1rem;
+        }
+        
+        .company-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+        
+        .company-tagline {
+            color: #0077b5;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .company-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+        
+        .meta-item i {
+            color: #0077b5;
+        }
+        
+        .company-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-linkedin {
+            padding: 0.75rem 2rem;
+            background: #0077b5;
+            color: white;
+            border: none;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .btn-linkedin:hover {
+            background: #005a8c;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(0,119,181,0.4);
+        }
+        
+        .btn-outline-linkedin {
+            padding: 0.75rem 2rem;
+            background: transparent;
+            color: #0077b5;
+            border: 2px solid #0077b5;
+            border-radius: 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .btn-outline-linkedin:hover {
+            background: #0077b5;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Content Tabs */
+        .content-tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 0 2rem;
+            background: white;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            font-weight: 500;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .tab-btn:hover {
+            color: #0077b5;
+        }
+        
+        .tab-btn.active {
+            color: #0077b5;
+        }
+        
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #0077b5;
+        }
+        
+        /* Tab Content */
+        .tab-content {
+            padding: 2rem;
+            background: white;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Posts Grid */
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .post-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+            border-color: #0077b5;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .post-author-avatar {
+            width: 48px;
+            height: 48px;
+            background: #0077b5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .post-author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .post-author-info p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .post-content {
+            padding: 1.5rem;
+        }
+        
+        .post-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .post-excerpt {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 1.5rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+        
+        .post-meta i {
+            margin-right: 0.25rem;
+        }
+        
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+        }
+        
+        /* Jobs Grid */
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .job-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .job-card:hover {
+            border-color: #0077b5;
+            box-shadow: 0 10px 25px -5px rgba(0,119,181,0.1);
+        }
+        
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0077b5;
+        }
+        
+        .job-company {
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        .job-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .job-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .job-tag {
+            padding: 0.25rem 0.75rem;
+            background: #e5e7eb;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            color: #4b5563;
+        }
+        
+        .job-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .job-type {
+            color: #0077b5;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        /* People Grid */
+        .people-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .person-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .person-card:hover {
+            border-color: #0077b5;
+            transform: translateY(-5px);
+        }
+        
+        .person-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0077b5, #00a0dc);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .person-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .person-title {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .person-connect {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            border: 1px solid #0077b5;
+            color: #0077b5;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .person-connect:hover {
+            background: #0077b5;
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .people-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .company-info {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .company-logo {
+                margin-top: -80px;
+            }
+            
+            .company-meta {
+                justify-content: center;
+            }
+            
+            .posts-grid,
+            .jobs-grid,
+            .people-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-link {
+                margin-bottom: 1rem;
+            }
+            
+            .linkedin-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="linkedin-wrapper">
+        <!-- Back to Home Link -->
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+        
+        <!-- Header -->
+        <div class="linkedin-header">
+            <h1><i class="fab fa-linkedin"></i> iEMS on LinkedIn</h1>
+            <p>Follow us for professional updates, career opportunities, and industry insights</p>
+        </div>
+        
+        <!-- Main LinkedIn Card -->
+        <div class="linkedin-container">
+            <!-- Company Cover -->
+            <div class="company-cover"></div>
+            
+            <!-- Company Info -->
+            <div class="company-info">
+                <div class="company-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="company-details">
+                    <h2 class="company-name">iEMS Cosmic UI</h2>
+                    <p class="company-tagline">Integrated Education Management System with Agentic AI</p>
+                    
+                    <div class="company-meta">
+                        <span class="meta-item">
+                            <i class="fas fa-building"></i> Education Technology
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-users"></i> 1,250 followers
+                        </span>
+                        <span class="meta-item">
+                            <i class="fas fa-calendar"></i> Joined 2026
+                        </span>
+                    </div>
+                    
+                    <div class="company-buttons">
+                        <button class="btn-linkedin" onclick="window.open('https://linkedin.com/company/iems-cosmic', '_blank')">
+                            <i class="fab fa-linkedin"></i> Follow Page
+                        </button>
+                        <button class="btn-outline-linkedin">
+                            <i class="fas fa-envelope"></i> Contact
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabs Navigation -->
+            <div class="content-tabs">
+                <button class="tab-btn active" onclick="showTab('posts')">Posts</button>
+                <button class="tab-btn" onclick="showTab('jobs')">Jobs</button>
+                <button class="tab-btn" onclick="showTab('people')">People</button>
+                <button class="tab-btn" onclick="showTab('about')">About</button>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Posts Tab -->
+                <div id="posts" class="tab-pane active">
+                    <div class="posts-grid">
+                        <!-- Post 1 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author-avatar">CR</div>
+                                <div class="post-author-info">
+                                    <h4>Team CODE REAPERS</h4>
+                                    <p>2 hours ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">🎉 CVM Hackathon 2026 - Grand Success!</h3>
+                                <p class="post-excerpt">Team CODE REAPERS presented iEMS Cosmic UI - an Integrated Education Management System with 6 autonomous AI agents. The response was overwhelming!</p>
+                                <div class="post-meta">
+                                    <span><i class="fas fa-heart"></i> 234</span>
+                                    <span><i class="fas fa-comment"></i> 45</span>
+                                    <span><i class="fas fa-share"></i> 12</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 2 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author-avatar">CR</div>
+                                <div class="post-author-info">
+                                    <h4>Team CODE REAPERS</h4>
+                                    <p>1 day ago</p>
+                                </div>
+                            </div>
+                            <div class="post-image">
+                                <i class="fas fa-robot" style="font-size: 3rem; color: #0077b5;"></i>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">🤖 Meet Our 6 AI Agents</h3>
+                                <p class="post-excerpt">Attendance Guardian (98.7% accuracy), Dropout Radar (87.3%), Placement Navigator (94.2%), Exam Optimizer (82.5%), Skill Analyzer (79.8%), Career Pathfinder (88.1%)</p>
+                                <div class="post-meta">
+                                    <span><i class="fas fa-heart"></i> 567</span>
+                                    <span><i class="fas fa-comment"></i> 89</span>
+                                    <span><i class="fas fa-share"></i> 34</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 3 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author-avatar">CR</div>
+                                <div class="post-author-info">
+                                    <h4>Team CODE REAPERS</h4>
+                                    <p>3 days ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">💼 Placement Drive Success</h3>
+                                <p class="post-excerpt">TCS, Infosys, and Microsoft recruited from our first batch. 94% match accuracy helped students find the right opportunities.</p>
+                                <div class="post-meta">
+                                    <span><i class="fas fa-heart"></i> 892</span>
+                                    <span><i class="fas fa-comment"></i> 156</span>
+                                    <span><i class="fas fa-share"></i> 67</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Post 4 -->
+                        <div class="post-card">
+                            <div class="post-header">
+                                <div class="post-author-avatar">CR</div>
+                                <div class="post-author-info">
+                                    <h4>Team CODE REAPERS</h4>
+                                    <p>5 days ago</p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <h3 class="post-title">📊 Attendance Guardian AI Update</h3>
+                                <p class="post-excerpt">98.7% accuracy achieved! Real-time WhatsApp alerts sent to parents within 2 seconds of marking attendance.</p>
+                                <div class="post-meta">
+                                    <span><i class="fas fa-heart"></i> 423</span>
+                                    <span><i class="fas fa-comment"></i> 78</span>
+                                    <span><i class="fas fa-share"></i> 23</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Jobs Tab -->
+                <div id="jobs" class="tab-pane">
+                    <div class="jobs-grid">
+                        <!-- Job 1 -->
+                        <div class="job-card">
+                            <h3 class="job-title">Senior AI/ML Engineer</h3>
+                            <p class="job-company">iEMS Cosmic UI · Full-time</p>
+                            <div class="job-location">
+                                <i class="fas fa-map-marker-alt"></i> Bangalore, India
+                            </div>
+                            <div class="job-tags">
+                                <span class="job-tag">Python</span>
+                                <span class="job-tag">TensorFlow</span>
+                                <span class="job-tag">NLP</span>
+                                <span class="job-tag">MLOps</span>
+                            </div>
+                            <div class="job-footer">
+                                <span class="job-type">Posted 2 days ago</span>
+                                <button class="btn-outline-linkedin" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Apply</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job 2 -->
+                        <div class="job-card">
+                            <h3 class="job-title">Full Stack Developer</h3>
+                            <p class="job-company">iEMS Cosmic UI · Full-time</p>
+                            <div class="job-location">
+                                <i class="fas fa-map-marker-alt"></i> Remote
+                            </div>
+                            <div class="job-tags">
+                                <span class="job-tag">React</span>
+                                <span class="job-tag">Node.js</span>
+                                <span class="job-tag">MongoDB</span>
+                                <span class="job-tag">TypeScript</span>
+                            </div>
+                            <div class="job-footer">
+                                <span class="job-type">Posted 3 days ago</span>
+                                <button class="btn-outline-linkedin" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Apply</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job 3 -->
+                        <div class="job-card">
+                            <h3 class="job-title">Product Manager - EdTech</h3>
+                            <p class="job-company">iEMS Cosmic UI · Full-time</p>
+                            <div class="job-location">
+                                <i class="fas fa-map-marker-alt"></i> Mumbai, India
+                            </div>
+                            <div class="job-tags">
+                                <span class="job-tag">Product Strategy</span>
+                                <span class="job-tag">Agile</span>
+                                <span class="job-tag">EdTech</span>
+                            </div>
+                            <div class="job-footer">
+                                <span class="job-type">Posted 1 week ago</span>
+                                <button class="btn-outline-linkedin" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Apply</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Job 4 -->
+                        <div class="job-card">
+                            <h3 class="job-title">UI/UX Designer</h3>
+                            <p class="job-company">iEMS Cosmic UI · Full-time</p>
+                            <div class="job-location">
+                                <i class="fas fa-map-marker-alt"></i> Remote
+                            </div>
+                            <div class="job-tags">
+                                <span class="job-tag">Figma</span>
+                                <span class="job-tag">Adobe XD</span>
+                                <span class="job-tag">Design Systems</span>
+                            </div>
+                            <div class="job-footer">
+                                <span class="job-type">Posted 1 week ago</span>
+                                <button class="btn-outline-linkedin" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- People Tab -->
+                <div id="people" class="tab-pane">
+                    <div class="people-grid">
+                        <!-- Person 1 -->
+                        <div class="person-card">
+                            <div class="person-avatar">AR</div>
+                            <h4 class="person-name">Aaryan Ramani</h4>
+                            <p class="person-title">Lead Developer @ CODE REAPERS</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 2 -->
+                        <div class="person-card">
+                            <div class="person-avatar">PS</div>
+                            <h4 class="person-name">Priya Sharma</h4>
+                            <p class="person-title">AI/ML Engineer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 3 -->
+                        <div class="person-card">
+                            <div class="person-avatar">RV</div>
+                            <h4 class="person-name">Rahul Verma</h4>
+                            <p class="person-title">UI/UX Designer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 4 -->
+                        <div class="person-card">
+                            <div class="person-avatar">NP</div>
+                            <h4 class="person-name">Neha Patel</h4>
+                            <p class="person-title">Backend Developer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 5 -->
+                        <div class="person-card">
+                            <div class="person-avatar">AK</div>
+                            <h4 class="person-name">Amit Kumar</h4>
+                            <p class="person-title">DevOps Engineer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 6 -->
+                        <div class="person-card">
+                            <div class="person-avatar">SD</div>
+                            <h4 class="person-name">Sneha Desai</h4>
+                            <p class="person-title">Product Manager</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 7 -->
+                        <div class="person-card">
+                            <div class="person-avatar">RJ</div>
+                            <h4 class="person-name">Raj Joshi</h4>
+                            <p class="person-title">ML Engineer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                        
+                        <!-- Person 8 -->
+                        <div class="person-card">
+                            <div class="person-avatar">DT</div>
+                            <h4 class="person-name">Deepa Trivedi</h4>
+                            <p class="person-title">Frontend Developer</p>
+                            <button class="person-connect">Connect</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Tab -->
+                <div id="about" class="tab-pane">
+                    <div style="padding: 1rem;">
+                        <h3 style="margin-bottom: 1rem; color: #0077b5;">About iEMS Cosmic UI</h3>
+                        <p style="color: #4b5563; margin-bottom: 1.5rem;">iEMS Cosmic UI is an Integrated Education Management System powered by 6 autonomous AI agents. Built by Team CODE REAPERS for CVM Hackathon 2026, we're revolutionizing education through artificial intelligence.</p>
+                        
+                        <h4 style="margin: 1.5rem 0 1rem;">Our Mission</h4>
+                        <p style="color: #6b7280; margin-bottom: 1rem;">To empower educational institutions with cutting-edge AI technology that streamlines administration, enhances learning outcomes, and bridges the gap between students and opportunities.</p>
+                        
+                        <h4 style="margin: 1.5rem 0 1rem;">Our AI Agents</h4>
+                        <ul style="list-style: none; padding: 0;">
+                            <li style="margin-bottom: 0.5rem;">🤖 Attendance Guardian - 98.7% accuracy</li>
+                            <li style="margin-bottom: 0.5rem;">⚠️ Dropout Radar - 87.3% accuracy</li>
+                            <li style="margin-bottom: 0.5rem;">💼 Placement Navigator - 94.2% accuracy</li>
+                            <li style="margin-bottom: 0.5rem;">🎯 Exam Optimizer - 82.5% accuracy</li>
+                            <li style="margin-bottom: 0.5rem;">🛠️ Skill Analyzer - 79.8% accuracy</li>
+                            <li style="margin-bottom: 0.5rem;">🧭 Career Pathfinder - 88.1% accuracy</li>
+                        </ul>
+                        
+                        <h4 style="margin: 1.5rem 0 1rem;">Contact Information</h4>
+                        <p><i class="fas fa-globe" style="color: #0077b5; width: 24px;"></i> www.iems.edu</p>
+                        <p><i class="fas fa-envelope" style="color: #0077b5; width: 24px;"></i> info@iems.edu</p>
+                        <p><i class="fas fa-phone" style="color: #0077b5; width: 24px;"></i> +91 2692 123456</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showTab(tabName) {
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab pane
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html> 

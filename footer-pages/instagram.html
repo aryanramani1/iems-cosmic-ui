@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iEMS on Instagram</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fafafa;
+            color: #262626;
+        }
+        .navbar {
+            background: white;
+            border-bottom: 1px solid #dbdbdb;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .instagram-header {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: white;
+        }
+        .instagram-header i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        .instagram-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .feed-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .post-card {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
+        }
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #efefef;
+        }
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #f09433, #bc1888);
+            border-radius: 50%;
+            margin-right: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        .post-user {
+            font-weight: 600;
+        }
+        .post-image {
+            width: 100%;
+            height: 300px;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 3rem;
+        }
+        .post-actions {
+            padding: 1rem;
+            display: flex;
+            gap: 1rem;
+            border-bottom: 1px solid #efefef;
+        }
+        .post-actions i {
+            font-size: 1.5rem;
+            color: #262626;
+        }
+        .post-likes {
+            padding: 0 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .post-caption {
+            padding: 0 1rem 1rem;
+            color: #262626;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #2563eb;
+            text-decoration: none;
+        }
+        .footer {
+            background: white;
+            border-top: 1px solid #dbdbdb;
+            padding: 2rem;
+            text-align: center;
+            color: #8e8e8e;
+            margin-top: 3rem;
+        }
+        @media (max-width: 768px) {
+            .feed-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .feed-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="nav-brand">iEMS Cosmic UI</a>
+        <a href="https://instagram.com" target="_blank" style="color: #262626; text-decoration: none;">
+            <i class="fab fa-instagram" style="font-size: 1.5rem;"></i>
+        </a>
+    </nav>
+
+    <div class="instagram-header">
+        <i class="fab fa-instagram"></i>
+        <h1>@iems.cosmic</h1>
+        <p style="font-size: 1.1rem; opacity: 0.9;">Follow us for updates, events, and campus life</p>
+    </div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <h2 style="color: #262626;">Latest Posts</h2>
+            <span style="background: #efefef; padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem;">
+                <i class="fas fa-camera" style="margin-right: 0.5rem;"></i> 125 posts
+            </span>
+        </div>
+        
+        <div class="feed-grid">
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">🎓</div>
+                    <span class="post-user">iEMS Cosmic</span>
+                </div>
+                <div class="post-image">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div class="post-actions">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="post-likes">2,345 likes</div>
+                <div class="post-caption">
+                    <strong>iEMS Cosmic</strong> Congratulations to our hackathon winners! Team CODE REAPERS takes first place! 🏆 #CVMHackathon #iEMS
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">🤖</div>
+                    <span class="post-user">iEMS Cosmic</span>
+                </div>
+                <div class="post-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="post-actions">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="post-likes">1,892 likes</div>
+                <div class="post-caption">
+                    <strong>iEMS Cosmic</strong> Meet our 6 autonomous AI agents working 24/7 to revolutionize education! 🤖✨ #AI #EdTech
+                </div>
+            </div>
+            
+            <div class="post-card">
+                <div class="post-header">
+                    <div class="post-avatar">💼</div>
+                    <span class="post-user">iEMS Cosmic</span>
+                </div>
+                <div class="post-image">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div class="post-actions">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-comment"></i>
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="post-likes">3,102 likes</div>
+                <div class="post-caption">
+                    <strong>iEMS Cosmic</strong> Placement season is here! TCS, Infosys, Microsoft recruiting now. Check your eligibility on the dashboard! 💼🚀
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>© 2026 iEMS Cosmic UI. Follow us @iems.cosmic</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">
+            <a href="privacy.html" style="color: #8e8e8e; text-decoration: none; margin: 0 0.5rem;">Privacy</a>
+            <a href="terms.html" style="color: #8e8e8e; text-decoration: none; margin: 0 0.5rem;">Terms</a>
+            <a href="about.html" style="color: #8e8e8e; text-decoration: none; margin: 0 0.5rem;">About</a>
+        </p>
+    </footer>
+</body>
+</html>

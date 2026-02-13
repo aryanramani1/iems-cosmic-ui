@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Placement Navigator AI - Smart job matching with 94.2% accuracy">
+    <title>Placement Navigator AI - iEMS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/agents.css">
+</head>
+<body class="dashboard-body">
+    <!-- Admin Navbar -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="../admin-cockpit.html">
+                        <img src="../../assets/images/logo/logo-small.png" alt="iEMS" class="nav-logo">
+                        <span>iEMS Admin</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="../admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Cockpit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../admin-agents.html" class="nav-link active">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Agents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">
+                            <img src="../../assets/images/avatars/admin-avatar.jpg" alt="Admin">
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Agent Page Content -->
+    <div class="dashboard-container">
+        <!-- Agent Header -->
+        <div class="agent-header-section">
+            <div class="agent-title-section">
+                <div class="agent-icon-large" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <div>
+                    <h1 class="agent-name">Placement Navigator AI</h1>
+                    <div class="agent-meta-badges">
+                        <span class="badge badge-success">Active</span>
+                        <span class="badge badge-info">94.2% Accuracy</span>
+                        <span class="badge badge-light">v2.0.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-actions">
+                <button class="btn btn-outline">
+                    <i class="fas fa-edit"></i> Configure
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-play"></i> Scrape Jobs
+                </button>
+            </div>
+        </div>
+
+        <!-- Agent Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-purple-light">
+                    <i class="fas fa-briefcase text-purple"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Active Jobs</span>
+                    <h3 class="stat-value text-purple">156</h3>
+                    <span class="stat-change">↑ 12 today</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-user-check text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Matches</span>
+                    <h3 class="stat-value">1,247</h3>
+                    <span class="stat-change positive">↑ 342</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-file-alt text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Applications</span>
+                    <h3 class="stat-value">342</h3>
+                    <span class="stat-change">↑ 28 placed</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-building text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Companies</span>
+                    <h3 class="stat-value">32</h3>
+                    <span class="stat-change">8 new</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Job Matches -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-briefcase text-primary"></i>
+                    <h3>Top Job Matches This Week</h3>
+                </div>
+                <a href="#" class="view-all-link">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card-body">
+                <div class="job-list">
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-company">
+                                <img src="../../assets/images/company-logos/tcs-logo.png" alt="TCS">
+                                <div>
+                                    <h4>TCS</h4>
+                                    <span class="job-role">System Engineer</span>
+                                </div>
+                            </div>
+                            <div class="job-match high">
+                                <span class="match-percent">94%</span>
+                                <span class="match-label">Match</span>
+                            </div>
+                        </div>
+                        <div class="job-details">
+                            <span><i class="fas fa-rupee-sign"></i> 7.2 LPA</span>
+                            <span><i class="fas fa-calendar"></i> Deadline: 20 Feb</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Pune</span>
+                        </div>
+                        <div class="job-footer">
+                            <div class="skills">
+                                <span class="skill">Python</span>
+                                <span class="skill">SQL</span>
+                                <span class="skill">React</span>
+                            </div>
+                            <span class="badge badge-success">32 Eligible</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-header">
+                            <div class="job-company">
+                                <img src="../../assets/images/company-logos/infosys-logo.png" alt="Infosys">
+                                <div>
+                                    <h4>Infosys</h4>
+                                    <span class="job-role">Digital Specialist</span>
+                                </div>
+                            </div>
+                            <div class="job-match high">
+                                <span class="match-percent">89%</span>
+                                <span class="match-label">Match</span>
+                            </div>
+                        </div>
+                        <div class="job-details">
+                            <span><i class="fas fa-rupee-sign"></i> 6.5 LPA</span>
+                            <span><i class="fas fa-calendar"></i> Deadline: 25 Feb</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Bangalore</span>
+                        </div>
+                        <div class="job-footer">
+                            <div class="skills">
+                                <span class="skill">Java</span>
+                                <span class="skill">Spring</span>
+                                <span class="skill">AWS</span>
+                            </div>
+                            <span class="badge badge-success">28 Eligible</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

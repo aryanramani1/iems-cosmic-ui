@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class - Student Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .timetable {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .timetable th {
+            background: #f9fafb;
+            padding: 1rem;
+            text-align: center;
+            color: #374151;
+            font-weight: 600;
+        }
+        .timetable td {
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            vertical-align: top;
+        }
+        .class-item {
+            background: #eff6ff;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid #2563eb;
+        }
+        .class-item h4 {
+            margin-bottom: 0.25rem;
+        }
+        .class-item p {
+            color: #6b7280;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Student Navbar -->
+    <nav class="dashboard-navbar student-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="student-dashboard.html">
+                        <span>iEMS Student</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="student-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="student-attendance.html" class="nav-link"><i class="fas fa-calendar-check"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="student-marks.html" class="nav-link"><i class="fas fa-chart-line"></i>Marks</a></li>
+                        <li class="nav-item"><a href="student-placement.html" class="nav-link"><i class="fas fa-briefcase"></i>Placement</a></li>
+                        <li class="nav-item"><a href="student-profile.html" class="nav-link"><i class="fas fa-user"></i>Profile</a></li>
+                        <li class="nav-item"><a href="student-class.html" class="nav-link"><i class="fas fa-user"></i>class</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👤</div>
+                        <span class="user-name">Rohan Patel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">👥 Class & Timetable</h1>
+                <p class="welcome-subtitle">BE Computer Engineering - Semester 4</p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-users"></i>
+                <span>Section A • 42 Students</span>
+            </div>
+        </div>
+
+        <!-- Class Info Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-chalkboard-teacher" style="color: #2563eb;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #6b7280; font-size: 0.85rem;">Class Teacher</span>
+                        <h4 style="margin-top: 0.25rem;">Prof. Sharma</h4>
+                    </div>
+                </div>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-door-open" style="color: #2563eb;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #6b7280; font-size: 0.85rem;">Classroom</span>
+                        <h4 style="margin-top: 0.25rem;">Room 301</h4>
+                    </div>
+                </div>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-calendar" style="color: #2563eb;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #6b7280; font-size: 0.85rem;">Academic Year</span>
+                        <h4 style="margin-top: 0.25rem;">2025-26</h4>
+                    </div>
+                </div>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e5e7eb;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div style="width: 50px; height: 50px; background: #eff6ff; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-users" style="color: #2563eb;"></i>
+                    </div>
+                    <div>
+                        <span style="color: #6b7280; font-size: 0.85rem;">Class Strength</span>
+                        <h4 style="margin-top: 0.25rem;">42 Students</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weekly Timetable -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-table text-primary"></i>
+                    <h3>Weekly Timetable</h3>
+                </div>
+                <span class="badge badge-info">Semester 4 • Even Semester</span>
+            </div>
+            <div class="card-body">
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600; background: #f9fafb;">09:00 - 10:00</td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Web Development</h4>
+                                    <p>Prof. Sharma</p>
+                                    <p>Room 301</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Database Systems</h4>
+                                    <p>Prof. Patel</p>
+                                    <p>Room 205</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Web Development</h4>
+                                    <p>Prof. Sharma</p>
+                                    <p>Room 301</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Database Systems</h4>
+                                    <p>Prof. Patel</p>
+                                    <p>Room 205</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Web Development</h4>
+                                    <p>Prof. Sharma</p>
+                                    <p>Room 301</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; background: #f9fafb;">10:15 - 11:15</td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Data Structures</h4>
+                                    <p>Prof. Gupta</p>
+                                    <p>Lab 304</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Operating Systems</h4>
+                                    <p>Prof. Verma</p>
+                                    <p>Room 101</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Data Structures</h4>
+                                    <p>Prof. Gupta</p>
+                                    <p>Lab 304</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Operating Systems</h4>
+                                    <p>Prof. Verma</p>
+                                    <p>Room 101</p>
+                                </div>
+                            </td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; background: #f9fafb;">11:30 - 12:30</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600; background: #f9fafb;">13:30 - 15:00</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>
+                                <div class="class-item">
+                                    <h4>Project Lab</h4>
+                                    <p>Prof. Sharma</p>
+                                    <p>Lab 302</p>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Classmates -->
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-user-friends text-primary"></i>
+                    <h3>Classmates</h3>
+                </div>
+                <span class="badge badge-info">42 Students</span>
+            </div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            PP
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.95rem;">Priya Patel</h4>
+                            <span style="color: #6b7280; font-size: 0.8rem;">CE102</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            AS
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.95rem;">Amit Shah</h4>
+                            <span style="color: #6b7280; font-size: 0.8rem;">CE103</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            ND
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.95rem;">Neha Desai</h4>
+                            <span style="color: #6b7280; font-size: 0.8rem;">CE104</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: #f9fafb; border-radius: 0.5rem;">
+                        <div style="width: 40px; height: 40px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            KM
+                        </div>
+                        <div>
+                            <h4 style="font-size: 0.95rem;">Karan Mehta</h4>
+                            <span style="color: #6b7280; font-size: 0.8rem;">CE105</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-link btn-block" style="margin-top: 1rem;">View All Classmates</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

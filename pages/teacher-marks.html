@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Entry - Teacher Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        .marks-input {
+            width: 80px;
+            padding: 0.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .marks-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+    <!-- Teacher Navbar -->
+    <nav class="dashboard-navbar teacher-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="teacher-dashboard.html">
+                        <span class="brand-icon">👨‍🏫</span>
+                        <span class="brand-text">iEMS Teacher</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item"><a href="teacher-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
+                        <li class="nav-item"><a href="teacher-attendance.html" class="nav-link"><i class="fas fa-qrcode"></i>Attendance</a></li>
+                        <li class="nav-item"><a href="teacher-marks.html" class="nav-link active"><i class="fas fa-pen"></i>Marks</a></li>
+                        <li class="nav-item"><a href="teacher-class.html" class="nav-link"><i class="fas fa-users"></i>Class</a></li>
+                        <li class="nav-item"><a href="teacher-schedule.html" class="nav-link"><i class="fas fa-calendar"></i>Schedule</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">👨‍🏫</div>
+                        <span class="user-name">Prof. Sharma</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div>
+                <h1 class="welcome-title">📝 Marks Entry</h1>
+                <p class="welcome-subtitle">Web Development • Internal Assessment 1</p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-calendar"></i>
+                <span>Due: 20 Feb 2026</span>
+            </div>
+        </div>
+
+        <!-- Exam Info Cards -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+            <div style="background: white; padding: 1.25rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b; font-size: 0.85rem;">Subject</span>
+                <h3 style="margin-top: 0.5rem;">Web Development</h3>
+            </div>
+            <div style="background: white; padding: 1.25rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b; font-size: 0.85rem;">Exam Type</span>
+                <h3 style="margin-top: 0.5rem;">Internal 1</h3>
+            </div>
+            <div style="background: white; padding: 1.25rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b; font-size: 0.85rem;">Total Marks</span>
+                <h3 style="margin-top: 0.5rem;">50</h3>
+            </div>
+            <div style="background: white; padding: 1.25rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b; font-size: 0.85rem;">Students</span>
+                <h3 style="margin-top: 0.5rem;">42</h3>
+            </div>
+        </div>
+
+        <!-- Marks Entry Table -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-table text-primary"></i>
+                    <h3>Student Marks Entry</h3>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <button class="btn btn-sm btn-outline">
+                        <i class="fas fa-upload"></i> Bulk Upload
+                    </button>
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fas fa-save"></i> Save All
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div style="max-height: 500px; overflow-y: auto;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Student Name</th>
+                                <th>Marks (0-50)</th>
+                                <th>Grade</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE101</span></td>
+                                <td>Rohan Patel</td>
+                                <td><input type="number" class="marks-input" value="42" min="0" max="50"></td>
+                                <td><span class="badge badge-success">A</span></td>
+                                <td><span class="status-badge success">Saved</span></td>
+                                <td><button class="btn btn-sm btn-outline"><i class="fas fa-check"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE102</span></td>
+                                <td>Priya Shah</td>
+                                <td><input type="number" class="marks-input" value="38" min="0" max="50"></td>
+                                <td><span class="badge badge-warning">B+</span></td>
+                                <td><span class="status-badge success">Saved</span></td>
+                                <td><button class="btn btn-sm btn-outline"><i class="fas fa-check"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE103</span></td>
+                                <td>Amit Kumar</td>
+                                <td><input type="number" class="marks-input" value="45" min="0" max="50"></td>
+                                <td><span class="badge badge-success">A+</span></td>
+                                <td><span class="status-badge success">Saved</span></td>
+                                <td><button class="btn btn-sm btn-outline"><i class="fas fa-check"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE104</span></td>
+                                <td>Neha Desai</td>
+                                <td><input type="number" class="marks-input" value="35" min="0" max="50"></td>
+                                <td><span class="badge badge-warning">B</span></td>
+                                <td><span class="status-badge warning">Pending</span></td>
+                                <td><button class="btn btn-sm btn-primary"><i class="fas fa-save"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE105</span></td>
+                                <td>Karan Mehta</td>
+                                <td><input type="number" class="marks-input" placeholder="Enter marks"></td>
+                                <td><span class="badge badge-secondary">-</span></td>
+                                <td><span class="status-badge warning">Pending</span></td>
+                                <td><button class="btn btn-sm btn-primary"><i class="fas fa-save"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE106</span></td>
+                                <td>Sneha Reddy</td>
+                                <td><input type="number" class="marks-input" value="28" min="0" max="50"></td>
+                                <td><span class="badge badge-warning">C+</span></td>
+                                <td><span class="status-badge success">Saved</span></td>
+                                <td><button class="btn btn-sm btn-outline"><i class="fas fa-check"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-weight: 600;">CE107</span></td>
+                                <td>Rajesh Singh</td>
+                                <td><input type="number" class="marks-input" placeholder="Enter marks"></td>
+                                <td><span class="badge badge-secondary">-</span></td>
+                                <td><span class="status-badge warning">Pending</span></td>
+                                <td><button class="btn btn-sm btn-primary"><i class="fas fa-save"></i></button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b;">Class Average</span>
+                <h2 style="color: #3b82f6; margin-top: 0.5rem;">37.6/50</h2>
+                <span style="color: #10b981;">75.2%</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b;">Highest Score</span>
+                <h2 style="color: #10b981; margin-top: 0.5rem;">45/50</h2>
+                <span style="color: #64748b;">Amit Kumar</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b;">Lowest Score</span>
+                <h2 style="color: #ef4444; margin-top: 0.5rem;">28/50</h2>
+                <span style="color: #64748b;">Sneha Reddy</span>
+            </div>
+            <div style="background: white; padding: 1.5rem; border-radius: 1rem; border: 1px solid #e2e8f0;">
+                <span style="color: #64748b;">Pass Percentage</span>
+                <h2 style="color: #8b5cf6; margin-top: 0.5rem;">92%</h2>
+                <span style="color: #64748b;">38/42 students</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

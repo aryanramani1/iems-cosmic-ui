@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Teacher Dashboard - Complete classroom management">
+    <title>Teacher Dashboard - iEMS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+    <!-- ===== TEACHER NAVBAR ===== -->
+    <nav class="dashboard-navbar teacher-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="teacher-dashboard.html">
+                        <img src="../assets/images/logo/logo-small.png" alt="iEMS" class="nav-logo">
+                        <span>iEMS Teacher</span>
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="teacher-dashboard.html" class="nav-link active">
+                                <i class="fas fa-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="teacher-attendance.html" class="nav-link">
+                                <i class="fas fa-qrcode"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="teacher-marks.html" class="nav-link">
+                                <i class="fas fa-pen"></i>
+                                <span>Marks</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="teacher-class.html" class="nav-link">
+                                <i class="fas fa-users"></i>
+                                <span>Classes</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="teacher-schedule.html" class="nav-link">
+                                <i class="fas fa-calendar"></i>
+                                <span>Schedule</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="nav-right">
+                <!-- Notification Bell -->
+                <div class="notification-wrapper">
+                    <button class="notification-bell" id="notificationToggle">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">5</span>
+                    </button>
+                </div>
+                
+                <!-- EduBot -->
+                <div class="edubot-wrapper">
+                    <button class="edubot-icon" id="edubotToggle">
+                        <i class="fas fa-robot"></i>
+                        <span class="status-dot online"></span>
+                    </button>
+                </div>
+                
+                <!-- User Profile Dropdown -->
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn" id="userDropdownToggle">
+                        <div class="user-avatar">
+                            <img src="../assets/images/avatars/teacher-avatar.jpg" alt="Prof. Sharma">
+                        </div>
+                        <span class="user-name">Prof. Sharma</span>
+                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <button class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===== TEACHER DASHBOARD CONTENT ===== -->
+    <div class="dashboard-container">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="welcome-section">
+                <h1 class="welcome-title">Welcome, Prof. Sharma! 👨‍🏫</h1>
+                <p class="welcome-subtitle">Here's your teaching summary for today</p>
+            </div>
+            <div class="date-badge">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="currentDate"></span>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-users text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Total Students</span>
+                    <h3 class="stat-value">143</h3>
+                    <span class="stat-change">Across 4 classes</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-check-circle text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Present Today</span>
+                    <h3 class="stat-value">128</h3>
+                    <span class="stat-change positive">89.5% attendance</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-clock text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Pending Work</span>
+                    <h3 class="stat-value">12</h3>
+                    <span class="stat-change">4 urgent</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-chalkboard text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Next Class</span>
+                    <h3 class="stat-value">10:00 AM</h3>
+                    <span class="stat-change">Web Development</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="dashboard-row">
+            <!-- QR Scanner & Today's Schedule -->
+            <div class="dashboard-col lg-7">
+                <!-- QR Scanner Card -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-qrcode text-primary"></i>
+                            <h3>QR Attendance Scanner</h3>
+                        </div>
+                        <span class="badge badge-info">Live</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="scanner-container">
+                            <div class="scanner-preview">
+                                <div class="scanner-frame">
+                                    <i class="fas fa-camera"></i>
+                                    <p>Camera access required</p>
+                                </div>
+                                <div class="scanner-line"></div>
+                            </div>
+                            <div class="scanner-controls">
+                                <button class="btn btn-primary">
+                                    <i class="fas fa-play"></i>
+                                    Start Scanning
+                                </button>
+                                <button class="btn btn-outline">
+                                    <i class="fas fa-upload"></i>
+                                    Manual Entry
+                                </button>
+                            </div>
+                            <div class="scanner-status">
+                                <span class="status-badge success">Ready</span>
+                                <span class="status-text">Place QR code in frame</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Scans -->
+                        <div class="recent-scans">
+                            <h4>Recent Scans</h4>
+                            <div class="scan-list">
+                                <div class="scan-item">
+                                    <span class="scan-time">10:15 AM</span>
+                                    <span class="scan-student">Rohan Patel</span>
+                                    <span class="badge badge-success">Present</span>
+                                </div>
+                                <div class="scan-item">
+                                    <span class="scan-time">10:14 AM</span>
+                                    <span class="scan-student">Priya Shah</span>
+                                    <span class="badge badge-success">Present</span>
+                                </div>
+                                <div class="scan-item">
+                                    <span class="scan-time">10:12 AM</span>
+                                    <span class="scan-student">Amit Kumar</span>
+                                    <span class="badge badge-warning">Late</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Today's Schedule -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-calendar-alt text-primary"></i>
+                            <h3>Today's Schedule</h3>
+                        </div>
+                        <a href="#" class="view-all-link">View Week</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="schedule-list">
+                            <div class="schedule-item current">
+                                <div class="schedule-time">
+                                    <span class="time">10:00 AM</span>
+                                    <span class="duration">60 min</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4>Web Development</h4>
+                                    <p>BE Comp - Section A | Room 301</p>
+                                    <div class="schedule-meta">
+                                        <span><i class="fas fa-users"></i> 42 Students</span>
+                                        <span><i class="fas fa-check-circle"></i> 38 Present</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-primary">Ongoing</span>
+                            </div>
+                            
+                            <div class="schedule-item">
+                                <div class="schedule-time">
+                                    <span class="time">11:15 AM</span>
+                                    <span class="duration">60 min</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4>Database Systems</h4>
+                                    <p>BE Comp - Section B | Lab 202</p>
+                                    <div class="schedule-meta">
+                                        <span><i class="fas fa-users"></i> 38 Students</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-light">Up Next</span>
+                            </div>
+                            
+                            <div class="schedule-item">
+                                <div class="schedule-time">
+                                    <span class="time">02:00 PM</span>
+                                    <span class="duration">90 min</span>
+                                </div>
+                                <div class="schedule-info">
+                                    <h4>Data Structures</h4>
+                                    <p>TE IT | Lab 304</p>
+                                    <div class="schedule-meta">
+                                        <span><i class="fas fa-users"></i> 35 Students</span>
+                                    </div>
+                                </div>
+                                <span class="badge badge-light">Later</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - At Risk Students & Quick Actions -->
+            <div class="dashboard-col lg-5">
+                <!-- At Risk Students Alert -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-exclamation-triangle text-danger"></i>
+                            <h3>At-Risk Students</h3>
+                        </div>
+                        <span class="badge badge-danger">5 Students</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="risk-list">
+                            <div class="risk-item high">
+                                <div class="risk-student">
+                                    <div class="student-avatar">
+                                        <span>RS</span>
+                                    </div>
+                                    <div class="student-info">
+                                        <h4>Rahul Sharma</h4>
+                                        <p>CE101 • 4th Sem</p>
+                                        <div class="risk-indicators">
+                                            <span class="indicator">
+                                                <i class="fas fa-calendar-check"></i> 40%
+                                            </span>
+                                            <span class="indicator">
+                                                <i class="fas fa-file-alt"></i> 35%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="risk-score">
+                                    <span class="score">85%</span>
+                                    <span class="label">Risk</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="risk-item high">
+                                <div class="risk-student">
+                                    <div class="student-avatar">
+                                        <span>PP</span>
+                                    </div>
+                                    <div class="student-info">
+                                        <h4>Priya Patel</h4>
+                                        <p>IT202 • 4th Sem</p>
+                                        <div class="risk-indicators">
+                                            <span class="indicator">
+                                                <i class="fas fa-calendar-check"></i> 55%
+                                            </span>
+                                            <span class="indicator">
+                                                <i class="fas fa-file-alt"></i> 42%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="risk-score">
+                                    <span class="score">82%</span>
+                                    <span class="label">Risk</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="risk-item medium">
+                                <div class="risk-student">
+                                    <div class="student-avatar">
+                                        <span>AK</span>
+                                    </div>
+                                    <div class="student-info">
+                                        <h4>Amit Kumar</h4>
+                                        <p>EC303 • 6th Sem</p>
+                                        <div class="risk-indicators">
+                                            <span class="indicator">
+                                                <i class="fas fa-calendar-check"></i> 38%
+                                            </span>
+                                            <span class="indicator">
+                                                <i class="fas fa-file-alt"></i> 28%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="risk-score">
+                                    <span class="score">78%</span>
+                                    <span class="label">Risk</span>
+                                </div>
+                                <button class="btn btn-sm btn-outline">
+                                    <i class="fas fa-calendar"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button class="btn btn-link btn-block">
+                            View All At-Risk Students
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fas fa-bolt text-primary"></i>
+                            <h3>Quick Actions</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="quick-actions-grid">
+                            <button class="quick-action-btn">
+                                <i class="fas fa-qrcode"></i>
+                                <span>Mark Attendance</span>
+                            </button>
+                            <button class="quick-action-btn">
+                                <i class="fas fa-pen"></i>
+                                <span>Enter Marks</span>
+                            </button>
+                            <button class="quick-action-btn">
+                                <i class="fas fa-whatsapp"></i>
+                                <span>Parent Alert</span>
+                            </button>
+                            <button class="quick-action-btn">
+                                <i class="fas fa-calendar"></i>
+                                <span>Schedule Meeting</span>
+                            </button>
+                            <button class="quick-action-btn">
+                                <i class="fas fa-file-export"></i>
+                                <span>Generate Report</span>
+                            </button>
+                            <button class="quick-action-btn">
+                                <i class="fas fa-bullhorn"></i>
+                                <span>Announcement</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- AI Assistant Card -->
+                <div class="card ai-assistant mt-4">
+                    <div class="card-body">
+                        <div class="ai-assistant-content">
+                            <div class="ai-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="ai-text">
+                                <h4>Attendance Guardian AI</h4>
+                                <p>98.7% accuracy • 124 alerts this week</p>
+                                <span class="status-badge success">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-copyright">
+                &copy; 2026 iEMS Cosmic UI. Team CODE REAPERS - CVM Hackathon
+            </div>
+            <div class="footer-links">
+                <a href="../footer-pages/about.html">About</a>
+                <a href="../footer-pages/privacy.html">Privacy</a>
+                <a href="../footer-pages/terms.html">Terms</a>
+                <a href="../footer-pages/contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/edubot.js"></script>
+    <script>
+        document.getElementById('currentDate').textContent = 
+            new Date().toLocaleDateString('en-IN', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+    </script>
+</body>
+</html>

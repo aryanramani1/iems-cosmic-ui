@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="iEMS Login - Integrated Education Management System">
+    <title>Login - iEMS Cosmic UI</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="auth-logo">
+                <img src="../assets/images/logo/logo.png" alt="iEMS">
+                <h1>iEMS Cosmic UI</h1>
+                <p>Welcome back! Please login to your account.</p>
+            </div>
+
+            <!-- Role Selector Tabs -->
+            <div class="role-tabs">
+                <button class="role-tab active" data-role="student">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>Student</span>
+                </button>
+                <button class="role-tab" data-role="teacher">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Teacher</span>
+                </button>
+                <button class="role-tab" data-role="admin">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Admin</span>
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i>
+                        Email Address
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="Enter your email"
+                        value="student@cvm.edu"
+                        required
+                    >
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <div class="password-field">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            value="student123"
+                            required
+                        >
+                        <button type="button" class="toggle-password" title="Toggle password visibility">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="form-options">
+                    <label class="checkbox-container">
+                        <input type="checkbox" checked>
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="forgot-password.html" class="forgot-link">
+                        Forgot Password?
+                    </a>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="auth-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </button>
+
+                <!-- Demo Credentials Card -->
+                <div class="demo-credentials">
+                    <div class="demo-header">
+                        <i class="fas fa-flask"></i>
+                        <span>Demo Credentials</span>
+                    </div>
+                    <div class="demo-grid">
+                        <div class="demo-item">
+                            <span class="role-badge admin">ADMIN</span>
+                            <code>admin@cvm.edu</code>
+                            <code>admin123</code>
+                        </div>
+                        <div class="demo-item">
+                            <span class="role-badge teacher">TEACHER</span>
+                            <code>teacher@cvm.edu</code>
+                            <code>teacher123</code>
+                        </div>
+                        <div class="demo-item">
+                            <span class="role-badge student">STUDENT</span>
+                            <code>student@cvm.edu</code>
+                            <code>student123</code>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Register Link -->
+            <div class="auth-footer">
+                <p>Don't have an account?</p>
+                <a href="register.html" class="register-link">
+                    Create Account <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Role Tab Switching
+        const roleTabs = document.querySelectorAll('.role-tab');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+
+        const demoCredentials = {
+            student: { email: 'student@cvm.edu', password: 'student123' },
+            teacher: { email: 'teacher@cvm.edu', password: 'teacher123' },
+            admin: { email: 'admin@cvm.edu', password: 'admin123' }
+        };
+
+        roleTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                roleTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Update demo credentials
+                const role = tab.dataset.role;
+                emailInput.value = demoCredentials[role].email;
+                passwordInput.value = demoCredentials[role].password;
+            });
+        });
+
+        // Toggle Password Visibility
+        const togglePassword = document.querySelector('.toggle-password');
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('fa-eye');
+            this.querySelector('i').classList.toggle('fa-eye-slash');
+        });
+
+        // Form Submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const activeTab = document.querySelector('.role-tab.active');
+            const role = activeTab.dataset.role;
+            
+            // Redirect based on role
+            if (role === 'student') {
+                window.location.href = 'student-dashboard.html';
+            } else if (role === 'teacher') {
+                window.location.href = 'teacher-dashboard.html';
+            } else if (role === 'admin') {
+                window.location.href = 'admin-cockpit.html';
+            }
+        });
+    </script>
+</body>
+</html>

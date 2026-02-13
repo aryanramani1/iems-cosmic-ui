@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Career Pathfinder AI - Personalized career recommendations with 88.1% accuracy">
+    <title>Career Pathfinder AI - iEMS</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/agents.css">
+</head>
+<body class="dashboard-body">
+    <!-- Admin Navbar -->
+    <nav class="dashboard-navbar admin-nav">
+        <div class="nav-container">
+            <div class="nav-left">
+                <div class="nav-brand">
+                    <a href="../admin-cockpit.html">
+                        <img src="../../assets/images/logo/logo-small.png" alt="iEMS" class="nav-logo">
+                        <span>iEMS Admin</span>
+                    </a>
+                </div>
+                <div class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="../admin-cockpit.html" class="nav-link">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Cockpit</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../admin-agents.html" class="nav-link active">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Agents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="user-dropdown-wrapper">
+                    <button class="user-dropdown-btn">
+                        <div class="user-avatar">
+                            <img src="../../assets/images/avatars/admin-avatar.jpg" alt="Admin">
+                        </div>
+                        <span class="user-name">Admin</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Agent Page Content -->
+    <div class="dashboard-container">
+        <!-- Agent Header -->
+        <div class="agent-header-section">
+            <div class="agent-title-section">
+                <div class="agent-icon-large" style="background: linear-gradient(135deg, #10b981, #047857);">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <div>
+                    <h1 class="agent-name">Career Pathfinder AI</h1>
+                    <div class="agent-meta-badges">
+                        <span class="badge badge-success">Active</span>
+                        <span class="badge badge-info">88.1% Accuracy</span>
+                        <span class="badge badge-light">v1.8.0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-actions">
+                <button class="btn btn-outline">
+                    <i class="fas fa-edit"></i> Configure
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-play"></i> Generate Paths
+                </button>
+            </div>
+        </div>
+
+        <!-- Agent Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon bg-success-light">
+                    <i class="fas fa-road text-success"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Career Paths</span>
+                    <h3 class="stat-value">456</h3>
+                    <span class="stat-change">Generated</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-info-light">
+                    <i class="fas fa-check-circle text-info"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Matches</span>
+                    <h3 class="stat-value">378</h3>
+                    <span class="stat-change">Successful</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-primary-light">
+                    <i class="fas fa-calendar text-primary"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Consultations</span>
+                    <h3 class="stat-value">56</h3>
+                    <span class="stat-change">This month</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon bg-warning-light">
+                    <i class="fas fa-trend-up text-warning"></i>
+                </div>
+                <div class="stat-content">
+                    <span class="stat-label">Growth</span>
+                    <h3 class="stat-value">+23%</h3>
+                    <span class="stat-change">YoY</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
