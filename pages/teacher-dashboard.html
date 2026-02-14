@@ -12,18 +12,998 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .dashboard-navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-brand a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0f172a;
+        }
+
+        .nav-brand i {
+            font-size: 1.5rem;
+            color: #3b82f6;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        .nav-link.active {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        /* Notification Bell */
+        .notification-wrapper {
+            position: relative;
+        }
+
+        .notification-bell {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            color: #64748b;
+            cursor: pointer;
+            position: relative;
+            padding: 0.5rem;
+        }
+
+        .notification-bell .badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #ef4444;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* EduBot Icon */
+        .edubot-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .edubot-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .status-dot.online {
+            background: #10b981;
+        }
+
+        /* User Dropdown */
+        .user-dropdown-wrapper {
+            position: relative;
+        }
+
+        .user-dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: none;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .dropdown-arrow {
+            color: #64748b;
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .user-dropdown-menu {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 280px;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            display: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .user-dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-user-info {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .dropdown-user-info strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .dropdown-user-info span {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .dropdown-links {
+            list-style: none;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown-links li a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-links li a:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        .dropdown-links li a i {
+            width: 20px;
+            color: #64748b;
+        }
+
+        .dropdown-links li.divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 0.5rem 0;
+        }
+
+        .logout-link {
+            color: #ef4444 !important;
+        }
+
+        .logout-link i {
+            color: #ef4444 !important;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .mobile-toggle span {
+            width: 100%;
+            height: 3px;
+            background: #333;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            color: #64748b;
+        }
+
+        .date-badge {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .bg-info-light { background: #e0f2fe; }
+        .bg-success-light { background: #dcfce7; }
+        .bg-warning-light { background: #fef3c7; }
+        .bg-primary-light { background: #eff6ff; }
+        .text-info { color: #0284c7; }
+        .text-success { color: #16a34a; }
+        .text-warning { color: #d97706; }
+        .text-primary { color: #3b82f6; }
+
+        .stat-content {
+            flex: 1;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-change {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .stat-change.positive {
+            color: #10b981;
+        }
+
+        /* Dashboard Row */
+        .dashboard-row {
+            display: grid;
+            grid-template-columns: 7fr 5fr;
+            gap: 1.5rem;
+        }
+
+        .dashboard-col.lg-7 {
+            grid-column: span 1;
+        }
+
+        .dashboard-col.lg-5 {
+            grid-column: span 1;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            font-size: 1.25rem;
+        }
+
+        .card-title h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1.5rem;
+        }
+
+        /* Badge Styles */
+        .badge {
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-info {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .badge-danger {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .badge-primary {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .badge-light {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-badge.success {
+            background: #10b981;
+            color: white;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-outline:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+        }
+
+        .btn-outline-primary:hover {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-link {
+            background: none;
+            color: #3b82f6;
+            text-decoration: none;
+            padding: 0.5rem;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Scanner Styles */
+        .scanner-container {
+            margin-bottom: 2rem;
+        }
+
+        .scanner-preview {
+            background: #0f172a;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .scanner-frame {
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .scanner-frame i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .scanner-frame p {
+            color: #94a3b8;
+        }
+
+        .scanner-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, #8b5cf6, transparent);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { top: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .scanner-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .scanner-controls button {
+            flex: 1;
+        }
+
+        .scanner-status {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+        }
+
+        .status-text {
+            color: #64748b;
+        }
+
+        /* Recent Scans */
+        .recent-scans h4 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .scan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .scan-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+        }
+
+        .scan-time {
+            font-size: 0.85rem;
+            color: #64748b;
+            min-width: 70px;
+        }
+
+        .scan-student {
+            flex: 1;
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        /* Schedule Styles */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .schedule-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            border-left: 4px solid transparent;
+        }
+
+        .schedule-item.current {
+            border-left-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .schedule-time {
+            min-width: 100px;
+        }
+
+        .schedule-time .time {
+            font-weight: 600;
+            color: #0f172a;
+            display: block;
+        }
+
+        .schedule-time .duration {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .schedule-info {
+            flex: 1;
+        }
+
+        .schedule-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+
+        .schedule-info p {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .schedule-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .schedule-meta i {
+            margin-right: 0.25rem;
+        }
+
+        .view-all-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Risk List */
+        .risk-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .risk-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            background: #fef2f2;
+            border-radius: 0.75rem;
+            border-left: 4px solid #ef4444;
+        }
+
+        .risk-item.medium {
+            background: #fffbeb;
+            border-left-color: #f59e0b;
+        }
+
+        .risk-student {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .student-avatar {
+            width: 40px;
+            height: 40px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .risk-item.medium .student-avatar {
+            background: #f59e0b;
+        }
+
+        .student-info h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+            color: #0f172a;
+        }
+
+        .student-info p {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+        }
+
+        .risk-indicators {
+            display: flex;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        .indicator {
+            color: #64748b;
+        }
+
+        .risk-score {
+            text-align: center;
+            margin: 0 1rem;
+        }
+
+        .score {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ef4444;
+            display: block;
+        }
+
+        .risk-item.medium .score {
+            color: #f59e0b;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+
+        /* Quick Actions */
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .quick-action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-action-btn:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+            transform: translateY(-2px);
+        }
+
+        .quick-action-btn i {
+            font-size: 1.25rem;
+            color: #3b82f6;
+        }
+
+        .quick-action-btn span {
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        /* AI Assistant */
+        .ai-assistant {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .ai-assistant-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .ai-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .ai-text h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .ai-text p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .dashboard-footer {
+            background: white;
+            padding: 1.5rem 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: #64748b;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .back-to-top:hover {
+            background: #2563eb;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .dashboard-row {
+                grid-template-columns: 1fr;
+            }
+            .nav-list {
+                display: none;
+            }
+            .mobile-toggle {
+                display: flex;
+            }
+            .nav-menu.active {
+                display: block;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active .nav-list {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
-<body class="dashboard-body">
+<body>
     <!-- ===== TEACHER NAVBAR ===== -->
-    <nav class="dashboard-navbar teacher-nav">
+    <nav class="dashboard-navbar">
         <div class="nav-container">
             <div class="nav-left">
                 <div class="nav-brand">
                     <a href="teacher-dashboard.html">
-                        <img src="../assets/images/logo/logo-small.png" alt="iEMS" class="nav-logo">
+                        <i class="fas fa-chalkboard-teacher"></i>
                         <span>iEMS Teacher</span>
                     </a>
                 </div>
@@ -74,26 +1054,57 @@
                 </div>
                 
                 <!-- EduBot -->
-                <div class="edubot-wrapper">
-                    <button class="edubot-icon" id="edubotToggle">
-                        <i class="fas fa-robot"></i>
-                        <span class="status-dot online"></span>
-                    </button>
-                </div>
+                <span class="edubot-icon" id="edubotToggle" title="Chat with EduBot">
+                    <i class="fas fa-robot"></i>
+                    <span class="status-dot online"></span>
+                </span>
                 
                 <!-- User Profile Dropdown -->
                 <div class="user-dropdown-wrapper">
                     <button class="user-dropdown-btn" id="userDropdownToggle">
                         <div class="user-avatar">
-                            <img src="../assets/images/avatars/teacher-avatar.jpg" alt="Prof. Sharma">
+                            <span>PS</span>
                         </div>
                         <span class="user-name">Prof. Sharma</span>
-                        <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        <i class="fas fa-chevron-down dropdown-arrow" id="dropdownArrow"></i>
                     </button>
+                    
+                    <!-- User Dropdown Menu - Exactly like image -->
+                    <div class="user-dropdown-menu" id="userDropdownMenu">
+                        <div class="dropdown-user-info">
+                            <strong>Rohan Patel</strong>
+                            <span>CE101 • Sem 4</span>
+                        </div>
+                        
+                        <ul class="dropdown-links">
+                            <li>
+                                <a href="teacher-profile.html">
+                                    <i class="fas fa-user"></i> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="fas fa-cog"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="teacher-edubot.html">
+                                    <i class="fas fa-robot"></i> EduBot
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="../login.html" class="logout-link">
+                                    <i class="fas fa-sign-out-alt"></i> Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
-            <button class="mobile-toggle">
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-toggle" id="mobileToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -164,7 +1175,7 @@
 
         <!-- Main Grid -->
         <div class="dashboard-row">
-            <!-- QR Scanner & Today's Schedule -->
+            <!-- Left Column -->
             <div class="dashboard-col lg-7">
                 <!-- QR Scanner Card -->
                 <div class="card mb-4">
@@ -186,12 +1197,10 @@
                             </div>
                             <div class="scanner-controls">
                                 <button class="btn btn-primary">
-                                    <i class="fas fa-play"></i>
-                                    Start Scanning
+                                    <i class="fas fa-play"></i> Start Scanning
                                 </button>
                                 <button class="btn btn-outline">
-                                    <i class="fas fa-upload"></i>
-                                    Manual Entry
+                                    <i class="fas fa-upload"></i> Manual Entry
                                 </button>
                             </div>
                             <div class="scanner-status">
@@ -285,7 +1294,7 @@
                 </div>
             </div>
             
-            <!-- Right Column - At Risk Students & Quick Actions -->
+            <!-- Right Column -->
             <div class="dashboard-col lg-5">
                 <!-- At Risk Students Alert -->
                 <div class="card mb-4">
@@ -300,19 +1309,13 @@
                         <div class="risk-list">
                             <div class="risk-item high">
                                 <div class="risk-student">
-                                    <div class="student-avatar">
-                                        <span>RS</span>
-                                    </div>
+                                    <div class="student-avatar">RS</div>
                                     <div class="student-info">
                                         <h4>Rahul Sharma</h4>
                                         <p>CE101 • 4th Sem</p>
                                         <div class="risk-indicators">
-                                            <span class="indicator">
-                                                <i class="fas fa-calendar-check"></i> 40%
-                                            </span>
-                                            <span class="indicator">
-                                                <i class="fas fa-file-alt"></i> 35%
-                                            </span>
+                                            <span class="indicator"><i class="fas fa-calendar-check"></i> 40%</span>
+                                            <span class="indicator"><i class="fas fa-file-alt"></i> 35%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -320,26 +1323,20 @@
                                     <span class="score">85%</span>
                                     <span class="label">Risk</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline">
-                                    <i class="fas fa-calendar"></i>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-calendar"></i> Select Date
                                 </button>
                             </div>
                             
                             <div class="risk-item high">
                                 <div class="risk-student">
-                                    <div class="student-avatar">
-                                        <span>PP</span>
-                                    </div>
+                                    <div class="student-avatar">PP</div>
                                     <div class="student-info">
                                         <h4>Priya Patel</h4>
                                         <p>IT202 • 4th Sem</p>
                                         <div class="risk-indicators">
-                                            <span class="indicator">
-                                                <i class="fas fa-calendar-check"></i> 55%
-                                            </span>
-                                            <span class="indicator">
-                                                <i class="fas fa-file-alt"></i> 42%
-                                            </span>
+                                            <span class="indicator"><i class="fas fa-calendar-check"></i> 55%</span>
+                                            <span class="indicator"><i class="fas fa-file-alt"></i> 42%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -347,26 +1344,20 @@
                                     <span class="score">82%</span>
                                     <span class="label">Risk</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline">
-                                    <i class="fas fa-calendar"></i>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-calendar"></i> Select Date
                                 </button>
                             </div>
                             
                             <div class="risk-item medium">
                                 <div class="risk-student">
-                                    <div class="student-avatar">
-                                        <span>AK</span>
-                                    </div>
+                                    <div class="student-avatar">AK</div>
                                     <div class="student-info">
                                         <h4>Amit Kumar</h4>
                                         <p>EC303 • 6th Sem</p>
                                         <div class="risk-indicators">
-                                            <span class="indicator">
-                                                <i class="fas fa-calendar-check"></i> 38%
-                                            </span>
-                                            <span class="indicator">
-                                                <i class="fas fa-file-alt"></i> 28%
-                                            </span>
+                                            <span class="indicator"><i class="fas fa-calendar-check"></i> 38%</span>
+                                            <span class="indicator"><i class="fas fa-file-alt"></i> 28%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -374,14 +1365,13 @@
                                     <span class="score">78%</span>
                                     <span class="label">Risk</span>
                                 </div>
-                                <button class="btn btn-sm btn-outline">
-                                    <i class="fas fa-calendar"></i>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-calendar"></i> Select Date
                                 </button>
                             </div>
                         </div>
                         <button class="btn btn-link btn-block">
-                            View All At-Risk Students
-                            <i class="fas fa-arrow-right"></i>
+                            View All At-Risk Students <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
                 </div>
@@ -463,16 +1453,111 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="../js/main.js"></script>
-    <script src="../js/edubot.js"></script>
     <script>
-        document.getElementById('currentDate').textContent = 
-            new Date().toLocaleDateString('en-IN', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
+        // Set current date
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // ===== USER DROPDOWN TOGGLE =====
+        const userDropdownToggle = document.getElementById('userDropdownToggle');
+        const userDropdownMenu = document.getElementById('userDropdownMenu');
+        const dropdownArrow = document.getElementById('dropdownArrow');
+
+        if (userDropdownToggle && userDropdownMenu) {
+            userDropdownToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                userDropdownMenu.classList.toggle('show');
+                
+                // Rotate arrow
+                if (dropdownArrow) {
+                    if (userDropdownMenu.classList.contains('show')) {
+                        dropdownArrow.style.transform = 'rotate(180deg)';
+                    } else {
+                        dropdownArrow.style.transform = 'rotate(0deg)';
+                    }
+                }
             });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!userDropdownToggle.contains(e.target) && !userDropdownMenu.contains(e.target)) {
+                    userDropdownMenu.classList.remove('show');
+                    if (dropdownArrow) {
+                        dropdownArrow.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+
+            // Prevent menu from closing when clicking inside
+            userDropdownMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+
+        // ===== NOTIFICATION TOGGLE =====
+        const notificationToggle = document.getElementById('notificationToggle');
+        
+        if (notificationToggle) {
+            notificationToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                alert('Notifications panel will open here');
+            });
+        }
+
+        // ===== EDUBOT TOGGLE =====
+        const edubotToggle = document.getElementById('edubotToggle');
+        
+        if (edubotToggle) {
+            edubotToggle.addEventListener('click', function() {
+                window.location.href = '/pages/student-edubot.html';
+            });
+        }
+
+        // ===== BACK TO TOP =====
+        const backToTop = document.getElementById('backToTop');
+        
+        if (backToTop) {
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // ===== MOBILE MENU TOGGLE =====
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                
+                // Animate hamburger
+                const spans = mobileToggle.querySelectorAll('span');
+                if (navMenu.classList.contains('active')) {
+                    spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>

@@ -3,12 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance Management - Teacher Dashboard</title>
+    <title>QR Attendance Scanner - Teacher Dashboard | iEMS</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #f1f5f9;
+            min-height: 100vh;
+        }
+
+        /* Navbar Styles */
+        .dashboard-navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 0.75rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-brand a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0f172a;
+        }
+
+        .brand-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-list {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: #f1f5f9;
+            color: #3b82f6;
+        }
+
+        .nav-link.active {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .user-dropdown-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .user-dropdown-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown-btn:hover {
+            background: #f1f5f9;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .user-name {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        /* Dashboard Container */
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-subtitle {
+            color: #64748b;
+            font-size: 1rem;
+        }
+
+        .date-badge {
+            background: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #475569;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Grid System */
+        .dashboard-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .dashboard-col {
+            flex: 1 1 calc(50% - 0.75rem);
+            min-width: 300px;
+        }
+
+        .lg-4 {
+            flex: 1 1 calc(33.333% - 1rem);
+        }
+
+        .lg-6 {
+            flex: 1 1 calc(50% - 0.75rem);
+        }
+
+        .lg-8 {
+            flex: 1 1 calc(66.666% - 0.5rem);
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .card-title i {
+            font-size: 1.25rem;
+            color: #3b82f6;
+        }
+
+        .card-title h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        /* Badge Styles */
+        .badge {
+            padding: 0.35rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .badge-info {
+            background: #e0f2fe;
+            color: #0284c7;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .badge-primary {
+            background: #eff6ff;
+            color: #3b82f6;
+        }
+
+        .status-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .status-badge.success {
+            background: #10b981;
+            color: white;
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59,130,246,0.3);
+        }
+
+        .btn-outline {
+            background: white;
+            border: 1px solid #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-outline:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            background: #f8fafc;
+        }
+
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+        }
+
+        /* Scanner Styles */
         .scanner-preview {
             background: #0f172a;
             border-radius: 1rem;
@@ -18,7 +329,30 @@
             position: relative;
             overflow: hidden;
             margin-bottom: 1.5rem;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
+
+        .scanner-preview i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .scanner-preview h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .scanner-preview p {
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+
         .scanner-line {
             position: absolute;
             top: 0;
@@ -28,25 +362,121 @@
             background: linear-gradient(90deg, transparent, #3b82f6, #8b5cf6, transparent);
             animation: scan 2s linear infinite;
         }
+
         @keyframes scan {
             0% { top: 0; opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
         }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-box {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 0.75rem;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .stat-value.success {
+            color: #10b981;
+        }
+
+        .stat-value.danger {
+            color: #ef4444;
+        }
+
+        .stat-value.primary {
+            color: #3b82f6;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-top: 1rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            border-radius: 4px;
+            width: 90.4%;
+        }
+
+        /* Student Row */
         .student-row {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             padding: 0.75rem;
             border-bottom: 1px solid #f1f5f9;
             transition: all 0.3s ease;
         }
+
         .student-row:hover {
             background: #f8fafc;
         }
+
+        .student-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .roll-number {
+            font-weight: 600;
+            width: 60px;
+            color: #3b82f6;
+        }
+
+        .student-name {
+            flex: 1;
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .attendance-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
         .attendance-btn {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             border: 2px solid #e2e8f0;
             background: white;
@@ -55,27 +485,86 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #64748b;
         }
+
+        .attendance-btn:hover {
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: scale(1.1);
+        }
+
         .attendance-btn.present {
             background: #10b981;
             border-color: #10b981;
             color: white;
         }
+
         .attendance-btn.absent {
             background: #ef4444;
             border-color: #ef4444;
             color: white;
         }
+
         .attendance-btn.late {
             background: #f59e0b;
             border-color: #f59e0b;
             color: white;
         }
+
+        /* Recent Scans */
+        .recent-scan-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .recent-scan-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .recent-scan-time {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        .student-list-container {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+        }
+
+        /* Footer Actions */
+        .footer-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .dashboard-col {
+                flex: 1 1 100%;
+            }
+            .nav-list {
+                display: none;
+            }
+        }
     </style>
 </head>
-<body class="dashboard-body">
+<body>
     <!-- Teacher Navbar -->
-    <nav class="dashboard-navbar teacher-nav">
+    <nav class="dashboard-navbar">
         <div class="nav-container">
             <div class="nav-left">
                 <div class="nav-brand">
@@ -84,60 +573,85 @@
                         <span class="brand-text">iEMS Teacher</span>
                     </a>
                 </div>
-                <div class="nav-menu">
-                    <ul class="nav-list">
-                        <li class="nav-item"><a href="teacher-dashboard.html" class="nav-link"><i class="fas fa-home"></i>Dashboard</a></li>
-                        <li class="nav-item"><a href="teacher-attendance.html" class="nav-link active"><i class="fas fa-qrcode"></i>Attendance</a></li>
-                        <li class="nav-item"><a href="teacher-marks.html" class="nav-link"><i class="fas fa-pen"></i>Marks</a></li>
-                        <li class="nav-item"><a href="teacher-class.html" class="nav-link"><i class="fas fa-users"></i>Class</a></li>
-                        <li class="nav-item"><a href="teacher-schedule.html" class="nav-link"><i class="fas fa-calendar"></i>Schedule</a></li>
-                    </ul>
-                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="teacher-dashboard.html" class="nav-link">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teacher-attendance.html" class="nav-link active">
+                            <i class="fas fa-qrcode"></i> Attendance
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teacher-marks.html" class="nav-link">
+                            <i class="fas fa-pen"></i> Marks
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teacher-class.html" class="nav-link">
+                            <i class="fas fa-users"></i> Class
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="teacher-schedule.html" class="nav-link">
+                            <i class="fas fa-calendar"></i> Schedule
+                        </a>
+                    </li>
+                </ul>
             </div>
             <div class="nav-right">
                 <div class="user-dropdown-wrapper">
                     <button class="user-dropdown-btn">
                         <div class="user-avatar">👨‍🏫</div>
                         <span class="user-name">Prof. Sharma</span>
+                        <i class="fas fa-chevron-down" style="color: #64748b;"></i>
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
+    <!-- Main Dashboard Container -->
     <div class="dashboard-container">
-        <!-- Header -->
+        <!-- Header Section - Exactly like image -->
         <div class="dashboard-header">
             <div>
                 <h1 class="welcome-title">📱 QR Attendance Scanner</h1>
-                <p class="welcome-subtitle">Web Development • BE Comp • Section A</p>
+                <p class="welcome-subtitle">Web Development · BE Comp · Section A</p>
             </div>
             <div class="date-badge">
-                <i class="fas fa-calendar"></i>
+                <i class="fas fa-calendar-alt"></i>
                 <span id="currentDate"></span>
             </div>
         </div>
 
-        <!-- Scanner & Controls Row -->
+        <!-- First Row - Scanner and Today's Attendance (Image ke according) -->
         <div class="dashboard-row">
-            <!-- QR Scanner -->
+            <!-- Left Column - Live Scanner (Exactly like image) -->
             <div class="dashboard-col lg-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <i class="fas fa-qrcode text-primary"></i>
+                            <i class="fas fa-qrcode" style="color: #3b82f6;"></i>
                             <h3>Live Scanner</h3>
                         </div>
-                        <span class="badge badge-success">Camera Active</span>
+                        <span class="badge badge-success">
+                            <i class="fas fa-circle" style="font-size: 0.5rem;"></i> Camera Active
+                        </span>
                     </div>
                     <div class="card-body">
+                        <!-- Scanner Preview with Animation -->
                         <div class="scanner-preview">
-                            <i class="fas fa-camera" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.8;"></i>
-                            <h3 style="color: white; margin-bottom: 0.5rem;">Camera Access Required</h3>
-                            <p style="color: #94a3b8; margin-bottom: 1rem;">Place QR code in frame to mark attendance</p>
+                            <i class="fas fa-camera"></i>
+                            <h3>Camera Access Required</h3>
+                            <p>Place QR code in frame to mark attendance</p>
                             <div class="scanner-line"></div>
                         </div>
-                        <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                        
+                        <!-- Buttons - Exactly like image -->
+                        <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
                             <button class="btn btn-primary" style="flex: 1;">
                                 <i class="fas fa-play"></i> Start Scanning
                             </button>
@@ -145,7 +659,9 @@
                                 <i class="fas fa-upload"></i> Manual Entry
                             </button>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.75rem;">
+                        
+                        <!-- Ready Status - Exactly like image -->
+                        <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem; background: #f8fafc; border-radius: 0.75rem;">
                             <span class="status-badge success">Ready</span>
                             <span style="color: #64748b;">Place QR code in frame to begin scanning</span>
                         </div>
@@ -153,42 +669,47 @@
                 </div>
             </div>
 
-            <!-- Class Info & Stats -->
+            <!-- Right Column - Today's Attendance (Exactly like image) -->
             <div class="dashboard-col lg-6">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <i class="fas fa-chart-pie text-primary"></i>
+                            <i class="fas fa-chart-pie" style="color: #3b82f6;"></i>
                             <h3>Today's Attendance</h3>
                         </div>
-                        <span class="badge badge-info">Web Development</span>
+                        <span class="badge badge-info">
+                            <i class="fas fa-code"></i> Web Development
+                        </span>
                     </div>
                     <div class="card-body">
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
-                                <span style="color: #64748b; font-size: 0.85rem;">Total Students</span>
-                                <h2 style="margin-top: 0.25rem;">42</h2>
+                        <!-- Stats Grid - Exactly like image -->
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <span class="stat-label">Total Students</span>
+                                <div class="stat-value">42</div>
                             </div>
-                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
-                                <span style="color: #64748b; font-size: 0.85rem;">Present</span>
-                                <h2 style="margin-top: 0.25rem; color: #10b981;">38</h2>
+                            <div class="stat-box">
+                                <span class="stat-label">Present</span>
+                                <div class="stat-value success">38</div>
                             </div>
-                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
-                                <span style="color: #64748b; font-size: 0.85rem;">Absent</span>
-                                <h2 style="margin-top: 0.25rem; color: #ef4444;">4</h2>
+                            <div class="stat-box">
+                                <span class="stat-label">Absent</span>
+                                <div class="stat-value danger">4</div>
                             </div>
-                            <div style="background: #f8fafc; padding: 1rem; border-radius: 0.75rem;">
-                                <span style="color: #64748b; font-size: 0.85rem;">Attendance %</span>
-                                <h2 style="margin-top: 0.25rem; color: #3b82f6;">90.4%</h2>
+                            <div class="stat-box">
+                                <span class="stat-label">Attendance %</span>
+                                <div class="stat-value primary">90.4%</div>
                             </div>
                         </div>
-                        <div style="margin-bottom: 1rem;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        
+                        <!-- Progress Bar - Exactly like image -->
+                        <div class="progress-container">
+                            <div class="progress-header">
                                 <span style="font-weight: 600;">Progress</span>
                                 <span style="color: #3b82f6; font-weight: 600;">38/42</span>
                             </div>
-                            <div style="width: 100%; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden;">
-                                <div style="width: 90.4%; height: 100%; background: linear-gradient(90deg, #3b82f6, #8b5cf6); border-radius: 4px;"></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90.4%;"></div>
                             </div>
                         </div>
                     </div>
@@ -196,67 +717,74 @@
             </div>
         </div>
 
-        <!-- Recent Scans & Student List -->
+        <!-- Second Row - Recent Scans and Student List -->
         <div class="dashboard-row">
-            <!-- Recent Scans -->
+            <!-- Recent Scans Column -->
             <div class="dashboard-col lg-4">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <i class="fas fa-history text-primary"></i>
+                            <i class="fas fa-history" style="color: #3b82f6;"></i>
                             <h3>Recent Scans</h3>
                         </div>
                     </div>
                     <div class="card-body">
                         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
-                                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                    <span style="font-weight: 600;">CE101</span>
-                                    <span>Rohan Patel</span>
+                            <!-- Scan Item 1 -->
+                            <div class="recent-scan-item">
+                                <div class="recent-scan-info">
+                                    <span style="font-weight: 600; color: #3b82f6;">CE101</span>
+                                    <span style="font-weight: 500;">Rohan Patel</span>
                                 </div>
                                 <span class="badge badge-success">Present</span>
-                                <span style="color: #64748b; font-size: 0.8rem;">10:15 AM</span>
+                                <span class="recent-scan-time">10:15 AM</span>
                             </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
-                                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                    <span style="font-weight: 600;">CE102</span>
-                                    <span>Priya Shah</span>
+                            
+                            <!-- Scan Item 2 -->
+                            <div class="recent-scan-item">
+                                <div class="recent-scan-info">
+                                    <span style="font-weight: 600; color: #3b82f6;">CE102</span>
+                                    <span style="font-weight: 500;">Priya Shah</span>
                                 </div>
                                 <span class="badge badge-success">Present</span>
-                                <span style="color: #64748b; font-size: 0.8rem;">10:14 AM</span>
+                                <span class="recent-scan-time">10:14 AM</span>
                             </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
-                                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                    <span style="font-weight: 600;">CE103</span>
-                                    <span>Amit Kumar</span>
+                            
+                            <!-- Scan Item 3 -->
+                            <div class="recent-scan-item">
+                                <div class="recent-scan-info">
+                                    <span style="font-weight: 600; color: #3b82f6;">CE103</span>
+                                    <span style="font-weight: 500;">Amit Kumar</span>
                                 </div>
                                 <span class="badge badge-warning">Late</span>
-                                <span style="color: #64748b; font-size: 0.8rem;">10:12 AM</span>
+                                <span class="recent-scan-time">10:12 AM</span>
                             </div>
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem;">
-                                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                    <span style="font-weight: 600;">CE104</span>
-                                    <span>Neha Desai</span>
+                            
+                            <!-- Scan Item 4 -->
+                            <div class="recent-scan-item">
+                                <div class="recent-scan-info">
+                                    <span style="font-weight: 600; color: #3b82f6;">CE104</span>
+                                    <span style="font-weight: 500;">Neha Desai</span>
                                 </div>
                                 <span class="badge badge-success">Present</span>
-                                <span style="color: #64748b; font-size: 0.8rem;">10:10 AM</span>
+                                <span class="recent-scan-time">10:10 AM</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Student List for Manual Attendance -->
+            <!-- Student List Column -->
             <div class="dashboard-col lg-8">
                 <div class="card">
                     <div class="card-header">
                         <div class="card-title">
-                            <i class="fas fa-users text-primary"></i>
+                            <i class="fas fa-users" style="color: #3b82f6;"></i>
                             <h3>Student List - Web Development</h3>
                         </div>
-                        <div style="display: flex; gap: 0.5rem;">
+                        <div style="display: flex; gap: 0.75rem;">
                             <button class="btn btn-sm btn-success">
-                                <i class="fas fa-check"></i> Mark All Present
+                                <i class="fas fa-check-circle"></i> Mark All Present
                             </button>
                             <button class="btn btn-sm btn-outline">
                                 <i class="fas fa-download"></i> Export
@@ -264,13 +792,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div style="max-height: 400px; overflow-y: auto;">
+                        <div class="student-list-container">
+                            <!-- Student 1 - Rohan Patel (Present) -->
                             <div class="student-row">
-                                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-                                    <span style="font-weight: 600; width: 60px;">CE101</span>
-                                    <span style="flex: 1;">Rohan Patel</span>
+                                <div class="student-info">
+                                    <span class="roll-number">CE101</span>
+                                    <span class="student-name">Rohan Patel</span>
                                 </div>
-                                <div style="display: flex; gap: 0.5rem;">
+                                <div class="attendance-actions">
                                     <button class="attendance-btn present" title="Present">
                                         <i class="fas fa-check"></i>
                                     </button>
@@ -282,12 +811,14 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Student 2 - Priya Shah (Present) -->
                             <div class="student-row">
-                                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-                                    <span style="font-weight: 600; width: 60px;">CE102</span>
-                                    <span style="flex: 1;">Priya Shah</span>
+                                <div class="student-info">
+                                    <span class="roll-number">CE102</span>
+                                    <span class="student-name">Priya Shah</span>
                                 </div>
-                                <div style="display: flex; gap: 0.5rem;">
+                                <div class="attendance-actions">
                                     <button class="attendance-btn present" title="Present">
                                         <i class="fas fa-check"></i>
                                     </button>
@@ -299,29 +830,33 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Student 3 - Amit Kumar (Late) -->
                             <div class="student-row">
-                                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-                                    <span style="font-weight: 600; width: 60px;">CE103</span>
-                                    <span style="flex: 1;">Amit Kumar</span>
+                                <div class="student-info">
+                                    <span class="roll-number">CE103</span>
+                                    <span class="student-name">Amit Kumar</span>
                                 </div>
-                                <div style="display: flex; gap: 0.5rem;">
+                                <div class="attendance-actions">
                                     <button class="attendance-btn" title="Present">
                                         <i class="fas fa-check"></i>
                                     </button>
                                     <button class="attendance-btn" title="Absent">
                                         <i class="fas fa-times"></i>
                                     </button>
-                                    <button class="attendance-btn present" title="Late">
+                                    <button class="attendance-btn late" title="Late">
                                         <i class="fas fa-clock"></i>
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Student 4 - Neha Desai (Present) -->
                             <div class="student-row">
-                                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-                                    <span style="font-weight: 600; width: 60px;">CE104</span>
-                                    <span style="flex: 1;">Neha Desai</span>
+                                <div class="student-info">
+                                    <span class="roll-number">CE104</span>
+                                    <span class="student-name">Neha Desai</span>
                                 </div>
-                                <div style="display: flex; gap: 0.5rem;">
+                                <div class="attendance-actions">
                                     <button class="attendance-btn present" title="Present">
                                         <i class="fas fa-check"></i>
                                     </button>
@@ -333,16 +868,56 @@
                                     </button>
                                 </div>
                             </div>
+                            
+                            <!-- Student 5 - Karan Mehta (Absent) -->
                             <div class="student-row">
-                                <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
-                                    <span style="font-weight: 600; width: 60px;">CE105</span>
-                                    <span style="flex: 1;">Karan Mehta</span>
+                                <div class="student-info">
+                                    <span class="roll-number">CE105</span>
+                                    <span class="student-name">Karan Mehta</span>
                                 </div>
-                                <div style="display: flex; gap: 0.5rem;">
+                                <div class="attendance-actions">
                                     <button class="attendance-btn" title="Present">
                                         <i class="fas fa-check"></i>
                                     </button>
-                                    <button class="attendance-btn present" title="Absent">
+                                    <button class="attendance-btn absent" title="Absent">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="attendance-btn" title="Late">
+                                        <i class="fas fa-clock"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Student 6 - Sneha Reddy (Present) -->
+                            <div class="student-row">
+                                <div class="student-info">
+                                    <span class="roll-number">CE106</span>
+                                    <span class="student-name">Sneha Reddy</span>
+                                </div>
+                                <div class="attendance-actions">
+                                    <button class="attendance-btn present" title="Present">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="attendance-btn" title="Absent">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                    <button class="attendance-btn" title="Late">
+                                        <i class="fas fa-clock"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Student 7 - Vikram Singh (Present) -->
+                            <div class="student-row">
+                                <div class="student-info">
+                                    <span class="roll-number">CE107</span>
+                                    <span class="student-name">Vikram Singh</span>
+                                </div>
+                                <div class="attendance-actions">
+                                    <button class="attendance-btn present" title="Present">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button class="attendance-btn" title="Absent">
                                         <i class="fas fa-times"></i>
                                     </button>
                                     <button class="attendance-btn" title="Late">
@@ -351,12 +926,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                        
+                        <!-- Footer Buttons -->
+                        <div class="footer-actions">
                             <button class="btn btn-primary">
                                 <i class="fas fa-save"></i> Save Attendance
                             </button>
                             <button class="btn btn-outline">
-                                <i class="fas fa-whatsapp"></i> Notify Absent
+                                <i class="fab fa-whatsapp"></i> Notify Absent
                             </button>
                         </div>
                     </div>
@@ -365,13 +942,54 @@
         </div>
     </div>
 
+    <!-- JavaScript -->
     <script>
+        // Set current date
         document.getElementById('currentDate').textContent = new Date().toLocaleDateString('en-IN', {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
+
+        // Attendance button toggle functionality
+        document.querySelectorAll('.attendance-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const parent = this.parentNode;
+                const buttons = parent.querySelectorAll('.attendance-btn');
+                
+                // Remove all active classes
+                buttons.forEach(b => {
+                    b.classList.remove('present', 'absent', 'late');
+                });
+                
+                // Add class based on button type
+                if (this.querySelector('.fa-check')) {
+                    this.classList.add('present');
+                } else if (this.querySelector('.fa-times')) {
+                    this.classList.add('absent');
+                } else if (this.querySelector('.fa-clock')) {
+                    this.classList.add('late');
+                }
+            });
+        });
+
+        // Mark all present functionality
+        const markAllBtn = document.querySelector('.btn-success');
+        if (markAllBtn) {
+            markAllBtn.addEventListener('click', function() {
+                document.querySelectorAll('.attendance-actions').forEach(action => {
+                    const presentBtn = action.querySelector('.fa-check').parentNode;
+                    const buttons = action.querySelectorAll('.attendance-btn');
+                    
+                    buttons.forEach(b => {
+                        b.classList.remove('present', 'absent', 'late');
+                    });
+                    
+                    presentBtn.classList.add('present');
+                });
+            });
+        }
     </script>
 </body>
 </html>

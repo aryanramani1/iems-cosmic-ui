@@ -418,7 +418,7 @@
                 
                 <!-- EduBot Icon -->
                 <div class="edubot-wrapper">
-                    <button class="edubot-icon" id="edubotToggle">
+                    <button type="button" class="edubot-icon" id="edubotToggle" title="Open EduBot Chat">
                         <i class="fas fa-robot"></i>
                         <span class="status-dot online"></span>
                     </button>
@@ -450,7 +450,7 @@
             </div>
             
             <!-- Mobile Menu Toggle -->
-            <button class="mobile-toggle">
+            <button type="button" class="mobile-toggle" title="Toggle Mobile Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -472,39 +472,42 @@
                 </p>
             </div>
             <div class="week-selector">
-                <button class="week-btn" id="prevWeek">
+                <button type="button" class="week-btn" id="prevWeek" title="Previous Week">
                     <i class="fas fa-chevron-left"></i>
                 </button>
                 <span class="current-week" id="currentWeek">Week 6 • 10-14 Feb 2026</span>
-                <button class="week-btn" id="nextWeek">
+                <button type="button" class="week-btn" id="nextWeek" title="Next Week">
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
         </div>
 
         <!-- ===== CLASS INFORMATION CARDS ===== -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
-            <div class="info-card">
-                <div class="info-icon" style="background: #eff6ff;">
-                    <i class="fas fa-chalkboard-teacher" style="color: #3b82f6;"></i>
-                </div>
-                <div>
-                    <span style="color: #64748b; font-size: 0.85rem;">Class Teacher</span>
-                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">Prof. Sharma</h4>
-                    <span style="color: #475569; font-size: 0.8rem;">Web Development</span>
-                </div>
+        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+
+        <div class="info-card">
+            <div class="info-icon" style="background:#eff6ff;">
+            <i class="fas fa-chalkboard-teacher" style="color:#3b82f6;"></i>
             </div>
-            
-            <div class="info-card">
-                <div class="info-icon" style="background: #dcfce7;">
-                    <i class="fas fa-door-open" style="color: #16a34a;"></i>
-                </div>
-                <div>
-                    <span style="color: #64748b; font-size: 0.85rem;">Classroom</span>
-                    <h4 style="margin-top: 0.25rem; font-size: 1.1rem;">Room 301</h4>
-                    <span style="color: #475569; font-size: 0.8rem;">Academic Block</span>
-                </div>
+            <div>
+            <span style="color:#64748b;font-size:0.85rem;">Class Teacher</span>
+            <h4 style="margin-top:0.25rem; font-size:1.1rem;">Prof. Sharma</h4>
+            <span style="color:#475569;font-size:0.8rem;">Web Development</span>
             </div>
+        </div>
+
+        <div class="info-card">
+            <div class="info-icon" style="background:#dfcfe7;">
+            <i class="fas fa-door-open" style="color:#16a34a;"></i>
+            </div>
+            <div>
+            <span style="color:#64748b;font-size:0.85rem;">Classroom</span>
+            <h4 style="margin-top:0.25rem; font-size:1.1rem;">Room 301</h4>
+            <span style="color:#475569;font-size:0.8rem;">Academic Block</span>
+            </div>
+        </div>
+
+</div>
             
             <div class="info-card">
                 <div class="info-icon" style="background: #fef3c7;">
@@ -691,22 +694,23 @@
                         </tbody>
                     </table>
                 </div>
-                
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
-                    <div style="display: flex; gap: 1rem;">
-                        <span style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="display: inline-block; width: 12px; height: 12px; background: #3b82f6; border-radius: 2px;"></span>
-                            <span style="color: #475569; font-size: 0.85rem;">Theory</span>
-                        </span>
-                        <span style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="display: inline-block; width: 12px; height: 12px; background: #8b5cf6; border-radius: 2px;"></span>
-                            <span style="color: #475569; font-size: 0.85rem;">Lab</span>
-                        </span>
-                        <span style="display: flex; align-items: center; gap: 0.5rem;">
-                            <span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span>
-                            <span style="color: #475569; font-size: 0.85rem;">Current Class</span>
-                        </span>
-                    </div>
+    <div style="display: flex; gap: 1rem;">
+        <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #3b82f6; border-radius: 2px;"></span>
+            <span style="color: #475569; font-size: 0.85rem;">Theory</span>
+        </span>
+        <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #8b5cf6; border-radius: 2px;"></span>
+            <span style="color: #475569; font-size: 0.85rem;">Lab</span>
+        </span>
+        <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="display: inline-block; width: 12px; height: 12px; background: #f59e0b; border-radius: 2px;"></span>
+            <span style="color: #475569; font-size: 0.85rem;">Current Class</span>
+        </span>
+    </div>
+    <!-- Yahan par aap right side ka content add kar sakte hain -->
+</div>
                     <button class="btn btn-outline btn-sm">
                         <i class="fas fa-download"></i> Download Timetable
                     </button>
@@ -727,9 +731,9 @@
                         <input type="text" placeholder="Search classmates..." 
                                style="padding: 0.5rem 1rem 0.5rem 2.5rem; border: 1px solid #e2e8f0; border-radius: 2rem; width: 250px; outline: none;">
                     </div>
-                    <button class="btn btn-sm btn-outline">
-                        <i class="fas fa-filter"></i>
-                    </button>
+ <button class="btn btn-sm btn-outline-primary">
+    <i class="fas fa-filter"></i> Filter
+</button>
                 </div>
             </div>
             <div class="card-body">
@@ -871,9 +875,25 @@
                                 <h4>Web Dev - Module 1</h4>
                                 <p>Prof. Sharma • 2.4 MB</p>
                             </div>
-                            <button class="download-btn">
-                                <i class="fas fa-download"></i>
-                            </button>
+                            <button class="download-outline">
+    <i class="fas fa-download"></i> Download
+</button>
+
+<style>
+    .download-outline {
+        background: transparent;
+        border: 2px solid #007bff;
+        color: #007bff;
+        border-radius: 8px;
+        padding: 8px 18px;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+    .download-outline:hover {
+        background-color: #007bff;
+        color: white;
+    }
+</style>
                         </div>
                         
                         <div class="material-card">
@@ -884,9 +904,9 @@
                                 <h4>DBMS - ER Diagrams</h4>
                                 <p>Prof. Patel • 1.8 MB</p>
                             </div>
-                            <button class="download-btn">
-                                <i class="fas fa-download"></i>
-                            </button>
+                           <button class="btn btn-primary">
+    <i class="fas fa-download"></i> Download
+</button>
                         </div>
                         
                         <div class="material-card">
@@ -897,8 +917,8 @@
                                 <h4>DSA - Lab Manual</h4>
                                 <p>Prof. Gupta • 3.1 MB</p>
                             </div>
-                            <button class="download-btn">
-                                <i class="fas fa-download"></i>
+                           <button class="download-btn">
+                                <i class="fas fa-download"></i> Download
                             </button>
                         </div>
                         
@@ -910,8 +930,8 @@
                                 <h4>OS - Recorded Lectures</h4>
                                 <p>Prof. Verma • 45 min</p>
                             </div>
-                            <button class="download-btn">
-                                <i class="fas fa-play"></i>
+                            <button class="play-btn">
+                                <i class="fas fa-play"></i> Play Video
                             </button>
                         </div>
                     </div>
@@ -1088,8 +1108,8 @@
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
+    <button id="backToTop" class="back-to-top" title="Go to top">
+    <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Scripts -->

@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
         /* Additional Dashboard Styles */
+        .status-dot.welcome-margin {
+            margin-left: 0.5rem;
+        }
         .whatsapp-btn {
             background: linear-gradient(135deg, #25D366, #128C7E);
             color: white;
@@ -190,7 +193,7 @@
                 
                             <!-- EduBot Icon - FIXED -->
                 <div class="edubot-wrapper">
-                    <button class="edubot-icon" id="edubotToggle" onclick="event.preventDefault(); toggleEduBot();">
+                    <button type="button" class="edubot-icon" id="edubotToggle" aria-label="Toggle EduBot chat" onclick="event.preventDefault(); toggleEduBot();">
                         <i class="fas fa-robot"></i>
                         <span class="status-dot online"></span>
                     </button>
@@ -215,14 +218,14 @@
                             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
                             <li><a href="student-edubot.html"><i class="fas fa-robot"></i> EduBot</a></li>
                             <li class="divider"></li>
-                            <li><a href="../login.html" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            <li><a href="/pages/login.html" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             
             <!-- Mobile Menu Toggle -->
-            <button class="mobile-toggle">
+            <button type="button" class="mobile-toggle" aria-label="Toggle mobile menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -237,7 +240,7 @@
             <div class="welcome-section">
                 <h1 class="welcome-title">
                     Welcome back, Rohan! 👋
-                    <span class="status-dot online" style="margin-left: 0.5rem;"></span>
+                    <span class="status-dot online welcome-margin"></span>
                 </h1>
                 <p class="welcome-subtitle">
                     Here's your academic summary for Semester 4
@@ -412,7 +415,7 @@
                                 <span class="target-value">8.5</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%;"></div>
+                                <div class="progress-fill progress-fill-85"></div>
                             </div>
                             <div class="progress-stats">
                                 <span>Current: 8.2</span>
@@ -433,7 +436,7 @@
                                 </div>
                                 <div class="score-progress">
                                     <div class="progress-bar small">
-                                        <div class="progress-fill" style="width: 64%;"></div>
+                                        <div class="progress-fill progress-fill-64"></div>
                                     </div>
                                     <span class="score-status">64% of target</span>
                                 </div>
@@ -573,7 +576,7 @@
                                     </div>
                                     <div class="skill-progress">
                                         <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 40%;"></div>
+                                            <div class="progress-fill progress-fill-40"></div>
                                         </div>
                                         <span class="skill-level">Beginner</span>
                                     </div>
@@ -585,7 +588,7 @@
                                     </div>
                                     <div class="skill-progress">
                                         <div class="progress-bar">
-                                            <div class="progress-fill" style="width: 20%;"></div>
+                                            <div class="progress-fill progress-fill-20"></div>
                                         </div>
                                         <span class="skill-level">Not Started</span>
                                     </div>
@@ -742,38 +745,38 @@
         </div>
 
         <!-- ===== QUICK STATS ROW ===== -->
-        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2rem;">
+        <div class="quick-stats-grid">
             <div class="quick-stat-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <span style="color: #2563eb; font-size: 1.5rem;"><i class="fas fa-book-open"></i></span>
-                    <span style="background: #eff6ff; color: #2563eb; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">4 Courses</span>
+                <div class="flex-between-center">
+                    <span class="icon-color-primary"><i class="fas fa-book-open"></i></span>
+                    <span class="badge-inline">4 Courses</span>
                 </div>
-                <h3 style="margin-bottom: 0.25rem;">Current Semester</h3>
-                <p style="color: #6b7280; font-size: 0.9rem;">Semester 4 • 16 Credits</p>
+                <h3 class="stat-card-title">Current Semester</h3>
+                <p class="stat-card-subtitle">Semester 4 • 16 Credits</p>
             </div>
             <div class="quick-stat-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <span style="color: #10b981; font-size: 1.5rem;"><i class="fas fa-trophy"></i></span>
-                    <span style="background: #d1fae5; color: #10b981; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">Top 15%</span>
+                <div class="flex-between-center">
+                    <span class="icon-color-success"><i class="fas fa-trophy"></i></span>
+                    <span class="badge-success-light">Top 15%</span>
                 </div>
-                <h3 style="margin-bottom: 0.25rem;">Class Rank</h3>
-                <p style="color: #6b7280; font-size: 0.9rem;">6th out of 42 students</p>
+                <h3 class="stat-card-title">Class Rank</h3>
+                <p class="stat-card-subtitle">6th out of 42 students</p>
             </div>
             <div class="quick-stat-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <span style="color: #8b5cf6; font-size: 1.5rem;"><i class="fas fa-certificate"></i></span>
-                    <span style="background: #ede9fe; color: #8b5cf6; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">2 Certs</span>
+                <div class="flex-between-center">
+                    <span class="icon-color-purple"><i class="fas fa-certificate"></i></span>
+                    <span class="badge-purple-light">2 Certs</span>
                 </div>
-                <h3 style="margin-bottom: 0.25rem;">Certifications</h3>
-                <p style="color: #6b7280; font-size: 0.9rem;">Google Analytics • Java</p>
+                <h3 class="stat-card-title">Certifications</h3>
+                <p class="stat-card-subtitle">Google Analytics • Java</p>
             </div>
             <div class="quick-stat-card">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                    <span style="color: #f59e0b; font-size: 1.5rem;"><i class="fas fa-clock"></i></span>
-                    <span style="background: #fef3c7; color: #f59e0b; padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.75rem;">2 Pending</span>
+                <div class="flex-between-center">
+                    <span class="icon-color-warning"><i class="fas fa-clock"></i></span>
+                    <span class="badge-warning-light">2 Pending</span>
                 </div>
-                <h3 style="margin-bottom: 0.25rem;">Assignments</h3>
-                <p style="color: #6b7280; font-size: 0.9rem;">Due this week</p>
+                <h3 class="stat-card-title">Assignments</h3>
+                <p class="stat-card-subtitle">Due this week</p>
             </div>
         </div>
     </div>
@@ -813,21 +816,21 @@
         <div class="footer-content">
             <div class="footer-copyright">
                 &copy; 2026 iEMS Cosmic UI. All rights reserved. 
-                <span style="color: #2563eb; font-weight: 600;">Team CODE REAPERS</span>
+                <span class="footer-copyright-span">Team CODE REAPERS</span>
             </div>
             <div class="footer-links">
                 <a href="../footer-pages/about.html">About</a>
                 <a href="../footer-pages/privacy.html">Privacy</a>
                 <a href="../footer-pages/terms.html">Terms</a>
                 <a href="../footer-pages/contact.html">Contact</a>
-                <a href="../footer-pages/instagram.html"><i class="fab fa-instagram"></i></a>
-                <a href="../footer-pages/twitter.html"><i class="fab fa-twitter"></i></a>
+                <a href="../footer-pages/instagram.html" title="Visit our Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="../footer-pages/twitter.html" title="Visit our Twitter"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button id="backToTop" class="back-to-top">
+    <button type="button" id="backToTop" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
 
